@@ -1,11 +1,11 @@
-from tlutils import parse_date, date_string, first_of_month, first_of_next_month, tl_colors, month_names, first_of_year
-from graphics import viewport
-from svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
+from timeline.tlutils import parse_date, date_string, first_of_month, first_of_next_month, tl_colors, month_names, first_of_year
+from timeline.graphics import viewport
+from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
 from datetime import datetime
 import re
 import itertools
-from tllexer import lex
-from tlparser import parse_tl
+from timeline.tllexer import lex
+from timeline.tlparser import parse_tl
 import pprint
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')

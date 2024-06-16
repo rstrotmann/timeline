@@ -1,5 +1,5 @@
 import re
-from tlutils import tl_colors
+from timeline.tlutils import tl_colors
 import ply.lex as lex
 import ply.yacc as yacc
 from datetime import datetime

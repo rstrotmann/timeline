@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-from tllexer import *
+from timeline.tllexer import *
 
 symbol_table = {}
 

@@ -1,7 +1,7 @@
-from svg_primitives import svg_line, svg_rect, svg_circle, svg_text, svg_path, svg_symbol, svg_large_arrow
+from timeline.svg_primitives import svg_line, svg_rect, svg_circle, svg_text, svg_path, svg_symbol, svg_large_arrow
 from datetime import date
 from datetime import datetime
-from tlutils import parse_date, first_of_next_month
+from timeline.tlutils import parse_date, first_of_next_month
 from PIL import ImageFont
 from matplotlib import font_manager
 

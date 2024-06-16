@@ -1,18 +1,18 @@
 import typer
 import pathlib
 
-from tlobjects import TlPoint, TlInterval, TlThread, TlHeader, TlSection, TlChart, TlSpacer
-from graphics import viewport
-from tlutils import parse_date, first_of_month, first_of_next_month, tl_colors
-from svg_primitives import svg_symbol
+from timeline.tlobjects import TlPoint, TlInterval, TlThread, TlHeader, TlSection, TlChart, TlSpacer
+from timeline.graphics import viewport
+from timeline.tlutils import parse_date, first_of_month, first_of_next_month, tl_colors
+from timeline.svg_primitives import svg_symbol
 from datetime import date
 
-from tllexer import lex
-from tlparser import parse_tl
+from timeline.tllexer import lex
+from timeline.tlparser import parse_tl
 
 ### GLOBAL VARIABLES
-__version__ = "0.0.1"
-__date__ = "12-May_2024"
+__version__ = "0.1.0"
+__date__ = "16-June-2024"
 debug = False
 
 ### FUNCTIONS
@@ -103,7 +103,7 @@ def main(
 
     test = '''
         section Clinical
-        color reds
+        color red
 
         thread FiH
         Cohort 1: 1-Mar-24 - 1-Apr-24

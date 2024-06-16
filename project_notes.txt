@@ -1,0 +1,5 @@
+https://py-pkgs.org/03-how-to-package-a-python#package-structure
+
+https://dev.to/bowmanjd/build-command-line-tools-with-python-poetry-4mnc
+
+https://dev.to/bowmanjd/build-a-command-line-interface-with-python-poetry-and-click-1f5k
