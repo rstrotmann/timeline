@@ -506,6 +506,12 @@ class TlChart(object):
     def x_offset(self, v: viewport):
         return(max([i.x_offset(v) for i in self.sections]))
 
+    def min_date(self):
+        return(min([i.min_date() for i in self.sections]).strftime("%d-%m-%Y"))
+
+    def max_date(self):
+        return(max([i.max_date() for i in self.sections]).strftime("%d-%m-%Y"))
+
     def render(self, v: viewport, include_date = True, min_date = None, max_date = None, today = False, debug = True):
         if not min_date:
             min_date = min([i.min_date() for i in self.sections])
@@ -548,3 +554,15 @@ class TlChart(object):
                 temp_section.add_thread(temp_thread)
             self.add_section(temp_section)
 
+    def read_source(self, infile, outfile = None, debug = False):
+        try: 
+            with open(infile) as f:
+                # temp = yaml.safe_load(f)
+                temp = f.read()
+                if debug:
+                    print(temp)
+        except FileNotFoundError as err:
+            raise(FileNotFoundError(f'Source file {infile} does not exist'))
+        # except Exception as err:
+        #     raise KeyError(f'Could not parse {infile}')
+        self.parse(temp, debug = debug)
