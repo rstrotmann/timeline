@@ -3,13 +3,13 @@ color red
 
 thread FiH
 Cohort 1: 1-Mar-24 - 1-Apr-24
-SMC 1: 15-Apr-24
-Cohort 2: 21-Apr-24 - 21-May-24
-SMC 2: 31-May-24
+SMC 1: 15-Apr
+Cohort 2: 21-Apr - 21-May
+SMC 2: 31-5
 Cohort 3a: 5-Jun-24 - 5-Jul-24
 SMC 3: 18-Jul-24
 SMC 4: 1-Aug-24
-wrong: 1-Oct-24 - 1-Sep-24
+#wrong: 1-Oct-24 - 1-Sep-24
 
 thread study 2
 FSI: 1-Aug-2024

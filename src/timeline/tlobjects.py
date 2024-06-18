@@ -159,7 +159,7 @@ def break_interval(ivl, pts):
 class TlHeader(TlObject):
     def __init__(self, height = 20):
         self._height = height
-        self.color = "transparent"
+        self.color = "white"
         self.caption = ""
 
     def height(self, v: viewport, include_date = True):
@@ -273,7 +273,7 @@ class TlThread(object):
         return out
     
     def render_background(self, viewport: viewport) -> str:
-        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = self.color, line_color = "transparent"))
+        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = self.color, line_color = "white"))
 
     def render_caption(self, viewport: viewport, y = None) -> str:
         if not y:
@@ -387,7 +387,7 @@ class TlMonthscale(TlThread):
     def render(self, v: viewport, include_date = True, today = False, debug = False):
         grid = v.monthgrid()
 
-        out = svg_rect(v.x, v.y, v.width, self.height(v), fill_color = "transparent", lwd = 0)
+        out = svg_rect(v.x, v.y, v.width, self.height(v), fill_color = "white", lwd = 0)
         for i, j in zip(grid, grid[1:]):
             current_color = "#e0e0e0" if (i.month - 1) % 6 < 3 else "white"
             out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), self.height(v), fill_color = current_color, lwd = 1.5)
@@ -417,7 +417,7 @@ class TlYearscale(TlMonthscale):
 
 
 class TlSection(object):
-    def __init__(self, caption = "", height = 0, color = "transparent"):
+    def __init__(self, caption = "", height = 0, color = "white"):
         self.threads = []
         self.caption = caption
         self.color = color

@@ -23,6 +23,22 @@ def version_callback(value: bool):
         typer.echo(f'version {__version__} ({__date__})')
         raise typer.Exit()
 
+# @app.command()
+# def test():
+#     tl_text = '''
+# section s1
+# thread t1
+# point 1: 1-Jan-26
+# point 2: 1-Feb
+# point 3: 1-Mar-24
+# point 4: 1-3
+# interval 1: 1-4 - 1-5
+# '''
+
+#     temp = TlChart()
+#     temp.parse(tl_text, debug=True)
+#     print(temp)
+
 @app.command()
 def main(
 	file: str = typer.Argument(...),

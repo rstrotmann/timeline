@@ -4,8 +4,10 @@ import ply.lex as lex
 import ply.yacc as yacc
 from datetime import datetime
 import dateutil.parser
+import sys
 
 states = ()
+current_year = ""
 
 reserved = {}
 
@@ -68,10 +70,21 @@ def t_COMMENT(t):
     # return t
 
 def t_DATE(t):
-    r'([0-9]{1,2})[\.-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)[\.-]([0-9]{2,4})'
-    temp = re.match(r'([0-9]{1,2})[\.\-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)[\.\-]([0-9]{2,4})', t.value)
+    r'([0-9]{1,2})[\.-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)([\.-]([0-9]{2,4}))?'
+    temp = re.match(r'([0-9]{1,2})[\.\-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)([\.\-]([0-9]{2,4}))?', t.value)
     # t.value = dateutil.parser.parse(temp.groups()[0] + "-" + temp.groups()[1] + "-" + temp.groups()[2]).date()
-    t.value = temp.groups()[0] + "-" + temp.groups()[1] + "-" + temp.groups()[2]
+
+    global current_year
+
+    if temp.groups()[3]:
+        current_year = temp.groups()[3]
+
+    if current_year == "":
+        print("----- VALUE ERROR -----")
+        print("No year defined")
+        sys.exit(1)
+
+    t.value = temp.groups()[0] + "-" + temp.groups()[1] + "-" + current_year
     return t
 
 def t_RANGE(t):
