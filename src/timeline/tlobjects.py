@@ -7,6 +7,7 @@ import itertools
 from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
 import pprint
+import sys
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -68,6 +69,7 @@ class TlPoint(TlObject):
 
 class TlInterval(TlObject):
     def __init__(self, start_date, end_date, caption, date_format = "%d-%b", abbreviated = False):
+        # print(f'make interval')
         self.start_date = parse_date(start_date)
         self.end_date = parse_date(end_date)
         self.caption = caption
@@ -76,6 +78,11 @@ class TlInterval(TlObject):
         self.type = "full"
         self.date_format = date_format
         self.abbreviated = abbreviated
+        if self.start_date > self.end_date:
+            print("----- VALUE ERROR! -----")
+            print(f'interval "{self.caption}": start date ({start_date} must be before end data ({end_date})!')
+            sys.exit(1)
+        
     
     def date_label(self):
         out = datetime.strftime(self.start_date, self.date_format) + " - " + datetime.strftime(self.end_date, self.date_format)
@@ -239,7 +246,7 @@ class TlThread(object):
     def parse(self, tl: str) -> list:
         out = []
         for l in tl.splitlines():
-            m = re.match("^\s*([0-9]+-[0-9A-Za-z]+-[0-9]+)(\s->\s([0-9]+-[0-9A-Za-z]+-[0-9]+))?:\s(.*)", l)
+            m = re.match(r"^\s*([0-9]+-[0-9A-Za-z]+-[0-9]+)(\s->\s([0-9]+-[0-9A-Za-z]+-[0-9]+))?:\s(.*)", l)
             if m:
                 if m.groups()[2]:
                     out.append(TlInterval(start_date = parse_date(m.groups()[0]), end_date = parse_date(m.groups()[2]), caption = m.groups()[3]))

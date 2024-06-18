@@ -3,3 +3,8 @@ https://py-pkgs.org/03-how-to-package-a-python#package-structure
 https://dev.to/bowmanjd/build-command-line-tools-with-python-poetry-4mnc
 
 https://dev.to/bowmanjd/build-a-command-line-interface-with-python-poetry-and-click-1f5k
+
+https://medium.com/clarityai-engineering/how-to-create-and-distribute-a-minimalist-cli-tool-with-python-poetry-click-and-pipx-c0580af4c026
+
+https://realpython.com/python-pipx/#configure-pipx-before-the-first-run
+

@@ -9,6 +9,7 @@ SMC 2: 31-May-24
 Cohort 3a: 5-Jun-24 - 5-Jul-24
 SMC 3: 18-Jul-24
 SMC 4: 1-Aug-24
+wrong: 1-Oct-24 - 1-Sep-24
 
 thread study 2
 FSI: 1-Aug-2024
