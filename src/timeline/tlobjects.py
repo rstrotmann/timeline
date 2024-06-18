@@ -178,7 +178,7 @@ class TlHeader(TlObject):
         grid.sort()
         out = v1.render_background(debug = debug)
         for i, j in zip(grid, grid[1:]):
-            current_color = "#e0e0e0" if (i.month - 1) % 6 < 3 else "white"
+            current_color = "#e0e0e0" if (i.month - 1) % 6 < 3 else "transparent"
             out += svg_rect(v1.date_x(i), v1.y, v1.date_x(j) - v1.date_x(i), v1.height, fill_color = current_color, lwd = 1.5)
 
             label_x = v1.date_x(i) + (v1.date_x(j) - v1.date_x(i))/2 - v1.text_width(month_names[i.month])/2
@@ -188,7 +188,7 @@ class TlHeader(TlObject):
 
 
 class TlThread(object):
-    def __init__(self, text_input = None, caption = "", height = 100, color = "white"):
+    def __init__(self, text_input = None, caption = "", height = 100, color = "transparent"):
         self.objects = []
         self.caption = caption
         self.color = color
@@ -273,7 +273,7 @@ class TlThread(object):
         return out
     
     def render_background(self, viewport: viewport) -> str:
-        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = self.color, line_color = "white"))
+        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = self.color, line_color = "transparent"))
 
     def render_caption(self, viewport: viewport, y = None) -> str:
         if not y:
@@ -417,7 +417,7 @@ class TlYearscale(TlMonthscale):
 
 
 class TlSection(object):
-    def __init__(self, caption = "", height = 0, color = "white"):
+    def __init__(self, caption = "", height = 0, color = "transparent"):
         self.threads = []
         self.caption = caption
         self.color = color
