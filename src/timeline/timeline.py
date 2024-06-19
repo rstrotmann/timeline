@@ -64,9 +64,9 @@ def main(
     if not maxdate:
         maxdate = cht.max_date()
     # print(mindate, maxdate)
-    v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5))
+    v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5), font_size = 16)
 
-    svg_out = cht.render(v, min_date = mindate, max_date = maxdate, include_date = show_date, today = today, debug = False)
+    svg_out = cht.render(v, min_date = mindate, max_date = maxdate, include_date = show_date, today = today, debug = debug)
 
     with open(outfile, "w") as f:
         f.write(svg_out)

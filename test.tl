@@ -19,7 +19,12 @@ conduct: 15-Aug-2024 - 30-Sep-25
 IDMC1: 30-Sep-24
 IDMC2: 1-Dec-24
 
-
+thread study 3
+shell: 1-Aug - 7-Aug
+draft 1: 7-Aug - 14-Aug
+CRM: 14-Aug
+draft 2: 14-Aug - 21-Aug
+final: 21-Aug
 
 section Regulatory
 color blue

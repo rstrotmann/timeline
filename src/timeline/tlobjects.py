@@ -54,12 +54,12 @@ class TlPoint(TlObject):
     def index_date(self):
         return(self.start_date)
     
-    def render(self, viewport: viewport, y = None, width = 50):
+    def render(self, viewport: viewport, y = None, width = 50, symbol_height = 10):
         if not y:
             y = viewport._height/2
         x = self.start_x(viewport)
         y = y + viewport.y
-        return(svg_symbol(x, y, width, "diamond", size = 10))
+        return(svg_symbol(x, y, width, "diamond", size = symbol_height * 1.1))
 
 
 # class TlRange(TlInterval):
@@ -97,7 +97,7 @@ class TlInterval(TlObject):
     def index_date(self):
         return(self.start_date)
     
-    def render(self, viewport: viewport, x_start = None, x_end = None, y = None, offset_start = 0, offset_end = 0):
+    def render(self, viewport: viewport, x_start = None, x_end = None, y = None, offset_start = 0, offset_end = 0, symbol_height = 10):
         if not y:
             y = viewport._height/2
         if not x_start:
@@ -105,25 +105,23 @@ class TlInterval(TlObject):
         if not x_end:
             x_end = self.end_x(viewport) + offset_end
         y = y + viewport.y
-        if x_start < x_end:
+        # if x_start < x_end:
+        if x_start < x_end and x_end - x_start > symbol_height:
             match self.type:
                 case "full":
                     if self.abbreviated:
                         return(svg_large_arrow_abbreviated(x_start, x_end, y, 10)) 
                     else:
-                        return(svg_large_arrow(x_start, x_end, y, 10)) 
+                        return(svg_large_arrow(x_start, x_end, y, symbol_height)) 
                 case "left":
-                    return(svg_large_arrow_start(x_start, x_end, y, 10))
+                    return(svg_large_arrow_start(x_start, x_end, y, symbol_height))
                 case "mid":
-                    # if x_start < x_end:
-                    return(svg_large_arrow_middle(x_start, x_end, y, 10)) 
-                    # else:
-                    #     return("")
+                    return(svg_large_arrow_middle(x_start, x_end, y, symbol_height)) 
                 case "right":
                     if self.abbreviated:
-                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, 10)) 
+                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height)) 
                     else:
-                        return(svg_large_arrow_end(x_start, x_end, y, 10)) 
+                        return(svg_large_arrow_end(x_start, x_end, y, symbol_height)) 
                 case _:
                     return ""
         else:
@@ -231,36 +229,16 @@ class TlThread(object):
 
         top_height = has_top * v.line_height() * (include_date + 1)
         bottom_height = has_bottom * v.line_height() * (include_date + 1)
-        mid_height = 20
-
+        # mid_height = 20
+        mid_height = v.line_height() * 1.3
         y_layout = [ypadding, top_height, ypadding, mid_height, ypadding, bottom_height, ypadding * has_bottom]
         return(list(itertools.accumulate(y_layout)))
 
     def height(self, v: viewport, include_date = True):
-        # temp = self._vertical_layout(v, include_date)
         return(self._vertical_layout(v, include_date)[-1])
     
     def add_object(self, tl_object):
         self.objects.append(tl_object)
-
-    def parse(self, tl: str) -> list:
-        out = []
-        for l in tl.splitlines():
-            m = re.match(r"^\s*([0-9]+-[0-9A-Za-z]+-[0-9]+)(\s->\s([0-9]+-[0-9A-Za-z]+-[0-9]+))?:\s(.*)", l)
-            if m:
-                if m.groups()[2]:
-                    out.append(TlInterval(start_date = parse_date(m.groups()[0]), end_date = parse_date(m.groups()[2]), caption = m.groups()[3]))
-                else:
-                    out.append(TlPoint(date = parse_date(m.groups()[0]), caption = m.groups()[3]))
-        self.objects = out
-
-    def parse_ast(self, ast):
-        for i in ast:
-            if i[0] == 'point':
-                temp = TlPoint(date = i[2], caption = i[1])
-            if i[0] == 'interval':
-                temp = TlInterval(caption = i[1], start_date = i[2], end_date = i[3])
-            self.objects.append(temp)
 
     def objects_in_viewport(self, viewport: viewport):
         out  = []
@@ -285,7 +263,7 @@ class TlThread(object):
         today_x = v.date_x(datetime.today())
         return(svg_line(today_x, v.y, today_x, v.y + v.height , color = "red"))
 
-    def render(self, v: viewport, y = None, include_date = True, today = False, debug = False):
+    def render(self, v: viewport, y = None, include_date = True, today = False, debug = False, symbol_height = 10):
         y_layout = self._vertical_layout(v, include_date = include_date)
         y_upper = y_layout[0] + v.line_height() * 0.8
         y_mid = y_layout[2] + 20/2
@@ -310,9 +288,9 @@ class TlThread(object):
                 for j in break_interval(i, pts):
                     offset_start = 8 if j.start_date in pts_dates else 0
                     offset_end = -8 if j.end_date in pts_dates else 0
-                    out += j.render(v, y = y_mid, offset_start = offset_start, offset_end = offset_end)
+                    out += j.render(v, y = y_mid, offset_start = offset_start, offset_end = offset_end, symbol_height= symbol_height)
             if isinstance(i, TlPoint):
-                out += i.render(v, y = y_mid)
+                out += i.render(v, y = y_mid, symbol_height= symbol_height)
         out += self.render_labels(v, include_date, upper_label_y = y_upper, lower_label_y = y_bottom)
 
         if debug:
@@ -384,7 +362,7 @@ class TlMonthscale(TlThread):
     def height(self, v: viewport, include_date = True):
         return(v.line_height() * 1.3)
 
-    def render(self, v: viewport, include_date = True, today = False, debug = False):
+    def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10):
         grid = v.monthgrid()
 
         out = svg_rect(v.x, v.y, v.width, self.height(v), fill_color = "white", lwd = 0)
@@ -403,7 +381,7 @@ class TlYearscale(TlMonthscale):
         TlThread.__init__(self)
         self.color = "white"
 
-    def render(self, v: viewport, include_date = True, today = False, debug = False):
+    def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10):
         grid =  list(set([first_of_year(i) for i in v.monthgrid()] + [v.min_date]))
         # print(grid)
         out = self.render_background(v)
@@ -456,7 +434,9 @@ class TlSection(object):
         for i in self.threads:
             temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
             out += temp.render_background(debug = debug)
-            out += i.render(temp, include_date = include_date, today = today, debug = debug)
+
+            out += i.render(temp, include_date = include_date, today = today, debug = debug, symbol_height = v.line_height() * 0.65)
+
             vlayout = i._vertical_layout(temp, include_date = include_date)
             out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
 
@@ -529,7 +509,11 @@ class TlChart(object):
         else:
             max_date = parse_date(max_date)
         v.min_date = first_of_month(min_date)
-        v.max_date = first_of_next_month(max_date)        
+        v.max_date = first_of_next_month(max_date)     
+
+        print(f'line_height = {v.line_height()}')
+        print(f'padding_y = {v.padding[1]}')
+
         out = ""
         for i in self.sections:
             temp = v.add_viewport(x_offset = 0, padding = v.padding, spacing = (0, 0))
