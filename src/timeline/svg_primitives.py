@@ -59,13 +59,13 @@ def svg_large_arrow(x1, x2, y, height, **kwargs):
     return(svg_path(0, 0, points, **kwargs))
 
 def svg_large_arrow_start(x1, x2, y, height, **kwargs):
-	return(svg_line(x1, y-height/2, x2, y-height/2) + \
-		svg_line(x1, y+height/2, x2, y+height/2) + \
-		svg_line(x1, y-height/2, x1, y+height/2))
+	return(svg_line(x1, y-height/2, x2, y-height/2, **kwargs) + \
+		svg_line(x1, y+height/2, x2, y+height/2, **kwargs) + \
+		svg_line(x1, y-height/2, x1, y+height/2, **kwargs))
 
 def svg_large_arrow_middle(x1, x2, y, height, **kwargs):
-	return(svg_line(x1, y-height/2, x2, y-height/2) + \
-		svg_line(x1, y+height/2, x2, y+height/2))
+	return(svg_line(x1, y-height/2, x2, y-height/2, **kwargs) + \
+		svg_line(x1, y+height/2, x2, y+height/2, **kwargs))
 
 def svg_large_arrow_end(x1, x2, y, height, **kwargs):
 	points = [(x1, y-height/2), (x2-height, y-height/2), (x2-height, y-height), (x2, y), (x2-height, y+height), (x2-height, y+height/2), (x1, y+height/2)]

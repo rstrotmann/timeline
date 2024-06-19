@@ -23,6 +23,7 @@ class viewport:
         self.ifont = ImageFont.truetype(ttf_file, int(font_size))
         self.color = color
         self.viewports = []
+        self.lwd = 1.8
 
     def __str__(self):
         return(f'viewport: x={round(self.x)}, y={round(self.y)}, height={round(self.height)}, width={round(self.width)}')
@@ -73,7 +74,6 @@ class viewport:
         out = ""
         if debug:
             out += self._render_outline()
-        # out += svg_rect(self.x, self.y, self.width, self.height, fill_color = self.color, lwd = 0)
         out += svg_rect(self.x, self.y, self.width, self.height, fill_color = "#f0f0f0", lwd = 0)
         for i in self.viewports:
             out += i.render_background(debug = debug)
@@ -94,11 +94,3 @@ class viewport:
     def render_svg_footer(self):
         svg_out = "</svg>"
         return(svg_out)
-
-# def text_width(text: str, viewport: viewport) -> float:
-#     return(viewport.ifont.getlength(text))
-
-# def text_height(viewport: viewport) -> float:
-#     _ascent, descent = viewport.ifont.getmetrics()
-#     text_height = viewport.ifont.getmask("X").getbbox()[3] + descent
-#     return(text_height)

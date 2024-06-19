@@ -59,12 +59,7 @@ class TlPoint(TlObject):
             y = viewport._height/2
         x = self.start_x(viewport)
         y = y + viewport.y
-        return(svg_symbol(x, y, width, "diamond", size = symbol_height * 1.1))
-
-
-# class TlRange(TlInterval):
-#     def __init__(self, date, caption = ""):
-#         pass
+        return(svg_symbol(x, y, width, "diamond", size = symbol_height * 1.1, lwd = viewport.lwd))
 
 
 class TlInterval(TlObject):
@@ -110,18 +105,18 @@ class TlInterval(TlObject):
             match self.type:
                 case "full":
                     if self.abbreviated:
-                        return(svg_large_arrow_abbreviated(x_start, x_end, y, 10)) 
+                        return(svg_large_arrow_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
                     else:
-                        return(svg_large_arrow(x_start, x_end, y, symbol_height)) 
+                        return(svg_large_arrow(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
                 case "left":
-                    return(svg_large_arrow_start(x_start, x_end, y, symbol_height))
+                    return(svg_large_arrow_start(x_start, x_end, y, symbol_height, lwd = viewport.lwd))
                 case "mid":
-                    return(svg_large_arrow_middle(x_start, x_end, y, symbol_height)) 
+                    return(svg_large_arrow_middle(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
                 case "right":
                     if self.abbreviated:
-                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height)) 
+                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
                     else:
-                        return(svg_large_arrow_end(x_start, x_end, y, symbol_height)) 
+                        return(svg_large_arrow_end(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
                 case _:
                     return ""
         else:
@@ -177,7 +172,8 @@ class TlHeader(TlObject):
         out = v1.render_background(debug = debug)
         for i, j in zip(grid, grid[1:]):
             current_color = "#e0e0e0" if (i.month - 1) % 6 < 3 else "transparent"
-            out += svg_rect(v1.date_x(i), v1.y, v1.date_x(j) - v1.date_x(i), v1.height, fill_color = current_color, lwd = 1.5)
+            
+            out += svg_rect(v1.date_x(i), v1.y, v1.date_x(j) - v1.date_x(i), v1.height, fill_color = current_color, lwd = v.lwd * 5/6)
 
             label_x = v1.date_x(i) + (v1.date_x(j) - v1.date_x(i))/2 - v1.text_width(month_names[i.month])/2
             label_y = v1.y + v1.height/2 - v1.padding[1] + v1.line_height()/2 + v1.padding[1]*0.5
@@ -214,13 +210,13 @@ class TlThread(object):
         """
         Return a list of 7 values:
         
-        1. top of top label area
-        2. bottom of top label area
-        3. top of symbol area
-        4. bottom of symbol area
-        5. top of bottom label area
-        6. bottom of bottom label area
-        7. bottom of thread drawing area
+        0. top of top label area
+        1. bottom of top label area
+        2. top of symbol area
+        3. bottom of symbol area
+        4. top of bottom label area
+        5. bottom of bottom label area
+        6. bottom of thread drawing area
         """
         ypadding = v.padding[1]
         (top_lbls, bottom_lbls) = self._layout_labels(v, include_date)
@@ -266,7 +262,7 @@ class TlThread(object):
     def render(self, v: viewport, y = None, include_date = True, today = False, debug = False, symbol_height = 10):
         y_layout = self._vertical_layout(v, include_date = include_date)
         y_upper = y_layout[0] + v.line_height() * 0.8
-        y_mid = y_layout[2] + 20/2
+        y_mid = y_layout[2] + (y_layout[3] - y_layout[2]) / 2
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
         out = self.render_background(v)
@@ -288,6 +284,7 @@ class TlThread(object):
                 for j in break_interval(i, pts):
                     offset_start = 8 if j.start_date in pts_dates else 0
                     offset_end = -8 if j.end_date in pts_dates else 0
+
                     out += j.render(v, y = y_mid, offset_start = offset_start, offset_end = offset_end, symbol_height= symbol_height)
             if isinstance(i, TlPoint):
                 out += i.render(v, y = y_mid, symbol_height= symbol_height)
@@ -368,7 +365,8 @@ class TlMonthscale(TlThread):
         out = svg_rect(v.x, v.y, v.width, self.height(v), fill_color = "white", lwd = 0)
         for i, j in zip(grid, grid[1:]):
             current_color = "#e0e0e0" if (i.month - 1) % 6 < 3 else "white"
-            out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), self.height(v), fill_color = current_color, lwd = 1.5)
+
+            out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), self.height(v), fill_color = current_color, lwd = v.lwd * 5 / 6)
             
             label_x = v.date_x(i) + (v.date_x(j) - v.date_x(i))/2 - v.text_width(month_names[i.month])/2
             label_y = v.y + v.height/2 - v.padding[1] + v.line_height()/2 + v.padding[1]* 0.5
@@ -442,12 +440,6 @@ class TlSection(object):
 
         svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = self.color, lwd = 0)
         
-        # # render monthgrid
-        # grid = v.monthgrid()
-        # for i, j in zip(grid, grid[1:]):
-        #     if (i.month - 1) % 2 < 1:
-        #         svg_out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
-
         svg_out +=  out
         return(svg_out)
 
@@ -511,8 +503,8 @@ class TlChart(object):
         v.min_date = first_of_month(min_date)
         v.max_date = first_of_next_month(max_date)     
 
-        print(f'line_height = {v.line_height()}')
-        print(f'padding_y = {v.padding[1]}')
+        # print(f'line_height = {v.line_height()}')
+        # print(f'padding_y = {v.padding[1]}')
 
         out = ""
         for i in self.sections:
@@ -548,12 +540,9 @@ class TlChart(object):
     def read_source(self, infile, outfile = None, debug = False):
         try: 
             with open(infile) as f:
-                # temp = yaml.safe_load(f)
                 temp = f.read()
                 if debug:
                     print(temp)
         except FileNotFoundError as err:
             raise(FileNotFoundError(f'Source file {infile} does not exist'))
-        # except Exception as err:
-        #     raise KeyError(f'Could not parse {infile}')
         self.parse(temp, debug = debug)

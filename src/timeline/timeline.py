@@ -11,8 +11,8 @@ from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
 
 ### GLOBAL VARIABLES
-__version__ = "0.1.0"
-__date__ = "16-June-2024"
+__version__ = "0.1.2"
+__date__ = "19-June-2024"
 debug = False
 
 ### MAIN
@@ -45,7 +45,7 @@ def main(
     outfile: str = typer.Option("", "--output", "-o", help="Output file name"),
 	version: bool = typer.Option(False, "--version", help="Show version and exit", callback=version_callback),
     # font: str = typer.Option("Arial", "--font", "-f", help="Font type"),
-    # fontsize: float = typer.Option(16, "--fontsize", "-s", help="Font size"),
+    fontsize: float = typer.Option(14, "--fontsize", "-s", help="Font size"),
     debug: bool = typer.Option(False, "--debug", "-d", help="Show debug output"),
 	mindate: str = typer.Option(None, "--min-date", "-i", help="Minimum cutoff date"),
     maxdate: str = typer.Option(None, "--max-date", "-x", help="Maximum cutoff date"),
@@ -64,7 +64,7 @@ def main(
     if not maxdate:
         maxdate = cht.max_date()
     # print(mindate, maxdate)
-    v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5), font_size = 16)
+    v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5), font_size = fontsize)
 
     svg_out = cht.render(v, min_date = mindate, max_date = maxdate, include_date = show_date, today = today, debug = debug)
 
