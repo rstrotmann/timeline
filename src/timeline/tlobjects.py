@@ -503,9 +503,6 @@ class TlChart(object):
         v.min_date = first_of_month(min_date)
         v.max_date = first_of_next_month(max_date)     
 
-        # print(f'line_height = {v.line_height()}')
-        # print(f'padding_y = {v.padding[1]}')
-
         out = ""
         for i in self.sections:
             temp = v.add_viewport(x_offset = 0, padding = v.padding, spacing = (0, 0))

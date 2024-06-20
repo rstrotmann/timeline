@@ -72,8 +72,8 @@ def t_COMMENT(t):
 def t_DATE(t):
     r'([0-9]{1,2})[\.-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)([\.-]([0-9]{2,4}))?'
     temp = re.match(r'([0-9]{1,2})[\.\-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)([\.\-]([0-9]{2,4}))?', t.value)
-    # t.value = dateutil.parser.parse(temp.groups()[0] + "-" + temp.groups()[1] + "-" + temp.groups()[2]).date()
 
+    # print(temp.groups())
     global current_year
 
     if temp.groups()[3]:

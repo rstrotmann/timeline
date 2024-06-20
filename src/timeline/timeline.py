@@ -1,5 +1,6 @@
 import typer
 import pathlib2
+import sys
 
 from timeline.tlobjects import TlPoint, TlInterval, TlThread, TlHeader, TlSection, TlChart, TlSpacer
 from timeline.graphics import viewport
@@ -63,7 +64,14 @@ def main(
         mindate = cht.min_date()
     if not maxdate:
         maxdate = cht.max_date()
-    # print(mindate, maxdate)
+
+    mindate = parse_date(mindate)
+    maxdate = parse_date(maxdate)
+    if mindate > maxdate:
+        print('----- VALUE ERROR -----')
+        print(f'max date must be after min date!')
+        sys.exit(1)
+
     v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5), font_size = fontsize)
 
     svg_out = cht.render(v, min_date = mindate, max_date = maxdate, include_date = show_date, today = today, debug = debug)
