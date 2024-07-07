@@ -25,17 +25,17 @@ def version_callback(value: bool):
         typer.echo(f'version {__version__} ({__date__})')
         raise typer.Exit()
 
-@app.command()
-def test():
-    tl_text = '''
-section s1
-thread t1
-point 1: 1-Jan-26 (color: red)
-point 2: 1-Feb (fill: blue)
-point 3: 1-Mar-24
-point 4: 1-3
-interval 1: 1-4 - 1-5 (color: red)
-'''
+# @app.command()
+# def test():
+#     tl_text = '''
+# section s1
+# thread t1
+# point 1: 1-Jan-26 (color: red)
+# point 2: 1-Feb (fill: blue)
+# point 3: 1-Mar-24
+# point 4: 1-3
+# interval 1: 1-4 - 1-5 (color: red)
+# '''
 
 #     tl_text = '''
 # source test
@@ -47,8 +47,8 @@ interval 1: 1-4 - 1-5 (color: red)
     # lex(tl_text, debug = True)
     # ast, symbols = parse_tl(tl_text, debug = True)
 
-    temp = TlChart()
-    temp.parse(tl_text, debug = True)
+    # temp = TlChart()
+    # temp.parse(tl_text, debug = True)
     # print(temp)
     # temp = convert_str_to_dict("color: red, fill: green")
     # print(temp)
