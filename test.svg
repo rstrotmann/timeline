@@ -1,61 +1,13 @@
 <svg width="1215" height="562.76" viewbox="0 0 1200 0.4523" xmlns="http://www.w3.org/2000/svg">
 <style>text {font-family: Arial; font-size: 14.0px ;}</style>
-<rect x="5" y="5" width="1200" height="542.76" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="60.56" width="1200" height="308.04" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="373.6" width="1200" height="169.16000000000003" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="5" width="1200" height="542.76" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="5" y="60.56" width="1200" height="308.04" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="60.56" width="1200" height="308.04" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="5" y="373.6" width="1200" height="169.16000000000003" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="373.6" width="1200" height="169.16000000000003" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:transparent; fill-opacity:1" />
 <text x="10" y="28.4" font-weight="bold"></text>
-<rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:transparent;  stroke-width:1; fill:white; fill-opacity:1" />
-<text x="139.6875" y="20.44" font-weight="normal">2024</text>
 <text x="705.3448834196892" y="20.44" font-weight="normal">2025</text>
 <line x1="700.3448834196892" y1="5" x2="700.3448834196892" y2="25.28" style="stroke:black; stroke-width:1.8; " />
+<text x="139.6875" y="20.44" font-weight="normal">2024</text>
 <text x="24.0" y="30.64" font-weight="normal"></text>
-<rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:1" />
 <rect x="134.6875" y="25.28" width="57.305159758203786" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
@@ -97,14 +49,11 @@
 <rect x="1149.5433937823834" y="25.28" width="55.45660621761658" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
 <text x="1172.5998218911918" y="40.72" font-weight="normal">S</text>
 <text x="24.0" y="50.92" font-weight="normal"></text>
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
-<rect x="5" y="50.56" width="1200" height="5" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="5" y="60.56" width="1200" height="308.04" style="stroke:black;  stroke-width:0; fill:#fbd8ea; fill-opacity:1" />
 <text x="10" y="83.96000000000001" font-weight="bold">Clinical</text>
-<rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
-<line x1="339.8769430051814" y1="60.56" x2="339.8769430051814" y2="163.24" style="stroke:red; stroke-width:1.8; " />
+<line x1="371.3023531951641" y1="60.56" x2="371.3023531951641" y2="163.24" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="60.56" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="60.56" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="60.56" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -115,12 +64,12 @@
 <rect x="922.1713082901554" y="60.56" width="57.3051597582039" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="1034.9330742659758" y="60.56" width="57.3051597582039" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="1149.5433937823834" y="60.56" width="55.45660621761658" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<path d="M134.6875, 116.97 L134.6875, 106.83000000000001 L181.8526597582038, 106.83000000000001 L181.8526597582038, 101.76 L191.99265975820379, 111.9 L181.8526597582038, 122.04 L181.8526597582038, 116.97 L134.6875, 116.97 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M134.6875, 116.97 L134.6875, 106.83000000000001 L181.8526597582038, 106.83000000000001 L181.8526597582038, 101.76 L191.99265975820379, 111.9 L181.8526597582038, 122.04 L181.8526597582038, 116.97 L134.6875, 116.97 Z" style="stroke: red; fill: none; stroke-width:1.8; " />
 <path d="M213.96850932642488, 111.9 L217.87240932642487, 104.0922 L221.77630932642487, 111.9 L217.87240932642487, 119.7078 L213.96850932642488, 111.9 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M228.96373056994818, 116.97 L228.96373056994818, 106.83000000000001 L274.2803367875648, 106.83000000000001 L274.2803367875648, 101.76 L284.4203367875648, 111.9 L274.2803367875648, 122.04 L274.2803367875648, 116.97 L228.96373056994818, 116.97 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M299.0019721934369, 111.9 L302.90587219343695, 104.0922 L306.80977219343697, 111.9 L302.90587219343695, 119.7078 L299.0019721934369, 111.9 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M312.1486398963731, 116.97 L312.1486398963731, 106.83000000000001 L357.4652461139897, 106.83000000000001 L357.4652461139897, 101.76 L367.60524611398966, 111.9 L357.4652461139897, 122.04 L357.4652461139897, 116.97 L312.1486398963731, 116.97 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
-<path d="M387.73254214162347, 111.9 L391.6364421416235, 104.0922 L395.5403421416235, 111.9 L391.6364421416235, 119.7078 L387.73254214162347, 111.9 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M387.73254214162347, 111.9 L391.6364421416235, 104.0922 L395.5403421416235, 111.9 L391.6364421416235, 119.7078 L387.73254214162347, 111.9 Z" style="stroke: red; fill: none; stroke-width:1.8; " />
 <path d="M413.61229170984456, 111.9 L417.5161917098446, 104.0922 L421.4200917098446, 111.9 L417.5161917098446, 119.7078 L413.61229170984456, 111.9 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <text x="134.6875" y="78.04" font-weight="normal">01-Mar - 01-Apr</text>
 <text x="134.6875" y="93.64" font-weight="normal">Cohort 1</text>
@@ -134,18 +83,10 @@
 <text x="312.1486398963731" y="155.12" font-weight="normal">Cohort 3a</text>
 <text x="409.7349417098446" y="139.52" font-weight="normal">01-Aug</text>
 <text x="409.7349417098446" y="155.12" font-weight="normal">SMC 4</text>
-<line x1="134.6875" y1="65.56" x2="1205.0" y2="65.56" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="96.76" x2="1205.0" y2="96.76" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="101.76" x2="1205.0" y2="101.76" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="122.04" x2="1205.0" y2="122.04" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="127.04" x2="1205.0" y2="127.04" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="158.24" x2="1205.0" y2="158.24" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="163.24" x2="1205.0" y2="163.24" style="stroke:black; stroke-width:0.5; " />
 <text x="24.0" y="117.4" font-weight="normal">study 1</text>
-<rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
-<line x1="339.8769430051814" y1="163.24" x2="339.8769430051814" y2="265.92" style="stroke:red; stroke-width:1.8; " />
+<line x1="371.3023531951641" y1="163.24" x2="371.3023531951641" y2="265.92" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="163.24" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="163.24" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="163.24" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -179,18 +120,10 @@
 <text x="775.748542746114" y="196.32" font-weight="normal">Interim analysis</text>
 <text x="435.61469127806566" y="242.20000000000002" font-weight="normal">15-Aug</text>
 <text x="435.61469127806566" y="257.8" font-weight="normal">FSFD</text>
-<line x1="134.6875" y1="168.24" x2="1205.0" y2="168.24" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="199.44" x2="1205.0" y2="199.44" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="204.44" x2="1205.0" y2="204.44" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="224.72000000000003" x2="1205.0" y2="224.72000000000003" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="229.72000000000003" x2="1205.0" y2="229.72000000000003" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="260.92" x2="1205.0" y2="260.92" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="265.92" x2="1205.0" y2="265.92" style="stroke:black; stroke-width:0.5; " />
 <text x="24.0" y="220.08" font-weight="normal">study 2</text>
-<rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
-<line x1="339.8769430051814" y1="265.92" x2="339.8769430051814" y2="368.6" style="stroke:red; stroke-width:1.8; " />
+<line x1="371.3023531951641" y1="265.92" x2="371.3023531951641" y2="368.6" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="265.92" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="265.92" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="265.92" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -208,20 +141,12 @@
 <text x="417.5161917098446" y="299.00000000000006" font-weight="normal">shell</text>
 <text x="428.60751295336786" y="344.88" font-weight="normal">07-Aug - 14-Aug</text>
 <text x="428.60751295336786" y="360.48" font-weight="normal">draft 1</text>
-<line x1="134.6875" y1="270.92" x2="1205.0" y2="270.92" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="302.12" x2="1205.0" y2="302.12" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="307.12" x2="1205.0" y2="307.12" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="327.40000000000003" x2="1205.0" y2="327.40000000000003" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="332.40000000000003" x2="1205.0" y2="332.40000000000003" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="363.6" x2="1205.0" y2="363.6" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="368.6" x2="1205.0" y2="368.6" style="stroke:black; stroke-width:0.5; " />
 <text x="24.0" y="322.76" font-weight="normal">study 3</text>
 <rect x="5" y="373.6" width="1200" height="169.16000000000003" style="stroke:black;  stroke-width:0; fill:#c4e2fa; fill-opacity:1" />
 <text x="10" y="397.0" font-weight="bold">Regulatory</text>
-<rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#c4e2fa; fill-opacity:1" />
-<line x1="339.8769430051814" y1="373.6" x2="339.8769430051814" y2="476.28000000000003" style="stroke:red; stroke-width:1.8; " />
+<line x1="371.3023531951641" y1="373.6" x2="371.3023531951641" y2="476.28000000000003" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="373.6" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="373.6" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="373.6" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -240,18 +165,10 @@
 <text x="322.85292530224524" y="406.68000000000006" font-weight="normal">Briefing Book draft 1</text>
 <text x="332.48272884283244" y="452.56000000000006" font-weight="normal">16-Jun - 30-Jun</text>
 <text x="332.48272884283244" y="468.1600000000001" font-weight="normal">BB review 1</text>
-<line x1="134.6875" y1="378.6" x2="1205.0" y2="378.6" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="409.8" x2="1205.0" y2="409.8" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="414.8" x2="1205.0" y2="414.8" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="435.08000000000004" x2="1205.0" y2="435.08000000000004" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="440.08000000000004" x2="1205.0" y2="440.08000000000004" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="471.28000000000003" x2="1205.0" y2="471.28000000000003" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="476.28000000000003" x2="1205.0" y2="476.28000000000003" style="stroke:black; stroke-width:0.5; " />
 <text x="24.0" y="430.44000000000005" font-weight="normal">FDA interaction</text>
-<rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:1; fill:none; fill-opacity:1" />
 <rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#c4e2fa; fill-opacity:1" />
-<line x1="339.8769430051814" y1="476.28000000000003" x2="339.8769430051814" y2="542.76" style="stroke:red; stroke-width:1.8; " />
+<line x1="371.3023531951641" y1="476.28000000000003" x2="371.3023531951641" y2="542.76" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="476.28000000000003" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="476.28000000000003" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="476.28000000000003" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -268,12 +185,5 @@
 <text x="126.90625" y="509.36000000000007" font-weight="normal">Start</text>
 <text x="465.19154792746116" y="493.76000000000005" font-weight="normal">31-Aug</text>
 <text x="465.19154792746116" y="509.36000000000007" font-weight="normal">Dossier final</text>
-<line x1="134.6875" y1="481.28000000000003" x2="1205.0" y2="481.28000000000003" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="512.48" x2="1205.0" y2="512.48" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="517.48" x2="1205.0" y2="517.48" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="537.76" x2="1205.0" y2="537.76" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="542.76" x2="1205.0" y2="542.76" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="542.76" x2="1205.0" y2="542.76" style="stroke:black; stroke-width:0.5; " />
-<line x1="134.6875" y1="542.76" x2="1205.0" y2="542.76" style="stroke:black; stroke-width:0.5; " />
 <text x="24.0" y="533.12" font-weight="normal">Submission</text>
 </svg>

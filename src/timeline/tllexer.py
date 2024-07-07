@@ -12,8 +12,10 @@ current_year = ""
 reserved = {}
 
 tokens = [
-    'START_THREAD', 'EQUALS', 'ASSIGN', 'SYMBOL_NAME', 'DATE', 'COMMENT', 'INT', 'START_SECTION',
-    'ADD', 'TIMEUNIT', 'RANGE', 'END', 'BEGIN', 'COLOR'
+    'START_THREAD', 'EQUALS', 'ASSIGN', 'SYMBOL_NAME', 'DATE', 'COMMENT',
+    'PARAMETER', 'INT', 'START_SECTION',
+    'ADD', 'TIMEUNIT', 'RANGE', 'END', 'BEGIN', 'COLOR',
+    'SOURCE', 'IMPORT'
 ] + list(reserved.values())
 
 next_state = ''
@@ -25,7 +27,22 @@ t_ADD = r'\+'
 t_ignore = ' \t\n'
 
 
+## IMPORTS
+
+def t_SOURCE(t):
+    r'source\s+(.*)\n'
+    temp = re.match(r'source\s+(.*)\n', t.value)
+    t.value = temp.groups()[0]
+    return t
+
+def t_IMPORT(t):
+    r'import\s+(.*)\n'
+    temp = re.match(r'import\s+(.*)\n', t.value)
+    t.value = temp.groups()[0]
+    return(t)
+
 ## THREADS
+
 
 def t_BEGIN(t):
     r'BEGIN'
@@ -89,6 +106,12 @@ def t_DATE(t):
 
 def t_RANGE(t):
     r'to|\-'
+    return t
+
+def t_PARAMETER(t):
+    r'\(.*\)'
+    temp = re.match(r'\((.*)\)', t.value)
+    t.value = temp.groups()[0]
     return t
 
 def t_SYMBOL_NAME(t):

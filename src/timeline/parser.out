@@ -1,0 +1,437 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADD
+    COMMENT
+    EQUALS
+    IMPORT
+    INT
+    SOURCE
+    TIMEUNIT
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> point
+Rule 2     expression -> interval
+Rule 3     expression -> thread
+Rule 4     expression -> section
+Rule 5     expression -> chart
+Rule 6     temp_chart -> BEGIN section
+Rule 7     temp_chart -> temp_chart section
+Rule 8     chart -> temp_chart END
+Rule 9     temp_section -> START_SECTION thread
+Rule 10    temp_section -> START_SECTION COLOR thread
+Rule 11    temp_section -> temp_section thread
+Rule 12    section -> temp_section
+Rule 13    temp_thread -> START_THREAD point
+Rule 14    temp_thread -> START_THREAD interval
+Rule 15    temp_thread -> temp_thread point
+Rule 16    temp_thread -> temp_thread interval
+Rule 17    thread -> temp_thread
+Rule 18    point -> SYMBOL_NAME ASSIGN DATE
+Rule 19    point -> SYMBOL_NAME ASSIGN DATE PARAMETER
+Rule 20    interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE
+Rule 21    interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+
+Terminals, with rules where they appear
+
+ADD                  : 
+ASSIGN               : 18 19 20 21
+BEGIN                : 6
+COLOR                : 10
+COMMENT              : 
+DATE                 : 18 19 20 20 21 21
+END                  : 8
+EQUALS               : 
+IMPORT               : 
+INT                  : 
+PARAMETER            : 19 21
+RANGE                : 20 21
+SOURCE               : 
+START_SECTION        : 9 10
+START_THREAD         : 13 14
+SYMBOL_NAME          : 18 19 20 21
+TIMEUNIT             : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+chart                : 5
+expression           : 0
+interval             : 2 14 16
+point                : 1 13 15
+section              : 4 6 7
+temp_chart           : 7 8
+temp_section         : 11 12
+temp_thread          : 15 16 17
+thread               : 3 9 10 11
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . point
+    (2) expression -> . interval
+    (3) expression -> . thread
+    (4) expression -> . section
+    (5) expression -> . chart
+    (18) point -> . SYMBOL_NAME ASSIGN DATE
+    (19) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
+    (20) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
+    (21) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+    (17) thread -> . temp_thread
+    (12) section -> . temp_section
+    (8) chart -> . temp_chart END
+    (13) temp_thread -> . START_THREAD point
+    (14) temp_thread -> . START_THREAD interval
+    (15) temp_thread -> . temp_thread point
+    (16) temp_thread -> . temp_thread interval
+    (9) temp_section -> . START_SECTION thread
+    (10) temp_section -> . START_SECTION COLOR thread
+    (11) temp_section -> . temp_section thread
+    (6) temp_chart -> . BEGIN section
+    (7) temp_chart -> . temp_chart section
+
+    SYMBOL_NAME     shift and go to state 7
+    START_THREAD    shift and go to state 11
+    START_SECTION   shift and go to state 12
+    BEGIN           shift and go to state 13
+
+    expression                     shift and go to state 1
+    point                          shift and go to state 2
+    interval                       shift and go to state 3
+    thread                         shift and go to state 4
+    section                        shift and go to state 5
+    chart                          shift and go to state 6
+    temp_thread                    shift and go to state 8
+    temp_section                   shift and go to state 9
+    temp_chart                     shift and go to state 10
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> point .
+
+    $end            reduce using rule 1 (expression -> point .)
+
+
+state 3
+
+    (2) expression -> interval .
+
+    $end            reduce using rule 2 (expression -> interval .)
+
+
+state 4
+
+    (3) expression -> thread .
+
+    $end            reduce using rule 3 (expression -> thread .)
+
+
+state 5
+
+    (4) expression -> section .
+
+    $end            reduce using rule 4 (expression -> section .)
+
+
+state 6
+
+    (5) expression -> chart .
+
+    $end            reduce using rule 5 (expression -> chart .)
+
+
+state 7
+
+    (18) point -> SYMBOL_NAME . ASSIGN DATE
+    (19) point -> SYMBOL_NAME . ASSIGN DATE PARAMETER
+    (20) interval -> SYMBOL_NAME . ASSIGN DATE RANGE DATE
+    (21) interval -> SYMBOL_NAME . ASSIGN DATE RANGE DATE PARAMETER
+
+    ASSIGN          shift and go to state 14
+
+
+state 8
+
+    (17) thread -> temp_thread .
+    (15) temp_thread -> temp_thread . point
+    (16) temp_thread -> temp_thread . interval
+    (18) point -> . SYMBOL_NAME ASSIGN DATE
+    (19) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
+    (20) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
+    (21) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+
+    $end            reduce using rule 17 (thread -> temp_thread .)
+    START_THREAD    reduce using rule 17 (thread -> temp_thread .)
+    END             reduce using rule 17 (thread -> temp_thread .)
+    START_SECTION   reduce using rule 17 (thread -> temp_thread .)
+    SYMBOL_NAME     shift and go to state 7
+
+    point                          shift and go to state 15
+    interval                       shift and go to state 16
+
+state 9
+
+    (12) section -> temp_section .
+    (11) temp_section -> temp_section . thread
+    (17) thread -> . temp_thread
+    (13) temp_thread -> . START_THREAD point
+    (14) temp_thread -> . START_THREAD interval
+    (15) temp_thread -> . temp_thread point
+    (16) temp_thread -> . temp_thread interval
+
+    $end            reduce using rule 12 (section -> temp_section .)
+    END             reduce using rule 12 (section -> temp_section .)
+    START_SECTION   reduce using rule 12 (section -> temp_section .)
+    START_THREAD    shift and go to state 11
+
+    thread                         shift and go to state 17
+    temp_thread                    shift and go to state 8
+
+state 10
+
+    (8) chart -> temp_chart . END
+    (7) temp_chart -> temp_chart . section
+    (12) section -> . temp_section
+    (9) temp_section -> . START_SECTION thread
+    (10) temp_section -> . START_SECTION COLOR thread
+    (11) temp_section -> . temp_section thread
+
+    END             shift and go to state 18
+    START_SECTION   shift and go to state 12
+
+    section                        shift and go to state 19
+    temp_section                   shift and go to state 9
+
+state 11
+
+    (13) temp_thread -> START_THREAD . point
+    (14) temp_thread -> START_THREAD . interval
+    (18) point -> . SYMBOL_NAME ASSIGN DATE
+    (19) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
+    (20) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
+    (21) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+
+    SYMBOL_NAME     shift and go to state 7
+
+    point                          shift and go to state 20
+    interval                       shift and go to state 21
+
+state 12
+
+    (9) temp_section -> START_SECTION . thread
+    (10) temp_section -> START_SECTION . COLOR thread
+    (17) thread -> . temp_thread
+    (13) temp_thread -> . START_THREAD point
+    (14) temp_thread -> . START_THREAD interval
+    (15) temp_thread -> . temp_thread point
+    (16) temp_thread -> . temp_thread interval
+
+    COLOR           shift and go to state 23
+    START_THREAD    shift and go to state 11
+
+    thread                         shift and go to state 22
+    temp_thread                    shift and go to state 8
+
+state 13
+
+    (6) temp_chart -> BEGIN . section
+    (12) section -> . temp_section
+    (9) temp_section -> . START_SECTION thread
+    (10) temp_section -> . START_SECTION COLOR thread
+    (11) temp_section -> . temp_section thread
+
+    START_SECTION   shift and go to state 12
+
+    section                        shift and go to state 24
+    temp_section                   shift and go to state 9
+
+state 14
+
+    (18) point -> SYMBOL_NAME ASSIGN . DATE
+    (19) point -> SYMBOL_NAME ASSIGN . DATE PARAMETER
+    (20) interval -> SYMBOL_NAME ASSIGN . DATE RANGE DATE
+    (21) interval -> SYMBOL_NAME ASSIGN . DATE RANGE DATE PARAMETER
+
+    DATE            shift and go to state 25
+
+
+state 15
+
+    (15) temp_thread -> temp_thread point .
+
+    SYMBOL_NAME     reduce using rule 15 (temp_thread -> temp_thread point .)
+    $end            reduce using rule 15 (temp_thread -> temp_thread point .)
+    START_THREAD    reduce using rule 15 (temp_thread -> temp_thread point .)
+    END             reduce using rule 15 (temp_thread -> temp_thread point .)
+    START_SECTION   reduce using rule 15 (temp_thread -> temp_thread point .)
+
+
+state 16
+
+    (16) temp_thread -> temp_thread interval .
+
+    SYMBOL_NAME     reduce using rule 16 (temp_thread -> temp_thread interval .)
+    $end            reduce using rule 16 (temp_thread -> temp_thread interval .)
+    START_THREAD    reduce using rule 16 (temp_thread -> temp_thread interval .)
+    END             reduce using rule 16 (temp_thread -> temp_thread interval .)
+    START_SECTION   reduce using rule 16 (temp_thread -> temp_thread interval .)
+
+
+state 17
+
+    (11) temp_section -> temp_section thread .
+
+    START_THREAD    reduce using rule 11 (temp_section -> temp_section thread .)
+    $end            reduce using rule 11 (temp_section -> temp_section thread .)
+    END             reduce using rule 11 (temp_section -> temp_section thread .)
+    START_SECTION   reduce using rule 11 (temp_section -> temp_section thread .)
+
+
+state 18
+
+    (8) chart -> temp_chart END .
+
+    $end            reduce using rule 8 (chart -> temp_chart END .)
+
+
+state 19
+
+    (7) temp_chart -> temp_chart section .
+
+    END             reduce using rule 7 (temp_chart -> temp_chart section .)
+    START_SECTION   reduce using rule 7 (temp_chart -> temp_chart section .)
+
+
+state 20
+
+    (13) temp_thread -> START_THREAD point .
+
+    SYMBOL_NAME     reduce using rule 13 (temp_thread -> START_THREAD point .)
+    $end            reduce using rule 13 (temp_thread -> START_THREAD point .)
+    START_THREAD    reduce using rule 13 (temp_thread -> START_THREAD point .)
+    END             reduce using rule 13 (temp_thread -> START_THREAD point .)
+    START_SECTION   reduce using rule 13 (temp_thread -> START_THREAD point .)
+
+
+state 21
+
+    (14) temp_thread -> START_THREAD interval .
+
+    SYMBOL_NAME     reduce using rule 14 (temp_thread -> START_THREAD interval .)
+    $end            reduce using rule 14 (temp_thread -> START_THREAD interval .)
+    START_THREAD    reduce using rule 14 (temp_thread -> START_THREAD interval .)
+    END             reduce using rule 14 (temp_thread -> START_THREAD interval .)
+    START_SECTION   reduce using rule 14 (temp_thread -> START_THREAD interval .)
+
+
+state 22
+
+    (9) temp_section -> START_SECTION thread .
+
+    START_THREAD    reduce using rule 9 (temp_section -> START_SECTION thread .)
+    $end            reduce using rule 9 (temp_section -> START_SECTION thread .)
+    END             reduce using rule 9 (temp_section -> START_SECTION thread .)
+    START_SECTION   reduce using rule 9 (temp_section -> START_SECTION thread .)
+
+
+state 23
+
+    (10) temp_section -> START_SECTION COLOR . thread
+    (17) thread -> . temp_thread
+    (13) temp_thread -> . START_THREAD point
+    (14) temp_thread -> . START_THREAD interval
+    (15) temp_thread -> . temp_thread point
+    (16) temp_thread -> . temp_thread interval
+
+    START_THREAD    shift and go to state 11
+
+    thread                         shift and go to state 26
+    temp_thread                    shift and go to state 8
+
+state 24
+
+    (6) temp_chart -> BEGIN section .
+
+    END             reduce using rule 6 (temp_chart -> BEGIN section .)
+    START_SECTION   reduce using rule 6 (temp_chart -> BEGIN section .)
+
+
+state 25
+
+    (18) point -> SYMBOL_NAME ASSIGN DATE .
+    (19) point -> SYMBOL_NAME ASSIGN DATE . PARAMETER
+    (20) interval -> SYMBOL_NAME ASSIGN DATE . RANGE DATE
+    (21) interval -> SYMBOL_NAME ASSIGN DATE . RANGE DATE PARAMETER
+
+    $end            reduce using rule 18 (point -> SYMBOL_NAME ASSIGN DATE .)
+    SYMBOL_NAME     reduce using rule 18 (point -> SYMBOL_NAME ASSIGN DATE .)
+    START_THREAD    reduce using rule 18 (point -> SYMBOL_NAME ASSIGN DATE .)
+    END             reduce using rule 18 (point -> SYMBOL_NAME ASSIGN DATE .)
+    START_SECTION   reduce using rule 18 (point -> SYMBOL_NAME ASSIGN DATE .)
+    PARAMETER       shift and go to state 27
+    RANGE           shift and go to state 28
+
+
+state 26
+
+    (10) temp_section -> START_SECTION COLOR thread .
+
+    START_THREAD    reduce using rule 10 (temp_section -> START_SECTION COLOR thread .)
+    $end            reduce using rule 10 (temp_section -> START_SECTION COLOR thread .)
+    END             reduce using rule 10 (temp_section -> START_SECTION COLOR thread .)
+    START_SECTION   reduce using rule 10 (temp_section -> START_SECTION COLOR thread .)
+
+
+state 27
+
+    (19) point -> SYMBOL_NAME ASSIGN DATE PARAMETER .
+
+    $end            reduce using rule 19 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    SYMBOL_NAME     reduce using rule 19 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    START_THREAD    reduce using rule 19 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    END             reduce using rule 19 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    START_SECTION   reduce using rule 19 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+
+
+state 28
+
+    (20) interval -> SYMBOL_NAME ASSIGN DATE RANGE . DATE
+    (21) interval -> SYMBOL_NAME ASSIGN DATE RANGE . DATE PARAMETER
+
+    DATE            shift and go to state 29
+
+
+state 29
+
+    (20) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .
+    (21) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE . PARAMETER
+
+    $end            reduce using rule 20 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    SYMBOL_NAME     reduce using rule 20 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    START_THREAD    reduce using rule 20 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    END             reduce using rule 20 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    START_SECTION   reduce using rule 20 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    PARAMETER       shift and go to state 30
+
+
+state 30
+
+    (21) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .
+
+    $end            reduce using rule 21 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    SYMBOL_NAME     reduce using rule 21 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    START_THREAD    reduce using rule 21 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    END             reduce using rule 21 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    START_SECTION   reduce using rule 21 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+

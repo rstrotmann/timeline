@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADD ASSIGN BEGIN COLOR COMMENT DATE END EQUALS INT RANGE START_SECTION START_THREAD SYMBOL_NAME TIMEUNIT\n    expression : point\n               | interval\n               | thread\n               | section\n               | chart\n    \n    temp_chart : BEGIN section\n    \n    temp_chart : temp_chart section\n    \n    chart : temp_chart END\n    \n    temp_section : START_SECTION thread\n    \n    temp_section : START_SECTION COLOR thread\n    \n    temp_section : temp_section thread\n    \n    section : temp_section\n    \n    temp_thread : START_THREAD point\n                | START_THREAD interval\n    \n    temp_thread : temp_thread point\n                | temp_thread interval\n    \n    thread : temp_thread\n    \n    point : SYMBOL_NAME ASSIGN DATE\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE\n    '
+_lr_signature = 'ADD ASSIGN BEGIN COLOR COMMENT DATE END EQUALS IMPORT INT PARAMETER RANGE SOURCE START_SECTION START_THREAD SYMBOL_NAME TIMEUNIT\n    expression : point\n               | interval\n               | thread\n               | section\n               | chart\n    \n    temp_chart : BEGIN section\n    \n    temp_chart : temp_chart section\n    \n    chart : temp_chart END\n    \n    temp_section : START_SECTION thread\n    \n    temp_section : START_SECTION COLOR thread\n    \n    temp_section : temp_section thread\n    \n    section : temp_section\n    \n    temp_thread : START_THREAD point\n                | START_THREAD interval\n    \n    temp_thread : temp_thread point\n                | temp_thread interval\n    \n    thread : temp_thread\n    \n    point : SYMBOL_NAME ASSIGN DATE\n    \n    point : SYMBOL_NAME ASSIGN DATE PARAMETER\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER\n    '
     
-_lr_action_items = {'SYMBOL_NAME':([0,8,11,15,16,20,21,25,28,],[7,7,7,-15,-16,-13,-14,-18,-19,]),'START_THREAD':([0,8,9,12,15,16,17,20,21,22,23,25,26,28,],[11,-17,11,11,-15,-16,-11,-13,-14,-9,11,-18,-10,-19,]),'START_SECTION':([0,8,9,10,13,15,16,17,19,20,21,22,24,25,26,28,],[12,-17,-12,12,12,-15,-16,-11,-7,-13,-14,-9,-6,-18,-10,-19,]),'BEGIN':([0,],[13,]),'$end':([1,2,3,4,5,6,8,9,15,16,17,18,20,21,22,25,26,28,],[0,-1,-2,-3,-4,-5,-17,-12,-15,-16,-11,-8,-13,-14,-9,-18,-10,-19,]),'ASSIGN':([7,],[14,]),'END':([8,9,10,15,16,17,19,20,21,22,24,25,26,28,],[-17,-12,18,-15,-16,-11,-7,-13,-14,-9,-6,-18,-10,-19,]),'COLOR':([12,],[23,]),'DATE':([14,27,],[25,28,]),'RANGE':([25,],[27,]),}
+_lr_action_items = {'SYMBOL_NAME':([0,8,11,15,16,20,21,25,27,29,30,],[7,7,7,-15,-16,-13,-14,-18,-19,-20,-21,]),'START_THREAD':([0,8,9,12,15,16,17,20,21,22,23,25,26,27,29,30,],[11,-17,11,11,-15,-16,-11,-13,-14,-9,11,-18,-10,-19,-20,-21,]),'START_SECTION':([0,8,9,10,13,15,16,17,19,20,21,22,24,25,26,27,29,30,],[12,-17,-12,12,12,-15,-16,-11,-7,-13,-14,-9,-6,-18,-10,-19,-20,-21,]),'BEGIN':([0,],[13,]),'$end':([1,2,3,4,5,6,8,9,15,16,17,18,20,21,22,25,26,27,29,30,],[0,-1,-2,-3,-4,-5,-17,-12,-15,-16,-11,-8,-13,-14,-9,-18,-10,-19,-20,-21,]),'ASSIGN':([7,],[14,]),'END':([8,9,10,15,16,17,19,20,21,22,24,25,26,27,29,30,],[-17,-12,18,-15,-16,-11,-7,-13,-14,-9,-6,-18,-10,-19,-20,-21,]),'COLOR':([12,],[23,]),'DATE':([14,28,],[25,29,]),'PARAMETER':([25,29,],[27,30,]),'RANGE':([25,],[28,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -27,23 +27,25 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> point','expression',1,'p_expression_atomic','tlparser.py',9),
-  ('expression -> interval','expression',1,'p_expression_atomic','tlparser.py',10),
-  ('expression -> thread','expression',1,'p_expression_atomic','tlparser.py',11),
-  ('expression -> section','expression',1,'p_expression_atomic','tlparser.py',12),
-  ('expression -> chart','expression',1,'p_expression_atomic','tlparser.py',13),
-  ('temp_chart -> BEGIN section','temp_chart',2,'p_chart','tlparser.py',22),
-  ('temp_chart -> temp_chart section','temp_chart',2,'p_chart2','tlparser.py',28),
-  ('chart -> temp_chart END','chart',2,'p_chart1','tlparser.py',35),
-  ('temp_section -> START_SECTION thread','temp_section',2,'p_section','tlparser.py',45),
-  ('temp_section -> START_SECTION COLOR thread','temp_section',3,'p_section_color','tlparser.py',52),
-  ('temp_section -> temp_section thread','temp_section',2,'p_section1','tlparser.py',60),
-  ('section -> temp_section','section',1,'p_section2','tlparser.py',69),
-  ('temp_thread -> START_THREAD point','temp_thread',2,'p_thread','tlparser.py',79),
-  ('temp_thread -> START_THREAD interval','temp_thread',2,'p_thread','tlparser.py',80),
-  ('temp_thread -> temp_thread point','temp_thread',2,'p_thread1','tlparser.py',87),
-  ('temp_thread -> temp_thread interval','temp_thread',2,'p_thread1','tlparser.py',88),
-  ('thread -> temp_thread','thread',1,'p_thread2','tlparser.py',96),
-  ('point -> SYMBOL_NAME ASSIGN DATE','point',3,'p_point','tlparser.py',103),
-  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE','interval',5,'p_interval','tlparser.py',111),
+  ('expression -> point','expression',1,'p_expression_atomic','tlparser.py',10),
+  ('expression -> interval','expression',1,'p_expression_atomic','tlparser.py',11),
+  ('expression -> thread','expression',1,'p_expression_atomic','tlparser.py',12),
+  ('expression -> section','expression',1,'p_expression_atomic','tlparser.py',13),
+  ('expression -> chart','expression',1,'p_expression_atomic','tlparser.py',14),
+  ('temp_chart -> BEGIN section','temp_chart',2,'p_chart','tlparser.py',23),
+  ('temp_chart -> temp_chart section','temp_chart',2,'p_chart2','tlparser.py',29),
+  ('chart -> temp_chart END','chart',2,'p_chart1','tlparser.py',36),
+  ('temp_section -> START_SECTION thread','temp_section',2,'p_section','tlparser.py',46),
+  ('temp_section -> START_SECTION COLOR thread','temp_section',3,'p_section_color','tlparser.py',53),
+  ('temp_section -> temp_section thread','temp_section',2,'p_section1','tlparser.py',61),
+  ('section -> temp_section','section',1,'p_section2','tlparser.py',70),
+  ('temp_thread -> START_THREAD point','temp_thread',2,'p_thread','tlparser.py',80),
+  ('temp_thread -> START_THREAD interval','temp_thread',2,'p_thread','tlparser.py',81),
+  ('temp_thread -> temp_thread point','temp_thread',2,'p_thread1','tlparser.py',88),
+  ('temp_thread -> temp_thread interval','temp_thread',2,'p_thread1','tlparser.py',89),
+  ('thread -> temp_thread','thread',1,'p_thread2','tlparser.py',97),
+  ('point -> SYMBOL_NAME ASSIGN DATE','point',3,'p_point','tlparser.py',106),
+  ('point -> SYMBOL_NAME ASSIGN DATE PARAMETER','point',4,'p_point1','tlparser.py',114),
+  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE','interval',5,'p_interval','tlparser.py',125),
+  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER','interval',6,'p_interval1','tlparser.py',132),
 ]

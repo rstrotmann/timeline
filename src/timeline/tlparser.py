@@ -2,6 +2,7 @@ import ply.yacc as yacc
 from timeline.tllexer import *
 
 symbol_table = {}
+sources = []
 
 
 def p_expression_atomic(p):
@@ -98,20 +99,40 @@ def p_thread2(p):
     p[0] = ('thread', p[1][0], p[1][1]) 
 
 
+# ## POINT
+
 def p_point(p):
     '''
     point : SYMBOL_NAME ASSIGN DATE
     '''
     symbol_table[p[1]] = p[3]
     # print(f'add point symbol {p[1]}')
-    p[0] = ('point', p[1], p[3])  
+    p[0] = ('point', p[1], p[3], '')  
+
+def p_point1(p):
+    '''
+    point : SYMBOL_NAME ASSIGN DATE PARAMETER
+    '''
+    symbol_table[p[1]] = p[3]
+    # print(f'add point symbol {p[1]}')
+    p[0] = ('point', p[1], p[3], p[4])  
+
+
+# ## INTERVAL
 
 def p_interval(p):
     '''
     interval : SYMBOL_NAME ASSIGN DATE RANGE DATE
     '''
     symbol_table[p[1]] = p[3]
-    p[0] = ('interval', p[1], p[3], p[5])  
+    p[0] = ('interval', p[1], p[3], p[5], '')  
+
+def p_interval1(p):
+    '''
+    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+    '''
+    symbol_table[p[1]] = p[3]
+    p[0] = ('interval', p[1], p[3], p[5], p[6])  
 
 
 
@@ -128,3 +149,24 @@ def parse_tl(source, debug = False):
         return ast, symbol_table
     except:
         return None, None
+
+def ast_get_thread(ast, caption):
+    def find_in_section(section, caption):
+        for i in section[3]:
+            if i[0] == "thread" and i[1] == caption:
+                return(i)
+        return(None)
+    
+    def find_in_chart(chart, caption):
+        for i in chart:
+            if i[0] == "section":
+                t = find_in_section(i, caption)
+                if t:
+                    return(t)
+        return(None)
+    
+    if ast[0] == "chart":
+        return(find_in_chart(ast[1], caption))
+    if ast[0] == "section":
+        return(find_in_section(ast[3], caption))
+    return(None)

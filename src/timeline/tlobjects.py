@@ -8,6 +8,10 @@ from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
 import pprint
 import sys
+from timeline.tlutils import convert_str_to_dict
+# from ast import literal_eval
+
+from timeline.tlparser import ast_get_thread
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -34,10 +38,11 @@ class TlObject(object):
 
 
 class TlPoint(TlObject):
-    def __init__(self, date, caption = "", date_format = "%d-%b"):
+    def __init__(self, date, caption = "", parameter = "", date_format = "%d-%b"):
         self.start_date = parse_date(date)
         self.end_date = self.start_date
         self.caption = caption
+        self.parameter = convert_str_to_dict(parameter)
         self.keepout_left = -7
         self.keepout_right = 9
         self.date_format = date_format
@@ -46,7 +51,7 @@ class TlPoint(TlObject):
         return(datetime.strftime(self.start_date, self.date_format))
 
     def __str__(self):
-        return(f'Point ({date_string(self.start_date)}): {self.caption}')
+        return(f'Point ({date_string(self.start_date)}): {self.caption} ({self.parameter})')
     
     def __repr__(self) -> str:
         return str(self)
@@ -55,19 +60,26 @@ class TlPoint(TlObject):
         return(self.start_date)
     
     def render(self, viewport: viewport, y = None, width = 50, symbol_height = 10):
+        # print(f'render {self.parameter}')
+        # print(f'render point {self.caption} with params {self.parameter}')
+        outline_col = self.parameter.get("color", "black")
+        fill_col = self.parameter.get("fill", "none")
         if not y:
             y = viewport._height/2
         x = self.start_x(viewport)
         y = y + viewport.y
-        return(svg_symbol(x, y, width, "diamond", size = symbol_height * 1.1, lwd = viewport.lwd))
+        return(svg_symbol(x, y, width, "diamond", size = symbol_height * 1.1, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col))
 
 
 class TlInterval(TlObject):
-    def __init__(self, start_date, end_date, caption, date_format = "%d-%b", abbreviated = False):
+    def __init__(self, start_date, end_date, caption, parameter = "", date_format = "%d-%b", abbreviated = False):
         # print(f'make interval')
         self.start_date = parse_date(start_date)
         self.end_date = parse_date(end_date)
         self.caption = caption
+        # self.parameter = parameter
+        self.parameter = convert_str_to_dict(parameter)
+        # print(f'init interval {self.caption}, params: {self.parameter}')
         self.keepout_left = 0
         self.keepout_right = 0
         self.type = "full"
@@ -84,7 +96,7 @@ class TlInterval(TlObject):
         return(out)
 
     def __str__(self):
-        return(f'Interval ({self.date_label()}): {self.caption}')
+        return(f'Interval ({self.date_label()}): {self.caption} ({self.parameter})')
     
     def __repr__(self) -> str:
         return str(self)
@@ -93,6 +105,10 @@ class TlInterval(TlObject):
         return(self.start_date)
     
     def render(self, viewport: viewport, x_start = None, x_end = None, y = None, offset_start = 0, offset_end = 0, symbol_height = 10):
+        # print(f'render interval {self.caption} with params {self.parameter}')
+        outline_col = self.parameter.get("color", "black")
+        fill_col = self.parameter.get("fill", "none")
+        # print(f'render interval {self.caption} in {outline_col}')
         if not y:
             y = viewport._height/2
         if not x_start:
@@ -105,9 +121,9 @@ class TlInterval(TlObject):
             match self.type:
                 case "full":
                     if self.abbreviated:
-                        return(svg_large_arrow_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
+                        return(svg_large_arrow_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
                     else:
-                        return(svg_large_arrow(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
+                        return(svg_large_arrow(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
                 case "left":
                     return(svg_large_arrow_start(x_start, x_end, y, symbol_height, lwd = viewport.lwd))
                 case "mid":
@@ -135,6 +151,7 @@ def break_interval(ivl, pts):
     for i, p in enumerate(pts):
         end = p.start_date
         temp = TlInterval(start, end, ivl.caption, abbreviated = abbr)
+        temp.parameter = ivl.parameter
         if len(pts) == 1: 
             temp.type = "full"
         elif i == 0:
@@ -482,6 +499,13 @@ class TlChart(object):
         if section:
             self.sections.append(section)
 
+    def get_thread(self, caption):
+        for s in self.sections:
+            for t in s.threads:
+                if t.caption == caption:
+                    return(t)
+        return(None)
+
     def x_offset(self, v: viewport):
         return(max([i.x_offset(v) for i in self.sections]))
 
@@ -520,19 +544,26 @@ class TlChart(object):
         ast, symbols = parse_tl(temp, debug = debug)
 
         if debug:
-            pprint.pprint(ast)
+            print("---- symbols -----")
+            for i in symbols:
+                print(i)
+            print("----- ast -----")
+            pprint.pprint(ast) 
 
         for section in ast[1]:
             temp_section = TlSection(caption = section[1], color = tl_colors[section[2]])
             for thread in section[3]:
-                temp_thread = TlThread(caption = thread[1], color=temp_section.color)
+                temp_thread = TlThread(caption = thread[1], color = temp_section.color)
                 for item in thread[2]:
                     if(item[0] == 'point'):
-                        temp_thread.add_object(TlPoint(date = item[2], caption = item[1]))
+                        temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
                     if(item[0] == 'interval'):
-                        temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3]))
+                        temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
                 temp_section.add_thread(temp_thread)
             self.add_section(temp_section)
+
+        # print("----- test -----")
+        # print(ast_get_thread(ast, "study 1"))
 
     def read_source(self, infile, outfile = None, debug = False):
         try: 

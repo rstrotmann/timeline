@@ -17,6 +17,7 @@ def svg_text(x, y, text, css_class="", font_weight="normal"):
 		return(f'<text x="{x}" y="{y}" font-weight="{font_weight}">{text}</text>\n')
 
 def svg_path(x, y, points, lwd=1.8, size=1, fill=False, dashed=False, fill_color="none", outline_color="black", title=""):
+	# print(f'svg_path outline color : {outline_color}')
 	dash = "stroke-dasharray: 2.5 2.5" if dashed else ""
 	(x1, y1) = points[-1]
 	out = f'<path d="M{x1*size+x}, {y1*size+y} '
@@ -42,21 +43,21 @@ def svg_open_path(x, y, points, lwd=1.8, size=1, fill=False, dashed=False, fill_
 		out += ' />\n'
 	return(out)
 
-def svg_symbol(x, y, width, symbol, size=1, fill=False, fill_color="none", **kwargs):
+def svg_symbol(x, y, width, symbol, size=1, fill=False, outline_color = "black", fill_color = "none", **kwargs):
     if symbol == "diamond":
-        return svg_path(x, y, [(0, -0.5), (0.25, 0), (0, 0.5), (-0.25, 0)], size=size*1.4, fill=fill, fill_color=fill_color, **kwargs)
+        return svg_path(x, y, [(0, -0.5), (0.25, 0), (0, 0.5), (-0.25, 0)], size=size*1.4, fill=fill, fill_color=fill_color, outline_color = outline_color, **kwargs)
     elif symbol == "block":
         w = width/size/1.5*.7
-        return svg_path(x, y, [(w/-2, -.25), (w/2, -.25), (w/2, .25), (-w/2, .25)], size=size*1.5, fill=fill, fill_color=fill_color, **kwargs)
+        return svg_path(x, y, [(w/-2, -.25), (w/2, -.25), (w/2, .25), (-w/2, .25)], size=size*1.5, fill=fill, fill_color=fill_color, outline_color = outline_color, **kwargs)
     elif symbol == "arrow":
-        return svg_path(x, y, [(-0.03, -0.5), (0.03, -0.5), (0.03, 0), (0.1875, 0), (0.0, 0.5), (-0.1875, 0), (-0.03, 0)], size=size*1.2, fill=True, fill_color="black", **kwargs)
+        return svg_path(x, y, [(-0.03, -0.5), (0.03, -0.5), (0.03, 0), (0.1875, 0), (0.0, 0.5), (-0.1875, 0), (-0.03, 0)], size=size*1.2, fill=True, outline_color = outline_color, fill_color = fill_color, **kwargs)
     elif symbol == "circle":
-        return svg_circle(x, y, width/2*size, fill_color=fill_color, **kwargs)
+        return svg_circle(x, y, width/2*size, fill_color = fill_color, outline_color = outline_color, **kwargs)
     return ""
 
-def svg_large_arrow(x1, x2, y, height, **kwargs):
+def svg_large_arrow(x1, x2, y, height, fill_color = "none", outline_color = "black", **kwargs):
     points = [(x1, y-height/2), (x2-height, y-height/2), (x2-height, y-height), (x2, y), (x2-height, y+height), (x2-height, y+height/2), (x1, y+height/2)]
-    return(svg_path(0, 0, points, **kwargs))
+    return(svg_path(0, 0, points, fill_color=fill_color, outline_color = outline_color, **kwargs))
 
 def svg_large_arrow_start(x1, x2, y, height, **kwargs):
 	return(svg_line(x1, y-height/2, x2, y-height/2, **kwargs) + \

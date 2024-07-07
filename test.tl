@@ -2,12 +2,12 @@ section Clinical
 color red
 
 thread study 1
-Cohort 1: 1-Mar-24 - 1-Apr-24
+Cohort 1: 1-Mar-24 - 1-Apr-24 (color: red)
 SMC 1: 15-Apr
 Cohort 2: 21-Apr - 21-May
 SMC 2: 31-5
 Cohort 3a: 5-Jun-24 - 5-Jul-24
-SMC 3: 18-Jul-24
+SMC 3: 18-Jul-24 (color: red)
 SMC 4: 1-Aug-24
 #wrong: 1-Oct-24 - 1-Sep-24 
 

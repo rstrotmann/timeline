@@ -4,12 +4,13 @@ import sys
 
 from timeline.tlobjects import TlPoint, TlInterval, TlThread, TlHeader, TlSection, TlChart, TlSpacer
 from timeline.graphics import viewport
-from timeline.tlutils import parse_date, first_of_month, first_of_next_month, tl_colors
+from timeline.tlutils import parse_date, first_of_month, first_of_next_month, tl_colors, convert_str_to_dict
 from timeline.svg_primitives import svg_symbol
 from datetime import date
 
 from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
+
 
 ### GLOBAL VARIABLES
 __version__ = "0.1.2"
@@ -24,21 +25,34 @@ def version_callback(value: bool):
         typer.echo(f'version {__version__} ({__date__})')
         raise typer.Exit()
 
-# @app.command()
-# def test():
+@app.command()
+def test():
+    tl_text = '''
+section s1
+thread t1
+point 1: 1-Jan-26 (color: red)
+point 2: 1-Feb (fill: blue)
+point 3: 1-Mar-24
+point 4: 1-3
+interval 1: 1-4 - 1-5 (color: red)
+'''
+
 #     tl_text = '''
-# section s1
-# thread t1
-# point 1: 1-Jan-26
-# point 2: 1-Feb
-# point 3: 1-Mar-24
-# point 4: 1-3
-# interval 1: 1-4 - 1-5
+# source test
+# section test
+# color red
+# import thread a
 # '''
 
-#     temp = TlChart()
-#     temp.parse(tl_text, debug=True)
-#     print(temp)
+    # lex(tl_text, debug = True)
+    # ast, symbols = parse_tl(tl_text, debug = True)
+
+    temp = TlChart()
+    temp.parse(tl_text, debug = True)
+    # print(temp)
+    # temp = convert_str_to_dict("color: red, fill: green")
+    # print(temp)
+
 
 @app.command()
 def main(
