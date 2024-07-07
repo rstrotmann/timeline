@@ -2,7 +2,7 @@ section Clinical
 color red
 
 thread study 1
-Cohort 1: 1-Mar-24 - 1-Apr-24 (color: red)
+Cohort 1: 1-Mar-24 - 1-Apr-24 (fill: red)
 SMC 1: 15-Apr
 Cohort 2: 21-Apr - 21-May
 SMC 2: 31-5
@@ -15,7 +15,7 @@ thread study 2
 FSI: 1-Aug-2024
 FSFD: 15-Aug-24
 Interim analysis: 15-2-25
-conduct: 15-Aug-2024 - 30-Sep-25
+conduct: 15-Aug-2024 - 30-Sep-25 (color: red)
 IDMC1: 30-Sep-24
 IDMC2: 1-Dec-24
 

@@ -1,8 +1,8 @@
 
 
-def svg_line(x1, y1, x2, y2, lwd=1.8, color="black", dashed=False):
+def svg_line(x1, y1, x2, y2, lwd=1.8, outline_color="black", fill_color = "none", dashed=False):
 	dash = f'stroke-dasharray: {lwd*3} {lwd*3}' if dashed else ""
-	return(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" style="stroke:{color}; stroke-width:{lwd}; {dash}" />\n')
+	return(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" style="stroke:{outline_color}; stroke-width:{lwd}; {dash}" />\n')
 
 def svg_rect(x, y, w, h, lwd=1, fill_color="none", line_color="black", fill_opacity=0):
     return(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" style="stroke:{line_color};  stroke-width:{lwd}; fill:{fill_color}; fill-opacity:{1 - fill_opacity}" />\n')
@@ -68,9 +68,9 @@ def svg_large_arrow_middle(x1, x2, y, height, **kwargs):
 	return(svg_line(x1, y-height/2, x2, y-height/2, **kwargs) + \
 		svg_line(x1, y+height/2, x2, y+height/2, **kwargs))
 
-def svg_large_arrow_end(x1, x2, y, height, **kwargs):
+def svg_large_arrow_end(x1, x2, y, height, outline_color = "black", fill_color = "none", **kwargs):
 	points = [(x1, y-height/2), (x2-height, y-height/2), (x2-height, y-height), (x2, y), (x2-height, y+height), (x2-height, y+height/2), (x1, y+height/2)]
-	return(svg_open_path(0, 0, points, **kwargs))
+	return(svg_open_path(0, 0, points, fill_color=fill_color, outline_color = outline_color, **kwargs))
 
 def svg_large_arrow_abbreviated(x1, x2, y, height, **kwargs):
 	points = [(x1, y-height/2), (x2-height, y-height/2), (x2, y), (x2-height, y+height/2), (x1, y+height/2)]

@@ -2,16 +2,15 @@ from timeline.tlutils import parse_date, date_string, first_of_month, first_of_n
 from timeline.graphics import viewport
 from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
 from datetime import datetime
-import re
+# import re
 import itertools
 from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
 import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
-# from ast import literal_eval
 
-from timeline.tlparser import ast_get_thread
+# from timeline.tlparser import ast_get_thread
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -60,8 +59,6 @@ class TlPoint(TlObject):
         return(self.start_date)
     
     def render(self, viewport: viewport, y = None, width = 50, symbol_height = 10):
-        # print(f'render {self.parameter}')
-        # print(f'render point {self.caption} with params {self.parameter}')
         outline_col = self.parameter.get("color", "black")
         fill_col = self.parameter.get("fill", "none")
         if not y:
@@ -73,13 +70,10 @@ class TlPoint(TlObject):
 
 class TlInterval(TlObject):
     def __init__(self, start_date, end_date, caption, parameter = "", date_format = "%d-%b", abbreviated = False):
-        # print(f'make interval')
         self.start_date = parse_date(start_date)
         self.end_date = parse_date(end_date)
         self.caption = caption
-        # self.parameter = parameter
         self.parameter = convert_str_to_dict(parameter)
-        # print(f'init interval {self.caption}, params: {self.parameter}')
         self.keepout_left = 0
         self.keepout_right = 0
         self.type = "full"
@@ -105,10 +99,8 @@ class TlInterval(TlObject):
         return(self.start_date)
     
     def render(self, viewport: viewport, x_start = None, x_end = None, y = None, offset_start = 0, offset_end = 0, symbol_height = 10):
-        # print(f'render interval {self.caption} with params {self.parameter}')
         outline_col = self.parameter.get("color", "black")
         fill_col = self.parameter.get("fill", "none")
-        # print(f'render interval {self.caption} in {outline_col}')
         if not y:
             y = viewport._height/2
         if not x_start:
@@ -116,7 +108,6 @@ class TlInterval(TlObject):
         if not x_end:
             x_end = self.end_x(viewport) + offset_end
         y = y + viewport.y
-        # if x_start < x_end:
         if x_start < x_end and x_end - x_start > symbol_height:
             match self.type:
                 case "full":
@@ -125,14 +116,14 @@ class TlInterval(TlObject):
                     else:
                         return(svg_large_arrow(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
                 case "left":
-                    return(svg_large_arrow_start(x_start, x_end, y, symbol_height, lwd = viewport.lwd))
+                    return(svg_large_arrow_start(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col))
                 case "mid":
-                    return(svg_large_arrow_middle(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
+                    return(svg_large_arrow_middle(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
                 case "right":
                     if self.abbreviated:
-                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
+                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
                     else:
-                        return(svg_large_arrow_end(x_start, x_end, y, symbol_height, lwd = viewport.lwd)) 
+                        return(svg_large_arrow_end(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
                 case _:
                     return ""
         else:
@@ -274,7 +265,7 @@ class TlThread(object):
 
     def render_today(self, v: viewport) -> str:
         today_x = v.date_x(datetime.today())
-        return(svg_line(today_x, v.y, today_x, v.y + v.height , color = "red"))
+        return(svg_line(today_x, v.y, today_x, v.y + v.height , outline_color = "red"))
 
     def render(self, v: viewport, y = None, include_date = True, today = False, debug = False, symbol_height = 10):
         y_layout = self._vertical_layout(v, include_date = include_date)
