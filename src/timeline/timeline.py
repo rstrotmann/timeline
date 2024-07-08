@@ -11,6 +11,8 @@ from datetime import date
 from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
 
+from timeline.graphics import svg_max_x
+
 
 ### GLOBAL VARIABLES
 __version__ = "0.1.2"
@@ -92,6 +94,8 @@ def main(
 
     with open(outfile, "w") as f:
         f.write(svg_out)
+
+
 
 if __name__ == "__main__":
 	app()

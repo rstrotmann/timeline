@@ -4,6 +4,7 @@ from datetime import datetime
 from timeline.tlutils import parse_date, first_of_next_month
 from PIL import ImageFont
 from matplotlib import font_manager
+import re
 
 
 class viewport:
@@ -86,11 +87,19 @@ class viewport:
         pos = temp * self.width + self.x
         return(pos)
     
-    def render_svg_header(self):
-        svg_out = f'<svg width="{self.width + self.x + 2 * self.spacing[0] + 10}" height="{self.height + self.y + self.spacing[1] + 10}" viewbox="0 0 {self.width + self.spacing[0] * 2} {self.height/self.width}" xmlns="http://www.w3.org/2000/svg">\n'
+    def render_svg_header(self, width = None):
+        if width == None:
+            width = self.width + self.x + 2 * self.spacing[0] + 10
+        svg_out = f'<svg width="{width}" height="{self.height + self.y + self.spacing[1] + 10}" viewbox="0 0 {self.width + self.spacing[0] * 2} {self.height/self.width}" xmlns="http://www.w3.org/2000/svg">\n'
         svg_out += f'<style>text {{font-family: {self.font_family}; font-size: {self.font_size}px ;}}</style>\n'
         return(svg_out)
 
     def render_svg_footer(self):
         svg_out = "</svg>"
         return(svg_out)
+
+def svg_max_x(svg_text, v: viewport):
+    m = re.findall(r'<text x=\"([0-9\.]+)\".*>(.*)</text>', svg_text)
+    temp = [i for i in m]
+    max_x = [v.text_width(i[1]) + float(i[0]) for i in temp]
+    return(max_x)

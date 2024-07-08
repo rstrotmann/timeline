@@ -1,8 +1,8 @@
 from timeline.tlutils import parse_date, date_string, first_of_month, first_of_next_month, tl_colors, month_names, first_of_year
-from timeline.graphics import viewport
+from timeline.graphics import viewport, svg_max_x
 from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
 from datetime import datetime
-# import re
+import re
 import itertools
 from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
@@ -506,6 +506,12 @@ class TlChart(object):
     def max_date(self):
         return(max([i.max_date() for i in self.sections]).strftime("%d-%m-%Y"))
 
+    # def svg_max_x(self, svg_text):
+    #     m = re.findall(r'<text x=\"([0-9\.]+)\".*>(.*)</text>', svg_text)
+    #     temp = [i for i in m]
+    #     max_x = []
+    #     return(temp)
+
     def render(self, v: viewport, include_date = True, min_date = None, max_date = None, today = False, debug = True):
         if not min_date:
             min_date = min([i.min_date() for i in self.sections])
@@ -523,7 +529,10 @@ class TlChart(object):
             temp = v.add_viewport(x_offset = 0, padding = v.padding, spacing = (0, 0))
             out += i.render(temp, self.x_offset(v) + v.padding[1] * 2, include_date = include_date, today = today, debug = debug)
 
-        svg_out = v.render_svg_header()
+        width = max(svg_max_x(out, v)) + 10
+        # print(width)
+
+        svg_out = v.render_svg_header(width = width)
         if debug:
             svg_out += v.render_background(debug = debug)
         svg_out += out + v.render_svg_footer()
