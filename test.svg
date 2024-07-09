@@ -53,7 +53,7 @@
 <text x="10" y="83.96000000000001" font-weight="bold">Clinical</text>
 <rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="60.56" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
-<line x1="373.1509067357513" y1="60.56" x2="373.1509067357513" y2="163.24" style="stroke:red; stroke-width:1.8; " />
+<line x1="374.99946027633854" y1="60.56" x2="374.99946027633854" y2="163.24" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="60.56" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="60.56" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="60.56" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -86,7 +86,7 @@
 <text x="24.0" y="117.4" font-weight="normal">study 1</text>
 <rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="163.24" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
-<line x1="373.1509067357513" y1="163.24" x2="373.1509067357513" y2="265.92" style="stroke:red; stroke-width:1.8; " />
+<line x1="374.99946027633854" y1="163.24" x2="374.99946027633854" y2="265.92" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="163.24" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="163.24" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="163.24" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -123,7 +123,7 @@
 <text x="24.0" y="220.08" font-weight="normal">study 2</text>
 <rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="265.92" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
-<line x1="373.1509067357513" y1="265.92" x2="373.1509067357513" y2="368.6" style="stroke:red; stroke-width:1.8; " />
+<line x1="374.99946027633854" y1="265.92" x2="374.99946027633854" y2="368.6" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="265.92" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="265.92" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="265.92" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -146,7 +146,7 @@
 <text x="10" y="397.0" font-weight="bold">Regulatory</text>
 <rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="373.6" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#c4e2fa; fill-opacity:1" />
-<line x1="373.1509067357513" y1="373.6" x2="373.1509067357513" y2="476.28000000000003" style="stroke:red; stroke-width:1.8; " />
+<line x1="374.99946027633854" y1="373.6" x2="374.99946027633854" y2="476.28000000000003" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="373.6" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="373.6" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="373.6" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -168,7 +168,7 @@
 <text x="24.0" y="430.44000000000005" font-weight="normal">FDA interaction</text>
 <rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="476.28000000000003" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#c4e2fa; fill-opacity:1" />
-<line x1="373.1509067357513" y1="476.28000000000003" x2="373.1509067357513" y2="542.76" style="stroke:red; stroke-width:1.8; " />
+<line x1="374.99946027633854" y1="476.28000000000003" x2="374.99946027633854" y2="542.76" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="476.28000000000003" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="476.28000000000003" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="476.28000000000003" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />

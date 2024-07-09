@@ -506,12 +506,6 @@ class TlChart(object):
     def max_date(self):
         return(max([i.max_date() for i in self.sections]).strftime("%d-%m-%Y"))
 
-    # def svg_max_x(self, svg_text):
-    #     m = re.findall(r'<text x=\"([0-9\.]+)\".*>(.*)</text>', svg_text)
-    #     temp = [i for i in m]
-    #     max_x = []
-    #     return(temp)
-
     def render(self, v: viewport, include_date = True, min_date = None, max_date = None, today = False, debug = True):
         if not min_date:
             min_date = min([i.min_date() for i in self.sections])

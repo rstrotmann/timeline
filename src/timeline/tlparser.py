@@ -12,8 +12,17 @@ def p_expression_atomic(p):
                | thread
                | section
                | chart
+               | source
     '''
     p[0] = p[1]
+
+## SOURCE
+
+def p_source(p):
+    '''
+    source : SOURCE
+    '''
+    p[0] = ('source', p[1])
 
 
 ## CHART
