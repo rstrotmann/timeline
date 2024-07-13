@@ -102,8 +102,8 @@ def main(
     mindate = parse_date(mindate)
     maxdate = parse_date(maxdate)
     if mindate > maxdate:
-        print('----- VALUE ERROR -----')
-        print(f'max date must be after min date!')
+        # print('----- VALUE ERROR -----')
+        print(f'ERROR: Max date must be after min date!')
         sys.exit(1)
 
     v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5), font_size = fontsize)

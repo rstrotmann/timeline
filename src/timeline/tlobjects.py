@@ -216,6 +216,13 @@ class TlThread(object):
             return(global_max_date)
         return(max([i.end_date for i in self.objects]))
 
+    def visible_items(self, v):
+        temp = 0
+        for i in self.objects:
+            if i.start_date >= v.min_date and i.start_date <= v.max_date:
+                temp += 1
+        return(temp)
+
     def _vertical_layout(self, v: viewport, include_date = True):
         """
         Return a list of 7 values:
@@ -275,6 +282,13 @@ class TlThread(object):
         y_mid = y_layout[2] + (y_layout[3] - y_layout[2]) / 2
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
+        # visible_items = 0
+        # for i in self.objects:
+        #     if i.start_date >= v.min_date and i.start_date <= v.max_date:
+        #         visible_items += 1
+        # if visible_items == 0:
+        #     return("")
+
         out = self.render_background(v)
         if today:
             out += self.render_today(v)
@@ -285,6 +299,9 @@ class TlThread(object):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
 
+        # if visible_items == 0:
+        #     return(out)
+        
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
         pts_dates = [i.start_date for i in pts]
@@ -369,6 +386,9 @@ class TlMonthscale(TlThread):
     def height(self, v: viewport, include_date = True):
         return(v.line_height() * 1.3)
 
+    def visible_items(self, v):
+        return(1)
+    
     def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10):
         grid = v.monthgrid()
 
@@ -388,6 +408,9 @@ class TlYearscale(TlMonthscale):
     def __init__(self):
         TlThread.__init__(self)
         self.color = "white"
+
+    def visible_items(self, v):
+        return(1)
 
     def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10):
         grid =  list(set([first_of_year(i) for i in v.monthgrid()] + [v.min_date]))
@@ -456,13 +479,14 @@ class TlSection(object):
         out += svg_text(x = v.x + v.padding[0], y = v.y + v.line_height() * 1.5, text = self.caption, font_weight="bold")
 
         for i in self.threads:
-            temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
-            out += temp.render_background(debug = debug)
+            if i.visible_items(v) >0:
+                temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
+                out += temp.render_background(debug = debug)
 
-            out += i.render(temp, include_date = include_date, today = today, debug = debug, symbol_height = v.line_height() * 0.65)
+                out += i.render(temp, include_date = include_date, today = today, debug = debug, symbol_height = v.line_height() * 0.65)
 
-            vlayout = i._vertical_layout(temp, include_date = include_date)
-            out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
+                vlayout = i._vertical_layout(temp, include_date = include_date)
+                out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
 
         svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = self.color, lwd = 0)
         

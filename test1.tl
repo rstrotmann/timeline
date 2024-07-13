@@ -1,6 +1,9 @@
 source test.tl
 
-SECTION s2 (color: red)
+SECTION s2
+THREAD t1
+    point 5: 1-Jun-2024
+    
 THREAD t2
   point 4: 1-5-25
 
