@@ -590,10 +590,17 @@ class TlChart(object):
 
                     if thread_item[0] == "import":
                         # print(f'import thread {thread_item[1]} from section {thread_item[2]}')
-                        temp_thread = deepcopy(sources.get_section(thread_item[2]).get_thread(thread_item[1]))
-                        # print(f'retrieved thread {temp_thread.caption}')
-                        temp_thread.color = temp_section.color
-                        temp_section.add_thread(temp_thread)
+                        if thread_item[1] == "*":
+                            print("import all threads")
+                            for t in sources.get_section(thread_item[2]).threads:
+                                t.color = temp_section.color
+                                temp_section.add_thread(t)
+                        else:
+                            # temp_thread = deepcopy(sources.get_section(thread_item[2]).get_thread(thread_item[1]))
+                            temp_thread = sources.get_section(thread_item[2]).get_thread(thread_item[1])
+                            # print(f'retrieved thread {temp_thread.caption}')
+                            temp_thread.color = temp_section.color
+                            temp_section.add_thread(temp_thread)
 
                     if thread_item[0] == "thread":
                         temp_thread = TlThread(caption = thread_item[1], color = temp_section.color)
