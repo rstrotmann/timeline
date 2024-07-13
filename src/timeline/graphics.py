@@ -102,4 +102,5 @@ def svg_max_x(svg_text, v: viewport):
     m = re.findall(r'<text x=\"([0-9\.]+)\".*>(.*)</text>', svg_text)
     temp = [i for i in m]
     max_x = [v.text_width(i[1]) + float(i[0]) for i in temp]
+    max_x.append(v.date_x(v.max_date))
     return(max_x)

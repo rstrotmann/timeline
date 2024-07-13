@@ -30,7 +30,7 @@ def p_import(p):
     '''
     import : IMPORT
     '''
-    p[0] = ('import', p[1])
+    p[0] = ('import', p[1][0], p[1][1])
 
 
 ## CHART
@@ -80,6 +80,13 @@ def p_section2(p):
 
 def p_section3(p):
     '''
+    temp_section : temp_section import
+    '''
+    p[0] = p[1]
+    p[0][1].append(p[2])
+
+def p_section4(p):
+    '''
     section : temp_section
     '''
     p[0] = ('section', p[1][0], p[1][1], p[1][2]) 
@@ -113,6 +120,11 @@ def p_thread3(p):
     '''
     p[0] = ('thread', p[1][0], p[1][1], p[1][2]) 
 
+# def p_thread4(p):
+#     '''
+#     thread : IMPORT
+#     '''
+#     p[0] = ('thread', p[1])
 
 # ## POINT
 

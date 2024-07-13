@@ -10,6 +10,7 @@ import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
 import os.path
+from copy import deepcopy
 
 # from timeline.tlparser import ast_get_thread
 
@@ -209,12 +210,6 @@ class TlThread(object):
         if not self.objects:
             return(global_min_date)
         return(min([i.start_date for i in self.objects]))
-    
-    # def get_element(self, caption):
-    #     for i in self.objects:
-    #         if i.caption == caption:
-    #             return(i)
-    #     return(None)
 
     def max_date(self):
         if not self.objects:
@@ -408,12 +403,13 @@ class TlYearscale(TlMonthscale):
 
 
 class TlSection(object):
-    def __init__(self, caption = "", height = 0, color = "transparent", parameter = ""):
+    def __init__(self, caption = "", height = 0, color = None, parameter = ""):
         self.threads = []
         self.caption = caption
         self.parameter = convert_str_to_dict(parameter)
-        # self.color = color
-        self.color = tl_colors[self.parameter.get("color", "transparent")]
+        self.color = tl_colors[self.parameter.get("color", "grey")]
+        if color:
+            self.color = color
         self._height = height
 
     def __str__(self):
@@ -436,8 +432,21 @@ class TlSection(object):
         return(sum([i.height(v, include_date = include_date) for i in self.threads]))
     
     def add_thread(self, thread):
+        # print(f'add thread {thread.caption}')
+        temp = [i.caption for i in self.threads]
+        # print(f'threads: {temp}')
+        if thread.caption != "" and thread.caption in temp:
+            sys.exit(f'ERROR: Thread {thread.caption} is a duplicate')
         self.threads.append(thread)
-        pass
+
+    def get_thread(self, caption):
+        if caption == "":
+            return(None)
+        if not caption in [i.caption for i in self.threads]:
+            sys.exit(f'ERROR: Thread {caption} not found!')
+        temp = [i for i in self.threads if i.caption == caption]
+        return(temp[0])
+    
 
     def x_offset(self, v: viewport):
         return(max([v.text_width(i.caption + "xx") for i in self.threads] + [v.text_width(self.caption)]) + v.padding[0] * 2)
@@ -483,7 +492,7 @@ class TlSpacer(TlSection):
 class TlChart(object):
     def __init__(self, text_input = None, x = 5, y = 5, width = 1200, height = 600, min_date = None, max_date = None):
         self.sections = []
-        temp = TlSection()
+        temp = TlSection(color = "transparent")
         temp.add_thread(TlYearscale())
         temp.add_thread(TlMonthscale())
         self.add_section(temp)
@@ -496,15 +505,19 @@ class TlChart(object):
         return(out)
 
     def add_section(self, section = None, text_input = None):
+        temp = [i.caption for i in self.sections]
         if section:
-            self.sections.append(section)
+            if section.caption != "" and section.caption in temp:
+                sys.exit(f'ERROR: Section {section.caption} is a duplicate')
+        self.sections.append(section)
 
-    def get_thread(self, caption):
-        for s in self.sections:
-            for t in s.threads:
-                if t.caption == caption:
-                    return(t)
-        return(None)
+    def get_section(self, caption):
+        if caption == "":
+            return(None)
+        if not caption in [i.caption for i in self.sections]:
+            sys.exit(f'ERROR: Section {caption} not found!')
+        temp = [i for i in self.sections if i.caption == caption]
+        return(temp[0])
 
     def x_offset(self, v: viewport):
         return(max([i.x_offset(v) for i in self.sections]))
@@ -542,14 +555,13 @@ class TlChart(object):
         return(svg_out)
     
     def parse(self, tl_code: str, debug = False):
-        temp = "BEGIN" + tl_code + "END"
+        temp = "BEGIN\n" + tl_code + "\nEND"
         if debug:
             print("----- lexer -----")
             lex(temp, debug = debug)
             print("----- parser -----")
             
         ast, symbols = parse_tl(temp, debug = debug)
-        # print(ast)
 
         if debug:
             print("---- symbols -----")
@@ -558,31 +570,43 @@ class TlChart(object):
             print("----- ast -----")
             pprint.pprint(ast) 
 
-        sources = []
+        sources = TlChart()
 
         for top_level_object in ast[1]:
             if(top_level_object[0] == "source"):
                 if not os.path.isfile(top_level_object[1]):
                     sys.exit(f'Sourced file {top_level_object[1]} does not exist!')
-                print(f'parse sourced file {top_level_object[1]}')
+                # print(f'parse sourced file {top_level_object[1]}')
                 temp = TlChart()
                 temp.read_source(top_level_object[1])
-                sources.append(temp)
+                # sources.append(temp)
+                for i in temp.sections:
+                    sources.add_section(i)
+                
             if(top_level_object[0] == 'section'):
                 # temp_section = TlSection(caption = top_level_object[1], color = tl_colors[top_level_object[2]])
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
-                for thread in top_level_object[2]:
-                    temp_thread = TlThread(caption = thread[1], color = temp_section.color)
-                    for item in thread[2]:
-                        if(item[0] == 'point'):
-                            temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
-                        if(item[0] == 'interval'):
-                            temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
-                    temp_section.add_thread(temp_thread)
+                for thread_item in top_level_object[2]:
+
+                    if thread_item[0] == "import":
+                        # print(f'import thread {thread_item[1]} from section {thread_item[2]}')
+                        temp_thread = deepcopy(sources.get_section(thread_item[2]).get_thread(thread_item[1]))
+                        # print(f'retrieved thread {temp_thread.caption}')
+                        temp_thread.color = temp_section.color
+                        temp_section.add_thread(temp_thread)
+
+                    if thread_item[0] == "thread":
+                        temp_thread = TlThread(caption = thread_item[1], color = temp_section.color)
+                        for item in thread_item[2]:
+                            if(item[0] == 'point'):
+                                temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
+                            if(item[0] == 'interval'):
+                                temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
+                        temp_section.add_thread(temp_thread)
                 self.add_section(temp_section)
         if debug:
             print(f'----- sources -----')
-            for i in sources:
+            for i in sources.sections:
                 print(i)
             print(f'----- end sources -----')
 

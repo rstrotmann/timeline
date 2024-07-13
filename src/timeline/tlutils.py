@@ -2,7 +2,7 @@ import re
 from datetime import date, datetime, timedelta
 
 month_names = ["", "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
-tl_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#c4e2fa", "yellow": "#fff4d6", "violet": "#dad0ef", "green": "#edf5dc", "aqua": "#d4f3f6"}
+tl_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#c4e2fa", "yellow": "#fff4d6", "violet": "#dad0ef", "green": "#edf5dc", "aqua": "#d4f3f6", "grey": "#f0f0f0"}
 tl_fill_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#ff0000", "blue": "#c4e2fa", "yellow": "#FFC833", "violet": "#503291", "green": "#0f7447", "aqua": "#2CBECD", "black":"#000000"}
 
 def parse_date(d) -> date:

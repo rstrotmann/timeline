@@ -36,8 +36,8 @@ def t_SOURCE(t):
     return t
 
 def t_IMPORT(t):
-    r'import\s+(.*)\s+from\s+(.*)\n'
-    temp = re.match(r'import\s+(.*)\s+from\s+(.*)\n', t.value)
+    r'IMPORT\s+(.*)\s+FROM\s+(.*)'
+    temp = re.match(r'IMPORT\s+(.*)\s+FROM\s+(.*)', t.value)
     t.value = (temp.groups()[0], temp.groups()[1])
     return(t)
 
