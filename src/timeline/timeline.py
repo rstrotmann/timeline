@@ -27,49 +27,49 @@ def version_callback(value: bool):
         typer.echo(f'version {__version__} ({__date__})')
         raise typer.Exit()
 
-@app.command()
-def test():
+# @app.command()
+# def test():
+# #     tl_text = '''
+# # section s1
+# # thread t1
+# # point 1: 1-Jan-26 (color: red)
+# # point 2: 1-Feb (fill: blue)
+# # point 3: 1-Mar-24
+# # point 4: 1-3
+# # interval 1: 1-4 - 1-5 (color: red)
+# # '''
+
 #     tl_text = '''
-# section s1
-# thread t1
-# point 1: 1-Jan-26 (color: red)
-# point 2: 1-Feb (fill: blue)
-# point 3: 1-Mar-24
-# point 4: 1-3
-# interval 1: 1-4 - 1-5 (color: red)
+# # BEGIN
+# source test.tl
+
+# section s2
+# thread t2
+# point 4: 1-5-25
+
+# SECTION s1 (color: red)
+# #color red
+# IMPORT study 1 FROM Clinical
+# IMPORT * FROM Regulatory
+
+# # THREAD t1
+# # point 1: 1-Jan-26 (color: blue)
+# # point 2: 1-Feb (fill: blue)
+# # thread t2
+# # point 3: 1-Mar
+# #interval 1: 1-4 - 1-5 (color: green)
+# # END
 # '''
 
-    tl_text = '''
-# BEGIN
-source test.tl
+#     # lex(tl_text, debug = True)
+#     # ast, symbols = parse_tl(tl_text, debug = True)
+#     # print(ast)
+#     # print(symbols)
 
-section s2
-thread t2
-point 4: 1-5-25
-
-SECTION s1 (color: red)
-#color red
-IMPORT study 1 FROM Clinical
-IMPORT * FROM Regulatory
-
-# THREAD t1
-# point 1: 1-Jan-26 (color: blue)
-# point 2: 1-Feb (fill: blue)
-# thread t2
-# point 3: 1-Mar
-#interval 1: 1-4 - 1-5 (color: green)
-# END
-'''
-
-    # lex(tl_text, debug = True)
-    # ast, symbols = parse_tl(tl_text, debug = True)
-    # print(ast)
-    # print(symbols)
-
-    temp = TlChart()
-    temp.parse(tl_text, debug = True)
-    print("------- chart ---------")
-    print(temp)
+#     temp = TlChart()
+#     temp.parse(tl_text, debug = True)
+#     print("------- chart ---------")
+#     print(temp)
 
 
 
