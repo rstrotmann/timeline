@@ -13,7 +13,7 @@ reserved = {}
 
 tokens = [
     'START_THREAD', 'EQUALS', 'ASSIGN', 'SYMBOL_NAME', 'DATE', 'COMMENT',
-    'PARAMETER', 'INT', 'START_SECTION',
+    'PARAMETER', 'INT', 'START_SECTION', 'SECTION', 'THREAD',
     'ADD', 'TIMEUNIT', 'RANGE', 'END', 'BEGIN', 'COLOR',
     'SOURCE', 'IMPORT'
 ] + list(reserved.values())
@@ -42,6 +42,13 @@ def t_IMPORT(t):
     return(t)
 
 
+## SECTIONS
+
+def t_SECTION(t):
+    r'section|SECTION'
+    t.value = "SECTION"
+    return t
+
 ## THREADS
 
 def t_BEGIN(t):
@@ -54,17 +61,22 @@ def t_END(t):
     t.value = "END"
     return t
 
-def t_START_SECTION(t):
-    r'section\s+(.*)\n'
-    # r'section\s+([\w ]*)(\(.*\))?\n'
-    temp = re.match(r'section\s+(.*)\s*\n', t.value)
-    t.value = temp.groups()[0]
-    return t
+# def t_START_SECTION(t):
+#     r'section\s+(.*)\n'
+#     # r'section\s+([\w ]*)(\(.*\))?\n'
+#     temp = re.match(r'section\s+(.*)\s*\n', t.value)
+#     t.value = temp.groups()[0]
+#     return t
 
-def t_START_THREAD(t):
-    r'thread\s+(.*)\n'
-    temp = re.match(r'thread\s+(.*)\s*\n', t.value)
-    t.value = temp.groups()[0]
+# def t_START_THREAD(t):
+#     r'thread\s+(.*)\n'
+#     temp = re.match(r'thread\s+(.*)\s*\n', t.value)
+#     t.value = temp.groups()[0]
+#     return t
+
+def t_THREAD(t):
+    r'thread|THREAD'
+    t.value = "THREAD"
     return t
 
 

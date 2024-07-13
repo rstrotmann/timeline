@@ -6,6 +6,8 @@ Unused terminals:
     COMMENT
     EQUALS
     INT
+    SECTION
+    THREAD
     TIMEUNIT
 
 Grammar
@@ -52,10 +54,12 @@ IMPORT               : 9
 INT                  : 
 PARAMETER            : 24 26
 RANGE                : 25 26
+SECTION              : 
 SOURCE               : 8
 START_SECTION        : 14 15
 START_THREAD         : 18 19
 SYMBOL_NAME          : 23 24 25 26
+THREAD               : 
 TIMEUNIT             : 
 error                : 
 
