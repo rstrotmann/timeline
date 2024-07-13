@@ -36,13 +36,13 @@ def t_SOURCE(t):
     return t
 
 def t_IMPORT(t):
-    r'import\s+(.*)\n'
-    temp = re.match(r'import\s+(.*)\n', t.value)
-    t.value = temp.groups()[0]
+    r'import\s+(.*)\s+from\s+(.*)\n'
+    temp = re.match(r'import\s+(.*)\s+from\s+(.*)\n', t.value)
+    t.value = (temp.groups()[0], temp.groups()[1])
     return(t)
 
-## THREADS
 
+## THREADS
 
 def t_BEGIN(t):
     r'BEGIN'
@@ -56,6 +56,7 @@ def t_END(t):
 
 def t_START_SECTION(t):
     r'section\s+(.*)\n'
+    # r'section\s+([\w ]*)(\(.*\))?\n'
     temp = re.match(r'section\s+(.*)\s*\n', t.value)
     t.value = temp.groups()[0]
     return t

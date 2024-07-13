@@ -9,6 +9,7 @@ from timeline.tlparser import parse_tl
 import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
+import os.path
 
 # from timeline.tlparser import ast_get_thread
 
@@ -209,6 +210,12 @@ class TlThread(object):
             return(global_min_date)
         return(min([i.start_date for i in self.objects]))
     
+    # def get_element(self, caption):
+    #     for i in self.objects:
+    #         if i.caption == caption:
+    #             return(i)
+    #     return(None)
+
     def max_date(self):
         if not self.objects:
             return(global_max_date)
@@ -534,7 +541,11 @@ class TlChart(object):
     
     def parse(self, tl_code: str, debug = False):
         temp = "BEGIN" + tl_code + "END"
-        lex(temp, debug = debug)
+        if debug:
+            print("----- lexer -----")
+            lex(temp, debug = debug)
+            print("----- parser -----")
+            
         ast, symbols = parse_tl(temp, debug = debug)
 
         if debug:
@@ -544,20 +555,33 @@ class TlChart(object):
             print("----- ast -----")
             pprint.pprint(ast) 
 
-        for section in ast[1]:
-            temp_section = TlSection(caption = section[1], color = tl_colors[section[2]])
-            for thread in section[3]:
-                temp_thread = TlThread(caption = thread[1], color = temp_section.color)
-                for item in thread[2]:
-                    if(item[0] == 'point'):
-                        temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
-                    if(item[0] == 'interval'):
-                        temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
-                temp_section.add_thread(temp_thread)
-            self.add_section(temp_section)
+        sources = []
 
-        # print("----- test -----")
-        # print(ast_get_thread(ast, "study 1"))
+        for top_level_object in ast[1]:
+            if(top_level_object[0] == "source"):
+                if not os.path.isfile(top_level_object[1]):
+                    sys.exit(f'Sourced file {top_level_object[1]} does not exist!')
+                print(f'parse sourced file {top_level_object[1]}')
+                temp = TlChart()
+                temp.read_source(top_level_object[1])
+                sources.append(temp)
+            if(top_level_object[0] == 'section'):
+                temp_section = TlSection(caption = top_level_object[1], color = tl_colors[top_level_object[2]])
+                for thread in top_level_object[3]:
+                    temp_thread = TlThread(caption = thread[1], color = temp_section.color)
+                    for item in thread[2]:
+                        if(item[0] == 'point'):
+                            temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
+                        if(item[0] == 'interval'):
+                            temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
+                    temp_section.add_thread(temp_thread)
+                self.add_section(temp_section)
+        if debug:
+            print(f'----- sources -----')
+            for i in sources:
+                print(i)
+            print(f'----- end sources -----')
+
 
     def read_source(self, infile, outfile = None, debug = False):
         try: 

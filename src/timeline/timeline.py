@@ -40,19 +40,21 @@ def test():
 # '''
 
     tl_text = '''
+#BEGIN
 source test.tl
-section test
-color red
-# import thread a
+section test (color: red)
+#color red
+#import study 1 from Clinical
+thread t1
+point 1: 1-Jan-26 (color: blue)
+#END
 '''
 
-    lex(tl_text, debug = True)
-    ast, symbols = parse_tl(tl_text, debug = True)
+    # lex(tl_text, debug = True)
+    # ast, symbols = parse_tl(tl_text, debug = True)
 
-    # temp = TlChart()
-    # temp.parse(tl_text, debug = True)
-    # print(temp)
-    # temp = convert_str_to_dict("color: red, fill: green")
+    temp = TlChart()
+    temp.parse(tl_text, debug = True)
     # print(temp)
 
 
