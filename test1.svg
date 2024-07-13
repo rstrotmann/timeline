@@ -1,4 +1,4 @@
-<svg width="1253.6683937823834" height="454.16" viewbox="0 0 1200 0.3618" xmlns="http://www.w3.org/2000/svg">
+<svg width="1253.6683937823834" height="556.84" viewbox="0 0 1200 0.4473666666666667" xmlns="http://www.w3.org/2000/svg">
 <style>text {font-family: Arial; font-size: 14.0px ;}</style>
 <rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:transparent; fill-opacity:1" />
 <text x="10" y="28.4" font-weight="bold"></text>
@@ -49,10 +49,11 @@
 <rect x="1149.5433937823834" y="25.28" width="55.45660621761658" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
 <text x="1172.5998218911918" y="40.72" font-weight="normal">S</text>
 <text x="24.0" y="50.92" font-weight="normal"></text>
-<rect x="5" y="60.56" width="1200" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="5" y="60.56" width="1200" height="66.48" style="stroke:black;  stroke-width:0; fill:#fbd8ea; fill-opacity:1" />
 <text x="10" y="83.96000000000001" font-weight="bold">s2</text>
 <rect x="134.6875" y="60.56" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="60.56" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#f0f0f0; fill-opacity:1" />
+<rect x="134.6875" y="60.56" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fbd8ea; fill-opacity:1" />
+<line x1="382.3936744386874" y1="60.56" x2="382.3936744386874" y2="127.04" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="60.56" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="60.56" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="60.56" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -67,10 +68,11 @@
 <text x="914.3900582901554" y="78.04" font-weight="normal">01-May</text>
 <text x="914.3900582901554" y="93.64" font-weight="normal">point 4</text>
 <text x="24.0" y="117.4" font-weight="normal">t2</text>
-<rect x="5" y="132.04000000000002" width="1200" height="302.12" style="stroke:black;  stroke-width:0; fill:#fff4d6; fill-opacity:1" />
+<rect x="5" y="132.04000000000002" width="1200" height="404.8" style="stroke:black;  stroke-width:0; fill:#fff4d6; fill-opacity:1" />
 <text x="10" y="155.44000000000003" font-weight="bold">Project A</text>
 <rect x="134.6875" y="132.04000000000002" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="132.04000000000002" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
+<line x1="382.3936744386874" y1="132.04000000000002" x2="382.3936744386874" y2="234.72000000000003" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="132.04000000000002" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="132.04000000000002" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="132.04000000000002" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -92,6 +94,7 @@
 <text x="24.0" y="188.88000000000002" font-weight="normal">FDA interaction</text>
 <rect x="134.6875" y="234.72000000000003" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="234.72000000000003" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
+<line x1="382.3936744386874" y1="234.72000000000003" x2="382.3936744386874" y2="301.20000000000005" style="stroke:red; stroke-width:1.8; " />
 <rect x="134.6875" y="234.72000000000003" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="247.44926597582037" y="234.72000000000003" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="360.21103195164073" y="234.72000000000003" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -112,36 +115,71 @@
 <text x="1141.7621437823834" y="252.20000000000002" font-weight="normal">01-Sep</text>
 <text x="1141.7621437823834" y="267.8" font-weight="normal">a very long label</text>
 <text x="24.0" y="291.56000000000006" font-weight="normal">Submission</text>
-<rect x="134.6875" y="301.20000000000005" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="301.20000000000005" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
-<rect x="134.6875" y="301.20000000000005" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="247.44926597582037" y="301.20000000000005" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="360.21103195164073" y="301.20000000000005" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="474.82135146804836" y="301.20000000000005" width="55.456606217616525" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="587.5831174438688" y="301.20000000000005" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="700.3448834196892" y="301.20000000000005" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="809.409542314335" y="301.20000000000005" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="922.1713082901554" y="301.20000000000005" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="1034.9330742659758" y="301.20000000000005" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="1149.5433937823834" y="301.20000000000005" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<path d="M300.85052573402413, 352.5400000000001 L304.75442573402415, 344.7322000000001 L308.6583257340242, 352.5400000000001 L304.75442573402415, 360.34780000000006 L300.85052573402413, 352.5400000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
-<text x="296.97317573402415" y="318.68000000000006" font-weight="normal">01-Jun</text>
-<text x="296.97317573402415" y="334.2800000000001" font-weight="normal">DULT meeting</text>
-<text x="24.0" y="358.0400000000001" font-weight="normal">Governance</text>
-<rect x="134.6875" y="367.68000000000006" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
-<rect x="134.6875" y="367.68000000000006" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
-<rect x="134.6875" y="367.68000000000006" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="247.44926597582037" y="367.68000000000006" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="360.21103195164073" y="367.68000000000006" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="474.82135146804836" y="367.68000000000006" width="55.456606217616525" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="587.5831174438688" y="367.68000000000006" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="700.3448834196892" y="367.68000000000006" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="809.409542314335" y="367.68000000000006" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="922.1713082901554" y="367.68000000000006" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="1034.9330742659758" y="367.68000000000006" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="1149.5433937823834" y="367.68000000000006" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<path d="M247.44926597582037, 424.0900000000001 L247.44926597582037, 413.9500000000001 L294.61442573402417, 413.9500000000001 L294.61442573402417, 408.8800000000001 L304.75442573402415, 419.0200000000001 L294.61442573402417, 429.1600000000001 L294.61442573402417, 424.0900000000001 L247.44926597582037, 424.0900000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
-<text x="247.44926597582037" y="385.1600000000001" font-weight="normal">01-May - 01-Jun</text>
-<text x="247.44926597582037" y="400.7600000000001" font-weight="normal">Discussion</text>
-<text x="24.0" y="424.5200000000001" font-weight="normal">Team</text>
+<rect x="134.6875" y="301.20000000000005" width="1070.3125" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="134.6875" y="301.20000000000005" width="1070.3125" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
+<line x1="382.3936744386874" y1="301.20000000000005" x2="382.3936744386874" y2="403.88000000000005" style="stroke:red; stroke-width:1.8; " />
+<rect x="134.6875" y="301.20000000000005" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="247.44926597582037" y="301.20000000000005" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="360.21103195164073" y="301.20000000000005" width="57.30515975820384" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="474.82135146804836" y="301.20000000000005" width="55.456606217616525" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="587.5831174438688" y="301.20000000000005" width="55.45660621761658" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="700.3448834196892" y="301.20000000000005" width="57.305159758203786" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="809.409542314335" y="301.20000000000005" width="57.3051597582039" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="922.1713082901554" y="301.20000000000005" width="57.3051597582039" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="1034.9330742659758" y="301.20000000000005" width="57.3051597582039" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="1149.5433937823834" y="301.20000000000005" width="55.45660621761658" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M134.6875, 357.61000000000007 L134.6875, 347.4700000000001 L181.8526597582038, 347.4700000000001 L181.8526597582038, 342.4000000000001 L191.99265975820379, 352.5400000000001 L181.8526597582038, 362.68000000000006 L181.8526597582038, 357.61000000000007 L134.6875, 357.61000000000007 Z" style="stroke: black; fill: red; stroke-width:1.8; " />
+<path d="M213.96850932642488, 352.5400000000001 L217.87240932642487, 344.7322000000001 L221.77630932642487, 352.5400000000001 L217.87240932642487, 360.34780000000006 L213.96850932642488, 352.5400000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M228.96373056994818, 357.61000000000007 L228.96373056994818, 347.4700000000001 L274.2803367875648, 347.4700000000001 L274.2803367875648, 342.4000000000001 L284.4203367875648, 352.5400000000001 L274.2803367875648, 362.68000000000006 L274.2803367875648, 357.61000000000007 L228.96373056994818, 357.61000000000007 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M299.0019721934369, 352.5400000000001 L302.90587219343695, 344.7322000000001 L306.80977219343697, 352.5400000000001 L302.90587219343695, 360.34780000000006 L299.0019721934369, 352.5400000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M312.1486398963731, 357.61000000000007 L312.1486398963731, 347.4700000000001 L357.4652461139897, 347.4700000000001 L357.4652461139897, 342.4000000000001 L367.60524611398966, 352.5400000000001 L357.4652461139897, 362.68000000000006 L357.4652461139897, 357.61000000000007 L312.1486398963731, 357.61000000000007 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M387.73254214162347, 352.5400000000001 L391.6364421416235, 344.7322000000001 L395.5403421416235, 352.5400000000001 L391.6364421416235, 360.34780000000006 L387.73254214162347, 352.5400000000001 Z" style="stroke: red; fill: none; stroke-width:1.8; " />
+<path d="M413.61229170984456, 352.5400000000001 L417.5161917098446, 344.7322000000001 L421.4200917098446, 352.5400000000001 L417.5161917098446, 360.34780000000006 L413.61229170984456, 352.5400000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="134.6875" y="318.68000000000006" font-weight="normal">01-Mar - 01-Apr</text>
+<text x="134.6875" y="334.2800000000001" font-weight="normal">Cohort 1</text>
+<text x="295.12462219343695" y="318.68000000000006" font-weight="normal">31-May</text>
+<text x="295.12462219343695" y="334.2800000000001" font-weight="normal">SMC 2</text>
+<text x="383.8551921416235" y="318.68000000000006" font-weight="normal">18-Jul</text>
+<text x="383.8551921416235" y="334.2800000000001" font-weight="normal">SMC 3</text>
+<text x="210.09115932642487" y="380.1600000000001" font-weight="normal">15-Apr</text>
+<text x="210.09115932642487" y="395.7600000000001" font-weight="normal">SMC 1</text>
+<text x="312.1486398963731" y="380.1600000000001" font-weight="normal">05-Jun - 05-Jul</text>
+<text x="312.1486398963731" y="395.7600000000001" font-weight="normal">Cohort 3a</text>
+<text x="409.7349417098446" y="380.1600000000001" font-weight="normal">01-Aug</text>
+<text x="409.7349417098446" y="395.7600000000001" font-weight="normal">SMC 4</text>
+<text x="24.0" y="358.0400000000001" font-weight="normal">study 1</text>
+<rect x="134.6875" y="403.88000000000005" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="134.6875" y="403.88000000000005" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
+<line x1="382.3936744386874" y1="403.88000000000005" x2="382.3936744386874" y2="470.36000000000007" style="stroke:red; stroke-width:1.8; " />
+<rect x="134.6875" y="403.88000000000005" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="247.44926597582037" y="403.88000000000005" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="360.21103195164073" y="403.88000000000005" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="474.82135146804836" y="403.88000000000005" width="55.456606217616525" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="587.5831174438688" y="403.88000000000005" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="700.3448834196892" y="403.88000000000005" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="809.409542314335" y="403.88000000000005" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="922.1713082901554" y="403.88000000000005" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="1034.9330742659758" y="403.88000000000005" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="1149.5433937823834" y="403.88000000000005" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M300.85052573402413, 455.22 L304.75442573402415, 447.41220000000004 L308.6583257340242, 455.22 L304.75442573402415, 463.0278 L300.85052573402413, 455.22 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="296.97317573402415" y="421.36000000000007" font-weight="normal">01-Jun</text>
+<text x="296.97317573402415" y="436.9600000000001" font-weight="normal">DULT meeting</text>
+<text x="24.0" y="460.72" font-weight="normal">Governance</text>
+<rect x="134.6875" y="470.36000000000007" width="1070.3125" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="134.6875" y="470.36000000000007" width="1070.3125" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
+<line x1="382.3936744386874" y1="470.36000000000007" x2="382.3936744386874" y2="536.84" style="stroke:red; stroke-width:1.8; " />
+<rect x="134.6875" y="470.36000000000007" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="247.44926597582037" y="470.36000000000007" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="360.21103195164073" y="470.36000000000007" width="57.30515975820384" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="474.82135146804836" y="470.36000000000007" width="55.456606217616525" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="587.5831174438688" y="470.36000000000007" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="700.3448834196892" y="470.36000000000007" width="57.305159758203786" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="809.409542314335" y="470.36000000000007" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="922.1713082901554" y="470.36000000000007" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="1034.9330742659758" y="470.36000000000007" width="57.3051597582039" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="1149.5433937823834" y="470.36000000000007" width="55.45660621761658" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M247.44926597582037, 526.7700000000001 L247.44926597582037, 516.63 L294.61442573402417, 516.63 L294.61442573402417, 511.56000000000006 L304.75442573402415, 521.7 L294.61442573402417, 531.84 L294.61442573402417, 526.7700000000001 L247.44926597582037, 526.7700000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="247.44926597582037" y="487.8400000000001" font-weight="normal">01-May - 01-Jun</text>
+<text x="247.44926597582037" y="503.4400000000001" font-weight="normal">Discussion</text>
+<text x="24.0" y="527.2" font-weight="normal">Team</text>
 </svg>

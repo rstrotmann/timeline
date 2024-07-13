@@ -591,7 +591,7 @@ class TlChart(object):
                     if thread_item[0] == "import":
                         # print(f'import thread {thread_item[1]} from section {thread_item[2]}')
                         if thread_item[1] == "*":
-                            print("import all threads")
+                            # print("import all threads")
                             for t in sources.get_section(thread_item[2]).threads:
                                 t.color = temp_section.color
                                 temp_section.add_thread(t)
