@@ -41,15 +41,7 @@ def t_IMPORT(t):
     t.value = (temp.groups()[0], temp.groups()[1])
     return(t)
 
-
-## SECTIONS
-
-def t_SECTION(t):
-    r'section|SECTION'
-    t.value = "SECTION"
-    return t
-
-## THREADS
+## CHART
 
 def t_BEGIN(t):
     r'BEGIN'
@@ -61,18 +53,16 @@ def t_END(t):
     t.value = "END"
     return t
 
-# def t_START_SECTION(t):
-#     r'section\s+(.*)\n'
-#     # r'section\s+([\w ]*)(\(.*\))?\n'
-#     temp = re.match(r'section\s+(.*)\s*\n', t.value)
-#     t.value = temp.groups()[0]
-#     return t
 
-# def t_START_THREAD(t):
-#     r'thread\s+(.*)\n'
-#     temp = re.match(r'thread\s+(.*)\s*\n', t.value)
-#     t.value = temp.groups()[0]
-#     return t
+## SECTIONS
+
+def t_SECTION(t):
+    r'section|SECTION'
+    t.value = "SECTION"
+    return t
+
+
+## THREADS
 
 def t_THREAD(t):
     r'thread|THREAD'

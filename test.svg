@@ -1,12 +1,12 @@
 <svg width="1253.6683937823834" height="562.76" viewbox="0 0 1200 0.4523" xmlns="http://www.w3.org/2000/svg">
 <style>text {font-family: Arial; font-size: 14.0px ;}</style>
-<rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:transparent; fill-opacity:1" />
+<rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:#ffffff; fill-opacity:1" />
 <text x="10" y="28.4" font-weight="bold"></text>
 <rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="5" width="1070.3125" height="20.28" style="stroke:transparent;  stroke-width:1; fill:white; fill-opacity:1" />
-<text x="139.6875" y="20.44" font-weight="normal">2024</text>
 <text x="705.3448834196892" y="20.44" font-weight="normal">2025</text>
 <line x1="700.3448834196892" y1="5" x2="700.3448834196892" y2="25.28" style="stroke:black; stroke-width:1.8; " />
+<text x="139.6875" y="20.44" font-weight="normal">2024</text>
 <text x="24.0" y="30.64" font-weight="normal"></text>
 <rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="134.6875" y="25.28" width="1070.3125" height="20.28" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:1" />

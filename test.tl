@@ -1,5 +1,5 @@
-section Clinical
-color red
+section Clinical (color: red)
+#color red
 
 thread study 1
 Cohort 1: 1-Mar-24 - 1-Apr-24 (fill: red)
@@ -26,8 +26,8 @@ CRM: 14-Aug
 draft 2: 14-Aug - 21-Aug
 final: 21-Aug
 
-section Regulatory
-color blue
+section Regulatory (color: blue)
+#color blue
 # comment
 
 thread FDA interaction

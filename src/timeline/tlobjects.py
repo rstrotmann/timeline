@@ -408,10 +408,12 @@ class TlYearscale(TlMonthscale):
 
 
 class TlSection(object):
-    def __init__(self, caption = "", height = 0, color = "transparent"):
+    def __init__(self, caption = "", height = 0, color = "transparent", parameter = ""):
         self.threads = []
         self.caption = caption
-        self.color = color
+        self.parameter = convert_str_to_dict(parameter)
+        # self.color = color
+        self.color = tl_colors[self.parameter.get("color", "transparent")]
         self._height = height
 
     def __str__(self):
@@ -547,6 +549,7 @@ class TlChart(object):
             print("----- parser -----")
             
         ast, symbols = parse_tl(temp, debug = debug)
+        # print(ast)
 
         if debug:
             print("---- symbols -----")
@@ -566,8 +569,9 @@ class TlChart(object):
                 temp.read_source(top_level_object[1])
                 sources.append(temp)
             if(top_level_object[0] == 'section'):
-                temp_section = TlSection(caption = top_level_object[1], color = tl_colors[top_level_object[2]])
-                for thread in top_level_object[3]:
+                # temp_section = TlSection(caption = top_level_object[1], color = tl_colors[top_level_object[2]])
+                temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
+                for thread in top_level_object[2]:
                     temp_thread = TlThread(caption = thread[1], color = temp_section.color)
                     for item in thread[2]:
                         if(item[0] == 'point'):

@@ -17,6 +17,7 @@ def p_expression_atomic(p):
     '''
     p[0] = p[1]
 
+
 ## SOURCE
 
 def p_source(p):
@@ -30,6 +31,7 @@ def p_import(p):
     import : IMPORT
     '''
     p[0] = ('import', p[1])
+
 
 ## CHART
 
@@ -59,26 +61,24 @@ def p_chart1(p):
 
 def p_section(p):
     '''
-    temp_section : START_SECTION thread
+    temp_section : SECTION SYMBOL_NAME
     '''
-    p[0] = (p[1], "transparent", [p[2]])
+    p[0] = (p[2], [], '')
 
-def p_section_color(p):
-    '''
-    temp_section : START_SECTION COLOR thread
-    '''
-    p[0] = (p[1], p[2], [p[3]])
-
-    
 def p_section1(p):
+    '''
+    temp_section : SECTION SYMBOL_NAME PARAMETER
+    '''
+    p[0] = (p[2], [], p[3])
+
+def p_section2(p):
     '''
     temp_section : temp_section thread
     '''
     p[0] = p[1]
-    p[0][2].append(p[2])
+    p[0][1].append(p[2])
 
-
-def p_section2(p):
+def p_section3(p):
     '''
     section : temp_section
     '''
@@ -89,12 +89,17 @@ def p_section2(p):
 
 def p_thread(p):
     '''
-    temp_thread : START_THREAD point
-                | START_THREAD interval
+    temp_thread : THREAD SYMBOL_NAME
     '''
-    p[0] = (p[1], [p[2]])
+    p[0] = (p[2], [], '')
 
 def p_thread1(p):
+    '''
+    temp_thread : THREAD SYMBOL_NAME PARAMETER
+    '''
+    p[0] = (p[2], [], p[3])
+
+def p_thread2(p):
     '''
     temp_thread : temp_thread point
                 | temp_thread interval
@@ -102,11 +107,11 @@ def p_thread1(p):
     p[0] = p[1]
     p[0][1].append(p[2])
 
-def p_thread2(p):
+def p_thread3(p):
     '''
     thread : temp_thread
     '''
-    p[0] = ('thread', p[1][0], p[1][1]) 
+    p[0] = ('thread', p[1][0], p[1][1], p[1][2]) 
 
 
 # ## POINT
