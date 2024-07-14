@@ -95,9 +95,6 @@ class TlInterval(TlObject):
         self.date_format = date_format
         self.abbreviated = abbreviated
         if self.start_date > self.end_date:
-            # print("----- VALUE ERROR! -----")
-            # print(f'interval "{self.caption}": start date ({start_date} must be before end data ({end_date})!')
-            # sys.exit(1)
             sys.exit(f"ERROR: Start date of interval '{self.caption}' is after end date")
         
     def date_label(self):
@@ -143,7 +140,6 @@ class TlInterval(TlObject):
                     case _:
                         return ""
             else:
-                # print(f'narrow arrow: {self.caption}')
                 return(svg_rect(x_start, y - symbol_height / 2, x_end - x_start, symbol_height, lwd = viewport.lwd, fill_color = fill_col, line_color = outline_col))
         else:
             return("")
@@ -470,9 +466,7 @@ class TlSection(object):
         return(sum([i.height(v, include_date = include_date) for i in self.threads]))
     
     def add_thread(self, thread):
-        # print(f'add thread {thread.caption}')
         temp = [i.caption for i in self.threads]
-        # print(f'threads: {temp}')
         if thread.caption != "" and thread.caption in temp:
             sys.exit(f'ERROR: Thread {thread.caption} is a duplicate')
         self.threads.append(thread)
@@ -485,7 +479,6 @@ class TlSection(object):
         temp = [i for i in self.threads if i.caption == caption]
         return(temp[0])
     
-
     def x_offset(self, v: viewport):
         return(max([v.text_width(i.caption + "xx") for i in self.threads] + [v.text_width(self.caption)]) + v.padding[0] * 2)
 
@@ -511,7 +504,6 @@ class TlSection(object):
 class TlSpacer(TlSection):
     def __init__(self, height = 0):
         TlSection.__init__(self, caption = "", height = height)
-
 
     def height(self, v: viewport, include_date = False):
         return(self._height)
@@ -583,7 +575,6 @@ class TlChart(object):
             out += i.render(temp, self.x_offset(v) + v.padding[1] * 2, include_date = include_date, today = today, debug = debug)
 
         width = max(svg_max_x(out, v)) + 10
-        # print(width)
 
         svg_out = v.render_svg_header(width = width)
         if debug:
@@ -597,8 +588,11 @@ class TlChart(object):
             print("----- lexer -----")
             lex(temp, debug = debug)
             print("----- parser -----")
-            
-        ast, symbols = parse_tl(temp, debug = debug)
+        
+        try:
+            ast, symbols = parse_tl(temp, debug = debug)
+        except ValueError as message:
+            sys.exit(f"ERROR: Parsing error, " + str(message))
 
         if debug:
             print("---- symbols -----")
@@ -613,29 +607,21 @@ class TlChart(object):
             if(top_level_object[0] == "source"):
                 if not os.path.isfile(top_level_object[1]):
                     sys.exit(f'Sourced file {top_level_object[1]} does not exist!')
-                # print(f'parse sourced file {top_level_object[1]}')
                 temp = TlChart()
                 temp.read_source(top_level_object[1])
-                # sources.append(temp)
                 for i in temp.sections:
                     sources.add_section(i)
                 
             if(top_level_object[0] == 'section'):
-                # temp_section = TlSection(caption = top_level_object[1], color = tl_colors[top_level_object[2]])
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
                 for thread_item in top_level_object[2]:
-
                     if thread_item[0] == "import":
-                        # print(f'import thread {thread_item[1]} from section {thread_item[2]}')
                         if thread_item[1] == "*":
-                            # print("import all threads")
                             for t in sources.get_section(thread_item[2]).threads:
                                 t.color = temp_section.color
                                 temp_section.add_thread(t)
                         else:
-                            # temp_thread = deepcopy(sources.get_section(thread_item[2]).get_thread(thread_item[1]))
                             temp_thread = sources.get_section(thread_item[2]).get_thread(thread_item[1])
-                            # print(f'retrieved thread {temp_thread.caption}')
                             temp_thread.color = temp_section.color
                             temp_section.add_thread(temp_thread)
 
@@ -654,7 +640,6 @@ class TlChart(object):
                 print(i)
             print(f'----- end sources -----')
 
-
     def read_source(self, infile, outfile = None, debug = False):
         try: 
             with open(infile) as f:
@@ -662,5 +647,5 @@ class TlChart(object):
                 if debug:
                     print(temp)
         except FileNotFoundError as err:
-            raise(FileNotFoundError(f'Source file {infile} does not exist'))
+            sys.exit(f"ERROR: Source file '{infile}' not found")
         self.parse(temp, debug = debug)

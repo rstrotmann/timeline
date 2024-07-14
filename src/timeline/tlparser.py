@@ -120,11 +120,6 @@ def p_thread3(p):
     '''
     p[0] = ('thread', p[1][0], p[1][1], p[1][2]) 
 
-# def p_thread4(p):
-#     '''
-#     thread : IMPORT
-#     '''
-#     p[0] = ('thread', p[1])
 
 # ## POINT
 
@@ -162,7 +157,6 @@ def p_interval1(p):
 
 
 def p_error(p):
-    # print(f'Syntax error: {p}')
     pass
 
 
@@ -172,8 +166,9 @@ def parse_tl(source, debug = False):
     try:
         ast = parser.parse(source, debug = debug)
         return ast, symbol_table
-    except:
-        return None, None
+    except ValueError as message:
+        sys.exit(f"ERROR: Parsing error, " + str(message))
+    
 
 def ast_get_thread(ast, caption):
     def find_in_section(section, caption):

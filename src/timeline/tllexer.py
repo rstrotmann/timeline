@@ -85,24 +85,19 @@ def t_TIMEUNIT(t):
 
 def t_COMMENT(t):
     r'\#.*\n'
-    # t.value = t.value.strip()
     t.value = None
-    # return t
 
 def t_DATE(t):
     r'([0-9]{1,2})[\.-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)([\.-]([0-9]{2,4}))?'
     temp = re.match(r'([0-9]{1,2})[\.\-]([0-9]{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|Februrary|March|April|June|July|August|September|October|November|December)([\.\-]([0-9]{2,4}))?', t.value)
 
-    # print(temp.groups())
     global current_year
 
     if temp.groups()[3]:
         current_year = temp.groups()[3]
 
     if current_year == "":
-        print("----- VALUE ERROR -----")
-        print("No year defined")
-        sys.exit(1)
+        raise ValueError(f"no year defined in '{t.value}'")
 
     t.value = temp.groups()[0] + "-" + temp.groups()[1] + "-" + current_year
     return t
