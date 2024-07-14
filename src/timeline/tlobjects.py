@@ -1,4 +1,4 @@
-from timeline.tlutils import parse_date, date_string, first_of_month, first_of_next_month, tl_colors, month_names, first_of_year
+from timeline.tlutils import parse_date, date_string, first_of_month, first_of_next_month, tl_colors, month_names, first_of_year, validate_parameters
 from timeline.graphics import viewport, svg_max_x
 from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
 from datetime import datetime
@@ -43,6 +43,10 @@ class TlPoint(TlObject):
         self.end_date = self.start_date
         self.caption = caption
         self.parameter = convert_str_to_dict(parameter)
+        try:
+            validate_parameters(self.parameter)
+        except ValueError as message:
+            sys.exit(f"ERROR: Wrong parameter in point '{caption}', " + str(message))
         self.keepout_left = -7
         self.keepout_right = 9
         self.date_format = date_format
@@ -80,6 +84,11 @@ class TlInterval(TlObject):
             sys.exit(f"ERROR: Interval '{caption}' has an invalid end date ({end_date})")
         self.caption = caption
         self.parameter = convert_str_to_dict(parameter)
+        try:
+            validate_parameters(self.parameter)
+        except ValueError as message:
+            sys.exit(f"ERROR: Wrong parameter in interval '{caption}', " + str(message))
+
         self.keepout_left = 0
         self.keepout_right = 0
         self.type = "full"
@@ -431,6 +440,10 @@ class TlSection(object):
         self.threads = []
         self.caption = caption
         self.parameter = convert_str_to_dict(parameter)
+        try:
+            validate_parameters(self.parameter)
+        except ValueError as message:
+            sys.exit(f"ERROR: Wrong parameter in section '{caption}', " + str(message))
         self.color = tl_colors[self.parameter.get("color", "grey")]
         if color:
             self.color = color

@@ -32,3 +32,10 @@ def convert_str_to_dict(input: str) -> dict:
     temp = re.findall(r'(\w*)\:\s*(\w*)', input)
     out = {i[0]: i[1] for i in temp}
     return(out)
+
+def validate_parameters(parameter: dict):
+    # validate colors
+    for i in ["color", "fill"]:
+        temp_col = parameter.get(i, "transparent")
+        if not temp_col in tl_colors.keys():
+            raise ValueError(f"unknown color '{temp_col}'")

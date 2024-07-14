@@ -114,19 +114,3 @@ def svg_fine_arrow(x1, x2, y, height, **kwargs):
     head_width = 2.7
     points = [(x1, y+height/2), (x2-height*head_length, y+height/2), (x2-height*head_length, y+height*head_width), (x2, y), (x2-height*head_length, y-height*head_width), (x2-height*head_length, y-height/2), (x1, y-height/2)]
     return(svg_path(0, 0, points, **kwargs))
-
-
-# # arrow end starts 'height' before x2
-# def svg_end_arrow(x1, x2, y, height, style = ""):
-# 	out = f'<path d="M{x2 - height} {y - height/2} v{height/2} l0 {-height/2} l'
-	
-# 	out += f'style="{style}"/>\n'
-
-# def svg_end_open(x1, x2, y, height, style = ""):
-# 	return(f'<path d="M{x2 - height} {y - height/2} h{height} style="{style}"/>\n')
-
-# def svg_start_open(x1, x2, y, height, **kwargs):
-# 	pass
-
-# def svg_start_closed(x1, x2, y, height, **kwargs):
-# 	pass
