@@ -154,8 +154,7 @@ def p_interval1(p):
     symbol_table[p[1]] = p[3]
     p[0] = ('interval', p[1], p[3], p[5], p[6])  
 
-
-
+## ERROR
 def p_error(p):
     pass
 
@@ -169,7 +168,6 @@ def parse_tl(source, debug = False):
     except ValueError as message:
         sys.exit(f"ERROR: Parsing error, " + str(message))
     
-
 def ast_get_thread(ast, caption):
     def find_in_section(section, caption):
         for i in section[3]:
