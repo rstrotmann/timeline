@@ -95,9 +95,10 @@ class TlInterval(TlObject):
         self.date_format = date_format
         self.abbreviated = abbreviated
         if self.start_date > self.end_date:
-            print("----- VALUE ERROR! -----")
-            print(f'interval "{self.caption}": start date ({start_date} must be before end data ({end_date})!')
-            sys.exit(1)
+            # print("----- VALUE ERROR! -----")
+            # print(f'interval "{self.caption}": start date ({start_date} must be before end data ({end_date})!')
+            # sys.exit(1)
+            sys.exit(f"ERROR: Start date of interval '{self.caption}' is after end date")
         
     def date_label(self):
         out = datetime.strftime(self.start_date, self.date_format) + " - " + datetime.strftime(self.end_date, self.date_format)
