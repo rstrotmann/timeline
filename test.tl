@@ -25,6 +25,8 @@ draft 1: 7-Aug - 14-Aug
 CRM: 14-Aug
 draft 2: 14-Aug - 21-Aug
 final: 21-Aug
+manuscript draft 1: 1-Jan-25 - 5-Jan-25
+manuscript draft 2: 5-Jan - 21-Jan
 
 section Regulatory (color: blue)
 #color blue

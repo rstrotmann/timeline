@@ -2,7 +2,6 @@ from timeline.tlutils import parse_date, date_string, first_of_month, first_of_n
 from timeline.graphics import viewport, svg_max_x
 from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
 from datetime import datetime
-import re
 import itertools
 from timeline.tllexer import lex
 from timeline.tlparser import parse_tl
@@ -10,9 +9,6 @@ import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
 import os.path
-from copy import deepcopy
-
-# from timeline.tlparser import ast_get_thread
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -37,10 +33,13 @@ class TlObject(object):
     def end_x(self, viewport: viewport) -> float:
         return(viewport.date_x(self.end_date))  
 
-
 class TlPoint(TlObject):
     def __init__(self, date, caption = "", parameter = "", date_format = "%d-%b"):
-        self.start_date = parse_date(date)
+        try:
+            self.start_date = parse_date(date)
+        except ValueError:
+            sys.exit(f"ERROR: Point '{caption}' has an invalid date ({date})")
+
         self.end_date = self.start_date
         self.caption = caption
         self.parameter = convert_str_to_dict(parameter)
@@ -69,11 +68,16 @@ class TlPoint(TlObject):
         y = y + viewport.y
         return(svg_symbol(x, y, width, "diamond", size = symbol_height * 1.1, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col))
 
-
 class TlInterval(TlObject):
     def __init__(self, start_date, end_date, caption, parameter = "", date_format = "%d-%b", abbreviated = False):
-        self.start_date = parse_date(start_date)
-        self.end_date = parse_date(end_date)
+        try:
+            self.start_date = parse_date(start_date)
+        except ValueError:
+            sys.exit(f"ERROR: Interval '{caption}' has an invalid start date ({start_date})")
+        try:
+            self.end_date = parse_date(end_date)
+        except:
+            sys.exit(f"ERROR: Interval '{caption}' has an invalid end date ({end_date})")
         self.caption = caption
         self.parameter = convert_str_to_dict(parameter)
         self.keepout_left = 0
@@ -86,7 +90,6 @@ class TlInterval(TlObject):
             print(f'interval "{self.caption}": start date ({start_date} must be before end data ({end_date})!')
             sys.exit(1)
         
-    
     def date_label(self):
         out = datetime.strftime(self.start_date, self.date_format) + " - " + datetime.strftime(self.end_date, self.date_format)
         return(out)
@@ -110,28 +113,31 @@ class TlInterval(TlObject):
         if not x_end:
             x_end = self.end_x(viewport) + offset_end
         y = y + viewport.y
-        if x_start < x_end and x_end - x_start > symbol_height:
-            match self.type:
-                case "full":
-                    if self.abbreviated:
-                        return(svg_large_arrow_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
-                    else:
-                        return(svg_large_arrow(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
-                case "left":
-                    return(svg_large_arrow_start(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col))
-                case "mid":
-                    return(svg_large_arrow_middle(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
-                case "right":
-                    if self.abbreviated:
-                        return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
-                    else:
-                        return(svg_large_arrow_end(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
-                case _:
-                    return ""
+        if x_start < x_end:
+            if x_end - x_start > symbol_height:
+                match self.type:
+                    case "full":
+                        if self.abbreviated:
+                            return(svg_large_arrow_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
+                        else:
+                            return(svg_large_arrow(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
+                    case "left":
+                        return(svg_large_arrow_start(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col))
+                    case "mid":
+                        return(svg_large_arrow_middle(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
+                    case "right":
+                        if self.abbreviated:
+                            return(svg_large_arrow_end_abbreviated(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
+                        else:
+                            return(svg_large_arrow_end(x_start, x_end, y, symbol_height, lwd = viewport.lwd, fill_color = fill_col, outline_color = outline_col)) 
+                    case _:
+                        return ""
+            else:
+                # print(f'narrow arrow: {self.caption}')
+                return(svg_rect(x_start, y - symbol_height / 2, x_end - x_start, symbol_height, lwd = viewport.lwd, fill_color = fill_col, line_color = outline_col))
         else:
             return("")
         
-
 def break_interval(ivl, pts):
     # make sure that pts are only points and lie between start and end dates:
     pts = [i for i in pts if (i.start_date < ivl.end_date) & (i.start_date > ivl.start_date) & isinstance(i, TlPoint)]
@@ -157,7 +163,6 @@ def break_interval(ivl, pts):
         start = p.end_date
     # print(f"broken interval: {ivls}")
     return(ivls)
-
 
 class TlHeader(TlObject):
     def __init__(self, height = 20):
@@ -189,7 +194,6 @@ class TlHeader(TlObject):
             label_y = v1.y + v1.height/2 - v1.padding[1] + v1.line_height()/2 + v1.padding[1]*0.5
             out += svg_text(label_x, label_y, month_names[i.month])
         return(out)
-
 
 class TlThread(object):
     def __init__(self, text_input = None, caption = "", height = 100, color = "transparent"):
@@ -378,7 +382,6 @@ class TlThread(object):
             out += svg_line(v.x, v.y + i, v.x + v.width, v.y + i, lwd = 0.5)
         return(out)
 
-
 class TlMonthscale(TlThread):
     def __init__(self):
         TlThread.__init__(self)
@@ -403,7 +406,6 @@ class TlMonthscale(TlThread):
             out += svg_text(label_x, label_y, month_names[i.month])
         return(out)
 
-
 class TlYearscale(TlMonthscale):
     def __init__(self):
         TlThread.__init__(self)
@@ -423,7 +425,6 @@ class TlYearscale(TlMonthscale):
                 if i.month == 1 and i.day == 1:
                     out += svg_line(v.date_x(i), v.y, v.date_x(i), v.y + v.height)
         return(out)
-
 
 class TlSection(object):
     def __init__(self, caption = "", height = 0, color = None, parameter = ""):
@@ -493,7 +494,6 @@ class TlSection(object):
         svg_out +=  out
         return(svg_out)
 
-
 class TlSpacer(TlSection):
     def __init__(self, height = 0):
         TlSection.__init__(self, caption = "", height = height)
@@ -511,7 +511,6 @@ class TlSpacer(TlSection):
         if debug:
             out = temp.render_background(debug = debug)
         return(out)
-
 
 class TlChart(object):
     def __init__(self, text_input = None, x = 5, y = 5, width = 1200, height = 600, min_date = None, max_date = None):
