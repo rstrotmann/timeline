@@ -1,0 +1,61 @@
+<svg width="1215.0" height="351.48" viewbox="0 0 1200 0.27623333333333333" xmlns="http://www.w3.org/2000/svg">
+<style>text {font-family: Arial; font-size: 14.0px ;}</style>
+<rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:transparent; fill-opacity:1" />
+<text x="10" y="28.4" font-weight="bold"></text>
+<rect x="55.328125" y="5" width="1149.671875" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="5" width="1149.671875" height="20.28" style="stroke:transparent;  stroke-width:1; fill:white; fill-opacity:1" />
+<text x="60.328125" y="20.44" font-weight="normal">2024</text>
+<line x1="55.328125" y1="5" x2="55.328125" y2="25.28" style="stroke:black; stroke-width:1.8; " />
+<text x="24.0" y="30.64" font-weight="normal"></text>
+<rect x="55.328125" y="25.28" width="1149.671875" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="25.28" width="1149.671875" height="20.28" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:1" />
+<rect x="55.328125" y="25.28" width="391.64646291208794" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
+<text x="247.65135645604397" y="40.72" font-weight="normal">J</text>
+<rect x="446.97458791208794" y="25.28" width="366.3789491758241" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
+<text x="625.890625" y="40.72" font-weight="normal">F</text>
+<rect x="813.3535370879121" y="25.28" width="391.64646291208794" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
+<text x="1003.3486435439561" y="40.72" font-weight="normal">M</text>
+<text x="24.0" y="50.92" font-weight="normal"></text>
+<rect x="5" y="60.56" width="1200" height="132.96" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<text x="10" y="83.96000000000001" font-weight="bold">S1</text>
+<rect x="55.328125" y="60.56" width="1149.671875" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="60.56" width="1149.671875" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="60.56" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="813.3535370879121" y="60.56" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M51.424225, 111.9 L55.328125, 104.0922 L59.232025, 111.9 L55.328125, 119.7078 L51.424225, 111.9 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M228.29682115384617, 111.9 L232.20072115384616, 104.0922 L236.10462115384615, 111.9 L232.20072115384616, 119.7078 L228.29682115384617, 111.9 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="47.546875" y="78.04" font-weight="normal">01-Jan</text>
+<text x="47.546875" y="93.64" font-weight="normal">p1</text>
+<text x="224.41947115384616" y="78.04" font-weight="normal">15-Jan</text>
+<text x="224.41947115384616" y="93.64" font-weight="normal">p2</text>
+<text x="24.0" y="117.4" font-weight="normal">T1</text>
+<rect x="55.328125" y="127.04" width="1149.671875" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="127.04" width="1149.671875" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="127.04" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="813.3535370879121" y="127.04" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M443.0706879120879, 178.38 L446.97458791208794, 170.5722 L450.87848791208796, 178.38 L446.97458791208794, 186.18779999999998 L443.0706879120879, 178.38 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<path d="M619.9432840659341, 178.38 L623.8471840659341, 170.5722 L627.7510840659342, 178.38 L623.8471840659341, 186.18779999999998 L619.9432840659341, 178.38 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="439.19333791208794" y="144.52" font-weight="normal">01-Feb</text>
+<text x="439.19333791208794" y="160.12" font-weight="normal">p3</text>
+<text x="616.0659340659341" y="144.52" font-weight="normal">15-Feb</text>
+<text x="616.0659340659341" y="160.12" font-weight="normal">p4</text>
+<text x="24.0" y="183.88" font-weight="normal">T2</text>
+<rect x="5" y="198.52" width="1200" height="132.96" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<text x="10" y="221.92000000000002" font-weight="bold">S2</text>
+<rect x="55.328125" y="198.52" width="1149.671875" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="198.52" width="1149.671875" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="198.52" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="813.3535370879121" y="198.52" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M809.449637087912, 249.86 L813.3535370879121, 242.05220000000003 L817.2574370879121, 249.86 L813.3535370879121, 257.6678 L809.449637087912, 249.86 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="805.5722870879121" y="216.0" font-weight="normal">01-Mar</text>
+<text x="805.5722870879121" y="231.6" font-weight="normal">p5</text>
+<text x="24.0" y="255.36" font-weight="normal">T1</text>
+<rect x="55.328125" y="265.0" width="1149.671875" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="265.0" width="1149.671875" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#f0f0f0; fill-opacity:1" />
+<rect x="55.328125" y="265.0" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="813.3535370879121" y="265.0" width="391.64646291208794" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<path d="M986.3222332417582, 316.34000000000003 L990.2261332417582, 308.53220000000005 L994.1300332417583, 316.34000000000003 L990.2261332417582, 324.1478 L986.3222332417582, 316.34000000000003 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
+<text x="982.4448832417582" y="282.48" font-weight="normal">15-Mar</text>
+<text x="982.4448832417582" y="298.08000000000004" font-weight="normal">p6</text>
+<text x="24.0" y="321.84000000000003" font-weight="normal">T3</text>
+</svg>

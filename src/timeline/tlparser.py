@@ -42,14 +42,21 @@ def p_chart(p):
     '''
     p[0] = [p[2]]
 
-def p_chart2(p):
+def p_chart1(p):
     '''
     temp_chart : temp_chart section
     '''
     p[0] = p[1]
     p[0].append(p[2])
 
-def p_chart1(p):
+def p_chart2(p):
+    '''
+    temp_chart : temp_chart source
+    '''
+    p[0] = p[1]
+    p[0].append(p[2])
+
+def p_chart3(p):
     '''
     chart : temp_chart END
     '''
