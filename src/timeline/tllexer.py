@@ -15,7 +15,7 @@ tokens = [
     'START_THREAD', 'EQUALS', 'ASSIGN', 'SYMBOL_NAME', 'DATE', 'COMMENT',
     'PARAMETER', 'INT', 'START_SECTION', 'SECTION', 'THREAD',
     'ADD', 'TIMEUNIT', 'RANGE', 'END', 'BEGIN', 'COLOR',
-    'SOURCE', 'IMPORT'
+    'SOURCE', 'IMPORT', 'ALIAS'
 ] + list(reserved.values())
 
 next_state = ''
@@ -35,11 +35,16 @@ def t_SOURCE(t):
     t.value = temp.groups()[0]
     return t
 
+# def t_ALIAS(t):
+#     r'as|AS'
+#     return(t)
+
 def t_IMPORT(t):
     r'IMPORT\s+(.*)\s+FROM\s+(.*)'
     temp = re.match(r'IMPORT\s+(.*)\s+FROM\s+(.*)', t.value)
     t.value = (temp.groups()[0], temp.groups()[1])
     return(t)
+
 
 ## CHART
 

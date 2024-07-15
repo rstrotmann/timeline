@@ -1,6 +1,7 @@
 source test.tl
+source tl_source1.tl
 
-SECTION s2
+SECTION s2 (color: blue)
 THREAD t1
     point 5: 1-Jun-2024
     

@@ -50,7 +50,7 @@ def version_callback(value: bool):
 # SECTION s1 (color: red)
 # #color red
 # IMPORT study 1 FROM Clinical
-# IMPORT * FROM Regulatory
+# IMPORT Submission FROM Regulatory
 
 # # THREAD t1
 # # point 1: 1-Jan-26 (color: blue)
@@ -102,9 +102,7 @@ def main(
     mindate = parse_date(mindate)
     maxdate = parse_date(maxdate)
     if mindate > maxdate:
-        # print('----- VALUE ERROR -----')
-        print(f'ERROR: Max date must be after min date!')
-        sys.exit(1)
+        sys.exit('ERROR: Max date must be after min date!')
 
     v = viewport(5, 5, 1200, 0, min_date = mindate, max_date = maxdate, spacing = (0, 5), padding = (5, 5), font_size = fontsize)
 
