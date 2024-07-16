@@ -294,19 +294,20 @@ class TlThread(object):
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
         out = self.render_background(v)
-        if today:
-            out += self.render_today(v)
         
-        for i in marker:
-            if i != "":
-                temp = v.date_x(parse_date(i))
-                out += svg_line(temp, v.y, temp, v.y + v.height , outline_color = "blue")
-
         # render monthgrid
         grid = v.monthgrid()
         for i, j in zip(grid, grid[1:]):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
+
+        if today:
+            out += self.render_today(v)
+            
+        for i in marker:
+            if i != "":
+                temp = v.date_x(parse_date(i))
+                out += svg_line(temp, v.y, temp, v.y + v.height , outline_color = "blue", lwd = 1.5)
 
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]

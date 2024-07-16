@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADD ALIAS ASSIGN BEGIN COLOR COMMENT DATE END EQUALS IMPORT INT MARKER PARAMETER RANGE SECTION SOURCE START_SECTION START_THREAD SYMBOL_NAME THREAD TIMEUNIT\n    expression : point\n               | interval\n               | thread\n               | section\n               | chart\n               | source\n               | import\n               | marker\n    \n    source : SOURCE\n    \n    import : IMPORT\n    \n    temp_chart : BEGIN section\n               | BEGIN source\n    \n    temp_chart : temp_chart section\n    \n    temp_chart : temp_chart source\n               | temp_chart marker\n    \n    chart : temp_chart END\n    \n    marker : MARKER DATE\n    \n    temp_section : SECTION SYMBOL_NAME\n    \n    temp_section : SECTION SYMBOL_NAME PARAMETER\n    \n    temp_section : temp_section thread\n    \n    temp_section : temp_section import\n    \n    section : temp_section\n    \n    temp_thread : THREAD SYMBOL_NAME\n    \n    temp_thread : THREAD SYMBOL_NAME PARAMETER\n    \n    temp_thread : temp_thread point\n                | temp_thread interval\n    \n    thread : temp_thread\n    \n    point : SYMBOL_NAME ASSIGN DATE\n    \n    point : SYMBOL_NAME ASSIGN DATE PARAMETER\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER\n    '
+_lr_signature = 'ADD ALIAS ASSIGN BEGIN COLOR COMMENT DATE END EQUALS IMPORT INT MARKER PARAMETER RANGE SECTION SOURCE START_SECTION START_THREAD SYMBOL_NAME THREAD TIMEUNIT\n    expression : point\n               | interval\n               | thread\n               | section\n               | chart\n               | source\n               | import\n               | marker\n    \n    source : SOURCE\n    \n    import : IMPORT\n    \n    temp_chart : BEGIN section\n               | BEGIN source\n               | BEGIN marker\n    \n    temp_chart : temp_chart section\n    \n    temp_chart : temp_chart source\n               | temp_chart marker\n    \n    chart : temp_chart END\n    \n    marker : MARKER DATE\n    \n    temp_section : SECTION SYMBOL_NAME\n    \n    temp_section : SECTION SYMBOL_NAME PARAMETER\n    \n    temp_section : temp_section thread\n    \n    temp_section : temp_section import\n    \n    section : temp_section\n    \n    temp_thread : THREAD SYMBOL_NAME\n    \n    temp_thread : THREAD SYMBOL_NAME PARAMETER\n    \n    temp_thread : temp_thread point\n                | temp_thread interval\n    \n    thread : temp_thread\n    \n    point : SYMBOL_NAME ASSIGN DATE\n    \n    point : SYMBOL_NAME ASSIGN DATE PARAMETER\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE\n    \n    interval : SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER\n    '
     
-_lr_action_items = {'SYMBOL_NAME':([0,11,17,18,21,22,30,34,35,37,39,40,],[10,10,30,31,-25,-26,-23,-28,-24,-29,-30,-31,]),'SOURCE':([0,11,12,13,14,15,19,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,39,40,],[14,-27,-22,14,-9,-10,14,-25,-26,-20,-21,-13,-14,-15,-17,-23,-18,-11,-12,-28,-24,-19,-29,-30,-31,]),'IMPORT':([0,11,12,15,21,22,23,24,30,31,34,35,36,37,39,40,],[15,-27,15,-10,-25,-26,-20,-21,-23,-18,-28,-24,-19,-29,-30,-31,]),'MARKER':([0,11,12,13,14,15,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,39,40,],[16,-27,-22,16,-9,-10,-25,-26,-20,-21,-13,-14,-15,-17,-23,-18,-11,-12,-28,-24,-19,-29,-30,-31,]),'THREAD':([0,11,12,15,21,22,23,24,30,31,34,35,36,37,39,40,],[17,-27,17,-10,-25,-26,-20,-21,-23,-18,-28,-24,-19,-29,-30,-31,]),'SECTION':([0,11,12,13,14,15,19,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,39,40,],[18,-27,-22,18,-9,-10,18,-25,-26,-20,-21,-13,-14,-15,-17,-23,-18,-11,-12,-28,-24,-19,-29,-30,-31,]),'BEGIN':([0,],[19,]),'$end':([1,2,3,4,5,6,7,8,9,11,12,14,15,21,22,23,24,25,29,30,31,34,35,36,37,39,40,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-27,-22,-9,-10,-25,-26,-20,-21,-16,-17,-23,-18,-28,-24,-19,-29,-30,-31,]),'ASSIGN':([10,],[20,]),'END':([11,12,13,14,15,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,39,40,],[-27,-22,25,-9,-10,-25,-26,-20,-21,-13,-14,-15,-17,-23,-18,-11,-12,-28,-24,-19,-29,-30,-31,]),'DATE':([16,20,38,],[29,34,39,]),'PARAMETER':([30,31,34,39,],[35,36,37,40,]),'RANGE':([34,],[38,]),}
+_lr_action_items = {'SYMBOL_NAME':([0,11,17,18,21,22,30,35,36,38,40,41,],[10,10,30,31,-26,-27,-24,-29,-25,-30,-31,-32,]),'SOURCE':([0,11,12,13,14,15,19,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,],[14,-28,-23,14,-9,-10,14,-26,-27,-21,-22,-14,-15,-16,-18,-24,-19,-11,-12,-13,-29,-25,-20,-30,-31,-32,]),'IMPORT':([0,11,12,15,21,22,23,24,30,31,35,36,37,38,40,41,],[15,-28,15,-10,-26,-27,-21,-22,-24,-19,-29,-25,-20,-30,-31,-32,]),'MARKER':([0,11,12,13,14,15,19,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,],[16,-28,-23,16,-9,-10,16,-26,-27,-21,-22,-14,-15,-16,-18,-24,-19,-11,-12,-13,-29,-25,-20,-30,-31,-32,]),'THREAD':([0,11,12,15,21,22,23,24,30,31,35,36,37,38,40,41,],[17,-28,17,-10,-26,-27,-21,-22,-24,-19,-29,-25,-20,-30,-31,-32,]),'SECTION':([0,11,12,13,14,15,19,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,],[18,-28,-23,18,-9,-10,18,-26,-27,-21,-22,-14,-15,-16,-18,-24,-19,-11,-12,-13,-29,-25,-20,-30,-31,-32,]),'BEGIN':([0,],[19,]),'$end':([1,2,3,4,5,6,7,8,9,11,12,14,15,21,22,23,24,25,29,30,31,35,36,37,38,40,41,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-28,-23,-9,-10,-26,-27,-21,-22,-17,-18,-24,-19,-29,-25,-20,-30,-31,-32,]),'ASSIGN':([10,],[20,]),'END':([11,12,13,14,15,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,],[-28,-23,25,-9,-10,-26,-27,-21,-22,-14,-15,-16,-18,-24,-19,-11,-12,-13,-29,-25,-20,-30,-31,-32,]),'DATE':([16,20,39,],[29,35,40,]),'PARAMETER':([30,31,35,40,],[36,37,38,41,]),'RANGE':([35,],[39,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,],[1,]),'point':([0,11,],[2,21,]),'interval':([0,11,],[3,22,]),'thread':([0,12,],[4,23,]),'section':([0,13,19,],[5,26,32,]),'chart':([0,],[6,]),'source':([0,13,19,],[7,27,33,]),'import':([0,12,],[8,24,]),'marker':([0,13,],[9,28,]),'temp_thread':([0,12,],[11,11,]),'temp_section':([0,13,19,],[12,12,12,]),'temp_chart':([0,],[13,]),}
+_lr_goto_items = {'expression':([0,],[1,]),'point':([0,11,],[2,21,]),'interval':([0,11,],[3,22,]),'thread':([0,12,],[4,23,]),'section':([0,13,19,],[5,26,32,]),'chart':([0,],[6,]),'source':([0,13,19,],[7,27,33,]),'import':([0,12,],[8,24,]),'marker':([0,13,19,],[9,28,34,]),'temp_thread':([0,12,],[11,11,]),'temp_section':([0,13,19,],[12,12,12,]),'temp_chart':([0,],[13,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -39,23 +39,24 @@ _lr_productions = [
   ('import -> IMPORT','import',1,'p_import','tlparser.py',32),
   ('temp_chart -> BEGIN section','temp_chart',2,'p_chart','tlparser.py',41),
   ('temp_chart -> BEGIN source','temp_chart',2,'p_chart','tlparser.py',42),
-  ('temp_chart -> temp_chart section','temp_chart',2,'p_chart1','tlparser.py',48),
-  ('temp_chart -> temp_chart source','temp_chart',2,'p_chart2','tlparser.py',55),
-  ('temp_chart -> temp_chart marker','temp_chart',2,'p_chart2','tlparser.py',56),
-  ('chart -> temp_chart END','chart',2,'p_chart3','tlparser.py',63),
-  ('marker -> MARKER DATE','marker',2,'p_marker','tlparser.py',73),
-  ('temp_section -> SECTION SYMBOL_NAME','temp_section',2,'p_section','tlparser.py',81),
-  ('temp_section -> SECTION SYMBOL_NAME PARAMETER','temp_section',3,'p_section1','tlparser.py',87),
-  ('temp_section -> temp_section thread','temp_section',2,'p_section2','tlparser.py',93),
-  ('temp_section -> temp_section import','temp_section',2,'p_section3','tlparser.py',100),
-  ('section -> temp_section','section',1,'p_section4','tlparser.py',107),
-  ('temp_thread -> THREAD SYMBOL_NAME','temp_thread',2,'p_thread','tlparser.py',116),
-  ('temp_thread -> THREAD SYMBOL_NAME PARAMETER','temp_thread',3,'p_thread1','tlparser.py',122),
-  ('temp_thread -> temp_thread point','temp_thread',2,'p_thread2','tlparser.py',128),
-  ('temp_thread -> temp_thread interval','temp_thread',2,'p_thread2','tlparser.py',129),
-  ('thread -> temp_thread','thread',1,'p_thread3','tlparser.py',136),
-  ('point -> SYMBOL_NAME ASSIGN DATE','point',3,'p_point','tlparser.py',145),
-  ('point -> SYMBOL_NAME ASSIGN DATE PARAMETER','point',4,'p_point1','tlparser.py',152),
-  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE','interval',5,'p_interval','tlparser.py',162),
-  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER','interval',6,'p_interval1','tlparser.py',169),
+  ('temp_chart -> BEGIN marker','temp_chart',2,'p_chart','tlparser.py',43),
+  ('temp_chart -> temp_chart section','temp_chart',2,'p_chart1','tlparser.py',49),
+  ('temp_chart -> temp_chart source','temp_chart',2,'p_chart2','tlparser.py',56),
+  ('temp_chart -> temp_chart marker','temp_chart',2,'p_chart2','tlparser.py',57),
+  ('chart -> temp_chart END','chart',2,'p_chart3','tlparser.py',64),
+  ('marker -> MARKER DATE','marker',2,'p_marker','tlparser.py',74),
+  ('temp_section -> SECTION SYMBOL_NAME','temp_section',2,'p_section','tlparser.py',82),
+  ('temp_section -> SECTION SYMBOL_NAME PARAMETER','temp_section',3,'p_section1','tlparser.py',88),
+  ('temp_section -> temp_section thread','temp_section',2,'p_section2','tlparser.py',94),
+  ('temp_section -> temp_section import','temp_section',2,'p_section3','tlparser.py',101),
+  ('section -> temp_section','section',1,'p_section4','tlparser.py',108),
+  ('temp_thread -> THREAD SYMBOL_NAME','temp_thread',2,'p_thread','tlparser.py',117),
+  ('temp_thread -> THREAD SYMBOL_NAME PARAMETER','temp_thread',3,'p_thread1','tlparser.py',123),
+  ('temp_thread -> temp_thread point','temp_thread',2,'p_thread2','tlparser.py',129),
+  ('temp_thread -> temp_thread interval','temp_thread',2,'p_thread2','tlparser.py',130),
+  ('thread -> temp_thread','thread',1,'p_thread3','tlparser.py',137),
+  ('point -> SYMBOL_NAME ASSIGN DATE','point',3,'p_point','tlparser.py',146),
+  ('point -> SYMBOL_NAME ASSIGN DATE PARAMETER','point',4,'p_point1','tlparser.py',153),
+  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE','interval',5,'p_interval','tlparser.py',163),
+  ('interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER','interval',6,'p_interval1','tlparser.py',170),
 ]

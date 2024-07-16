@@ -40,6 +40,7 @@ def p_chart(p):
     '''
     temp_chart : BEGIN section
                | BEGIN source
+               | BEGIN marker
     '''
     p[0] = [p[2]]
 
