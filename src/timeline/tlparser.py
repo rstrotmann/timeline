@@ -14,6 +14,7 @@ def p_expression_atomic(p):
                | chart
                | source
                | import
+               | marker
     '''
     p[0] = p[1]
 
@@ -52,6 +53,7 @@ def p_chart1(p):
 def p_chart2(p):
     '''
     temp_chart : temp_chart source
+               | temp_chart marker
     '''
     p[0] = p[1]
     p[0].append(p[2])
@@ -63,6 +65,14 @@ def p_chart3(p):
     p[0] = ('chart', p[1])
 
 
+
+## MARKER
+
+def p_marker(p):
+    '''
+    marker : MARKER DATE
+    '''
+    p[0] = ('marker', p[2])
 
 # ## SECTION
 

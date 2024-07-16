@@ -1,5 +1,8 @@
 source test.tl
-source tl_source1.tl
+#source tl_source1.tl
+
+MARKER 1-Oct-2024
+MARKER 8-Nov-2024
 
 SECTION s2 (color: blue)
 THREAD t1
@@ -18,4 +21,4 @@ DULT meeting: 1-Jun-24
 
 THREAD Team
 Discussion: 1-May - 1-Jun
-#Celebration: 15-Aug
+Celebration: 15-Aug

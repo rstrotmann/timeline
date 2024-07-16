@@ -113,6 +113,7 @@ class TlInterval(TlObject):
     def render(self, viewport: viewport, x_start = None, x_end = None, y = None, offset_start = 0, offset_end = 0, symbol_height = 10):
         outline_col = self.parameter.get("color", "black")
         fill_col = self.parameter.get("fill", "none")
+        # symbol_height = float(self.parameter.get("size", 10))
         if not y:
             y = viewport._height/2
         if not x_start:
@@ -286,22 +287,20 @@ class TlThread(object):
         today_x = v.date_x(datetime.today())
         return(svg_line(today_x, v.y, today_x, v.y + v.height , outline_color = "red"))
 
-    def render(self, v: viewport, y = None, include_date = True, today = False, debug = False, symbol_height = 10):
+    def render(self, v: viewport, y = None, include_date = True, today = False, marker = [], debug = False, symbol_height = 10):
         y_layout = self._vertical_layout(v, include_date = include_date)
         y_upper = y_layout[0] + v.line_height() * 0.8
         y_mid = y_layout[2] + (y_layout[3] - y_layout[2]) / 2
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
-        # visible_items = 0
-        # for i in self.objects:
-        #     if i.start_date >= v.min_date and i.start_date <= v.max_date:
-        #         visible_items += 1
-        # if visible_items == 0:
-        #     return("")
-
         out = self.render_background(v)
         if today:
             out += self.render_today(v)
+        
+        for i in marker:
+            if i != "":
+                temp = v.date_x(parse_date(i))
+                out += svg_line(temp, v.y, temp, v.y + v.height , outline_color = "blue")
 
         # render monthgrid
         grid = v.monthgrid()
@@ -309,9 +308,6 @@ class TlThread(object):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
 
-        # if visible_items == 0:
-        #     return(out)
-        
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
         pts_dates = [i.start_date for i in pts]
@@ -398,7 +394,7 @@ class TlMonthscale(TlThread):
     def visible_items(self, v):
         return(1)
     
-    def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10):
+    def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10, **kwargs):
         grid = v.monthgrid()
 
         out = svg_rect(v.x, v.y, v.width, self.height(v), fill_color = "white", lwd = 0)
@@ -420,7 +416,7 @@ class TlYearscale(TlMonthscale):
     def visible_items(self, v):
         return(1)
 
-    def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10):
+    def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10, **kwargs):
         grid =  list(set([first_of_year(i) for i in v.monthgrid()] + [v.min_date]))
         # print(grid)
         out = self.render_background(v)
@@ -482,7 +478,7 @@ class TlSection(object):
     def x_offset(self, v: viewport):
         return(max([v.text_width(i.caption + "xx") for i in self.threads] + [v.text_width(self.caption)]) + v.padding[0] * 2)
 
-    def render(self, v: viewport, x, y = None, include_date = True, today = False, debug = False):
+    def render(self, v: viewport, x, y = None, include_date = True, today = False, marker = [], debug = False):
         out = ""
         out += svg_text(x = v.x + v.padding[0], y = v.y + v.line_height() * 1.5, text = self.caption, font_weight="bold")
 
@@ -491,7 +487,7 @@ class TlSection(object):
                 temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
                 out += temp.render_background(debug = debug)
 
-                out += i.render(temp, include_date = include_date, today = today, debug = debug, symbol_height = v.line_height() * 0.65)
+                out += i.render(temp, include_date = include_date, today = today, marker = marker, debug = debug, symbol_height = v.line_height() * 0.65)
 
                 vlayout = i._vertical_layout(temp, include_date = include_date)
                 out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
@@ -511,7 +507,7 @@ class TlSpacer(TlSection):
     def x_offset(self, v):
         return(0)
     
-    def render(self, v: viewport, x, y = None, include_date = False, today = False, debug = False):
+    def render(self, v: viewport, x, y = None, include_date = False, today = False, debug = False, **kwargs):
         temp = v.add_viewport(0, self.height(v))
         out = ""
         if debug:
@@ -526,6 +522,7 @@ class TlChart(object):
         temp.add_thread(TlMonthscale())
         self.add_section(temp)
         self.add_section(TlSpacer(height = 5))
+        self.markers = []
 
     def __str__(self):
         out = "CHART\n"
@@ -572,7 +569,7 @@ class TlChart(object):
         out = ""
         for i in self.sections:
             temp = v.add_viewport(x_offset = 0, padding = v.padding, spacing = (0, 0))
-            out += i.render(temp, self.x_offset(v) + v.padding[1] * 2, include_date = include_date, today = today, debug = debug)
+            out += i.render(temp, self.x_offset(v) + v.padding[1] * 2, include_date = include_date, today = today, marker = self.markers, debug = debug)
 
         width = max(svg_max_x(out, v)) + 10
 
@@ -612,6 +609,10 @@ class TlChart(object):
                 for i in temp.sections:
                     sources.add_section(i)
                 
+            if(top_level_object[0] == "marker"):
+                # print("marker")
+                self.markers.append(top_level_object[1])
+
             if(top_level_object[0] == 'section'):
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
                 for thread_item in top_level_object[2]:
@@ -638,7 +639,9 @@ class TlChart(object):
             print(f'----- sources -----')
             for i in sources.sections:
                 print(i)
-            print(f'----- end sources -----')
+            print(f'----- markers -----')
+            for i in self.markers:
+                print(i)
 
     def read_source(self, infile, outfile = None, debug = False):
         try: 

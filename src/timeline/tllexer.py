@@ -15,7 +15,7 @@ tokens = [
     'START_THREAD', 'EQUALS', 'ASSIGN', 'SYMBOL_NAME', 'DATE', 'COMMENT',
     'PARAMETER', 'INT', 'START_SECTION', 'SECTION', 'THREAD',
     'ADD', 'TIMEUNIT', 'RANGE', 'END', 'BEGIN', 'COLOR',
-    'SOURCE', 'IMPORT', 'ALIAS'
+    'SOURCE', 'IMPORT', 'ALIAS', 'MARKER'
 ] + list(reserved.values())
 
 next_state = ''
@@ -58,6 +58,10 @@ def t_END(t):
     t.value = "END"
     return t
 
+def t_MARKER(t):
+    r'marker|MARKER'
+    t.value = "MARKER"
+    return t
 
 ## SECTIONS
 
