@@ -73,7 +73,14 @@ def p_marker(p):
     '''
     marker : MARKER DATE
     '''
-    p[0] = ('marker', p[2])
+    p[0] = ('marker', p[2], '')
+
+def p_marker1(p):
+    '''
+    marker : MARKER DATE PARAMETER
+    '''
+    p[0] = ('marker', p[2], p[3])
+
 
 # ## SECTION
 

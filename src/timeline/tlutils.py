@@ -29,7 +29,7 @@ def first_of_year(d: datetime) -> datetime:
     return(datetime.strptime(f'{d.year}-01-01', '%Y-%m-%d'))
 
 def convert_str_to_dict(input: str) -> dict:
-    temp = re.findall(r'(\w*)\:\s*(\w*)', input)
+    temp = re.findall(r'(\w*)\:\s*([\w\.]*)', input)
     out = {i[0]: i[1] for i in temp}
     return(out)
 

@@ -307,9 +307,16 @@ class TlThread(object):
 
         # render markers
         for i in marker:
-            if i != "":
-                temp = v.date_x(parse_date(i))
-                out += svg_line(temp, v.y, temp, v.y + v.height , outline_color = "blue", lwd = 1.5)
+            # print(f'MARKER {i}')
+            if i[0] != "":
+                temp_x = v.date_x(parse_date(i[0]))
+                parameter = convert_str_to_dict(i[1])
+                # print(parameter)
+                temp_color = parameter.get("color", "blue")
+                temp_lwd = parameter.get("width", 1.5)
+                # print(f'color: {temp_color}')
+
+                out += svg_line(temp_x, v.y, temp_x, v.y + v.height , outline_color = temp_color, lwd = temp_lwd)
 
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
@@ -618,7 +625,8 @@ class TlChart(object):
                 
             if(top_level_object[0] == "marker"):
                 # print("marker")
-                self.markers.append(top_level_object[1])
+                self.markers.append((top_level_object[1], top_level_object[2]))
+                
 
             if(top_level_object[0] == 'section'):
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])

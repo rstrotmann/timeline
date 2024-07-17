@@ -119,6 +119,7 @@ def t_PARAMETER(t):
     r'\(.*\)'
     temp = re.match(r'\((.*)\)', t.value)
     t.value = temp.groups()[0]
+    # print(f'PARAM {t}')
     return t
 
 def t_SYMBOL_NAME(t):
