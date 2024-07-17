@@ -210,6 +210,7 @@ class TlThread(object):
         self._height = height
         if text_input:
             self.parse(text_input)
+        self.min_clearance = 7
 
     def __str__(self):
         out = f"THREAD {self.caption}\n"
@@ -293,17 +294,18 @@ class TlThread(object):
         y_mid = y_layout[2] + (y_layout[3] - y_layout[2]) / 2
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
-        out = self.render_background(v)
-        
         # render monthgrid
+        out = self.render_background(v)
         grid = v.monthgrid()
         for i, j in zip(grid, grid[1:]):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
 
+        # render today
         if today:
             out += self.render_today(v)
-            
+
+        # render markers
         for i in marker:
             if i != "":
                 temp = v.date_x(parse_date(i))
@@ -312,12 +314,16 @@ class TlThread(object):
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
         pts_dates = [i.start_date for i in pts]
+        pts_x = [v.date_x(i.start_date) for i in pts]
+        # print(pts_x)
 
         for i in obj:
             if isinstance(i, TlInterval):
                 for j in break_interval(i, pts):
-                    offset_start = 8 if j.start_date in pts_dates else 0
-                    offset_end = -8 if j.end_date in pts_dates else 0
+                    temp = [i for i in [v.date_x(j.start_date) - i for i in pts_x] if i >= 0 and i <= 8]
+                    offset_start = self.min_clearance if temp else 0
+                    temp = [i for i in [i - v.date_x(j.end_date) for i in pts_x] if i >= 0 and i <= 8]
+                    offset_end = -self.min_clearance if temp else 0
 
                     out += j.render(v, y = y_mid, offset_start = offset_start, offset_end = offset_end, symbol_height= symbol_height)
             if isinstance(i, TlPoint):

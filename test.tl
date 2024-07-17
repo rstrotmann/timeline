@@ -1,4 +1,4 @@
-
+MARKER 15-Nov-2024
 
 section Clinical (color: red)
 #color red
@@ -46,4 +46,14 @@ Start: 1-Mar-2024
 Dossier final: 31-Aug-2024
 a very long label: 1-Sep-2025
 
-MARKER 15-Nov-2024
+THREAD spacing test
+A: 1-Feb-25
+B: 1-Mar-25
+AB: 1-2 - 1-3
+
+CC: 1-5 - 1-6
+DD: 1-6 - 1-7
+EE: 1-7 - 1-8
+
+C: 1-6
+D: 1-7
