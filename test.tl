@@ -1,10 +1,10 @@
 MARKER 15-Nov-2024 (color: green, width: 0.5)
 
-section Clinical (color: red)
+section Clinical (color: blue)
 #color red
 
 thread study 1
-Cohort 1: 1-Mar-24 - 1-Apr (fill: red)
+Cohort 1: 1-Mar-24 - 1-Apr
 SMC 1: 15-Apr
 Cohort 2: 21-Apr - 21-May
 SMC 2: 31-5
@@ -13,7 +13,7 @@ SMC 3: 18-Jul-24 (color: red, fill: red)
 SMC 4: 1-Aug-24
 #wrong: 1-Oct-24 - 1-Sep-24 
 
-thread study 2
+thread study 2  (highlight: True)
 FSI: 1-Aug-2024
 FSFD: 15-Aug-24
 Interim analysis: 15-2-25
@@ -30,7 +30,7 @@ final: 21-Aug
 manuscript draft 1: 1-Jan-25 - 5-Jan-25
 manuscript draft 2: 5-Jan - 21-Jan
 
-section Regulatory (color: blue)
+section Regulatory (color: aqua)
 #color blue
 # comment
 
@@ -46,7 +46,7 @@ Start: 1-Mar-2024
 Dossier final: 31-Aug-2024
 a very long label: 1-Sep-2025
 
-THREAD spacing test
+THREAD spacing test (highlight: True)
 A: 1-Feb-25
 B: 1-Mar-25
 AB: 1-2 - 1-3
@@ -70,3 +70,10 @@ MM: 1-12 - 31-12
 N: 7-12
 O: 10-12
 P: 22-12
+
+SECTION Test (color: yellow)
+thread t1
+point A: 1-Jan-25
+
+thread t2 (highlight: True)
+point B: 1-Feb-2025

@@ -1,8 +1,12 @@
 import re
 from datetime import date, datetime, timedelta
+import matplotlib.colors as colors
 
 month_names = ["", "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
 tl_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#c4e2fa", "yellow": "#fff4d6", "violet": "#dad0ef", "green": "#edf5dc", "aqua": "#d4f3f6", "grey": "#f0f0f0"}
+
+tl_contrast_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#B4C7E7", "yellow": "#FFE699", "violet": "#dad0ef", "green": "#C5E0B4", "aqua": "#d4f3f6", "grey": "#f0f0f0"}
+
 tl_fill_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#ff0000", "blue": "#c4e2fa", "yellow": "#FFC833", "violet": "#503291", "green": "#0f7447", "aqua": "#2CBECD", "black":"#000000"}
 
 def parse_date(d) -> date:
@@ -39,3 +43,36 @@ def validate_parameters(parameter: dict):
         temp_col = parameter.get(i, "transparent")
         if not temp_col in tl_colors.keys():
             raise ValueError(f"unknown color '{temp_col}'")
+        
+
+def intensify_color(hex_string):
+    temp = colors.hex2color(hex_string)
+    # print(f'hex: {hex_string}, rgb: {temp}')
+    if temp[0] > max(temp[1:2]):
+        i_hi = 0
+        if temp[1] > temp[2]:
+            i_lo = 2
+        else:
+            i_lo = 1
+    elif temp[2] > max(temp[0:1]):
+        i_hi = 2
+        if temp[0] > temp[1]:
+            i_lo = 1
+        else:
+            i_lo = 0
+    else:
+        i_hi = 1
+        if temp[0] > temp[2]:
+            i_lo = 2
+        else:
+            i_lo = 0
+    out = list(temp)
+    out[i_lo] -= 0.2
+    # out[i_lo] *= 0.85
+    if out[i_lo] < 0:
+        out[i_lo] = 0
+    out[i_hi] += 0.2
+    # out[i_hi] /= 0.85
+    if out[i_hi] > 1:
+        out[i_hi] = 1
+    return colors.rgb2hex(out)

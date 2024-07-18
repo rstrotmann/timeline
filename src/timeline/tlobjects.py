@@ -9,6 +9,7 @@ import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
 import os.path
+from timeline.tlutils import intensify_color
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -203,7 +204,7 @@ class TlHeader(TlObject):
         return(out)
 
 class TlThread(object):
-    def __init__(self, text_input = None, caption = "", height = 100, color = "transparent"):
+    def __init__(self, text_input = None, caption = "", height = 100, color = "transparent", parameter = ""):
         self.objects = []
         self.caption = caption
         self.color = color
@@ -211,6 +212,11 @@ class TlThread(object):
         if text_input:
             self.parse(text_input)
         self.min_clearance = 7
+        self.parameter = convert_str_to_dict(parameter)
+        try:
+            validate_parameters(self.parameter)
+        except ValueError as message:
+            sys.exit(f"ERROR: Wrong parameter in thread '{caption}', " + str(message))
 
     def __str__(self):
         out = f"THREAD {self.caption}\n"
@@ -294,8 +300,17 @@ class TlThread(object):
         y_mid = y_layout[2] + (y_layout[3] - y_layout[2]) / 2
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
+        temp_highlight = self.parameter.get('highlight', 'False')
+        # print(f'thread {self.caption}, highlight {temp_highlight}')
+
         # render monthgrid
         out = self.render_background(v)
+
+        # print(self.color, intensify_color(self.color))
+        if temp_highlight == "True":
+            # print("highlight")
+            out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = intensify_color(self.color))
+
         grid = v.monthgrid()
         for i, j in zip(grid, grid[1:]):
             if (i.month - 1) % 2 < 1:
@@ -307,22 +322,18 @@ class TlThread(object):
 
         # render markers
         for i in marker:
-            # print(f'MARKER {i}')
             if i[0] != "":
                 temp_x = v.date_x(parse_date(i[0]))
                 parameter = convert_str_to_dict(i[1])
-                # print(parameter)
                 temp_color = parameter.get("color", "blue")
                 temp_lwd = parameter.get("width", 1.5)
-                # print(f'color: {temp_color}')
 
                 out += svg_line(temp_x, v.y, temp_x, v.y + v.height , outline_color = temp_color, lwd = temp_lwd)
 
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
-        pts_dates = [i.start_date for i in pts]
+        # pts_dates = [i.start_date for i in pts]
         pts_x = [v.date_x(i.start_date) for i in pts]
-        # print(pts_x)
 
         for i in obj:
             if isinstance(i, TlInterval):
@@ -624,10 +635,8 @@ class TlChart(object):
                     sources.add_section(i)
                 
             if(top_level_object[0] == "marker"):
-                # print("marker")
                 self.markers.append((top_level_object[1], top_level_object[2]))
                 
-
             if(top_level_object[0] == 'section'):
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
                 for thread_item in top_level_object[2]:
@@ -642,7 +651,7 @@ class TlChart(object):
                             temp_section.add_thread(temp_thread)
 
                     if thread_item[0] == "thread":
-                        temp_thread = TlThread(caption = thread_item[1], color = temp_section.color)
+                        temp_thread = TlThread(caption = thread_item[1], color = temp_section.color, parameter = thread_item[3])
                         for item in thread_item[2]:
                             if(item[0] == 'point'):
                                 temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
