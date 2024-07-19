@@ -1,6 +1,6 @@
 from timeline.tlutils import parse_date, date_string, first_of_month, first_of_next_month, tl_colors, month_names, first_of_year, validate_parameters
 from timeline.graphics import viewport, svg_max_x
-from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_ongoing, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
+from timeline.svg_primitives import svg_symbol, svg_large_arrow, svg_large_arrow_start, svg_large_arrow_middle, svg_large_arrow_end, svg_rect, svg_text, svg_large_arrow_abbreviated, svg_large_arrow_end_abbreviated, svg_line
 from datetime import datetime
 import itertools
 from timeline.tllexer import lex
@@ -9,7 +9,7 @@ import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
 import os.path
-from timeline.tlutils import intensify_color, tl_contrast_colors, tl_strong_colors
+from timeline.tlutils import tl_strong_colors
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -301,27 +301,19 @@ class TlThread(object):
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
         temp_highlight = self.parameter.get('highlight', 'False')
-        # print(f'thread {self.caption}, highlight {temp_highlight}')
 
         # render monthgrid
         out = self.render_background(v)
-
-        # # print(self.color, intensify_color(self.color))
-        # if temp_highlight == "True":
-        #     # print(self.color)
-        #     out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
-        #     tl_contrast_colors[self.color])
 
         grid = v.monthgrid()
         for i, j in zip(grid, grid[1:]):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
 
-        # print(self.color, intensify_color(self.color))
+        # render highlight
         if temp_highlight == "True":
-            # print(self.color)
             out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
-            tl_strong_colors[self.color], fill_opacity=0.6)
+            tl_strong_colors[self.color], fill_opacity = 0.7)
 
         # render today
         if today:
@@ -339,7 +331,6 @@ class TlThread(object):
 
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
-        # pts_dates = [i.start_date for i in pts]
         pts_x = [v.date_x(i.start_date) for i in pts]
 
         for i in obj:
@@ -470,11 +461,9 @@ class TlSection(object):
         except ValueError as message:
             sys.exit(f"ERROR: Wrong parameter in section '{caption}', " + str(message))
 
-        # self.color = tl_colors[self.parameter.get("color", "grey")]
         self.color = self.parameter.get("color", "grey")
-        # if color:
-        #     self.color = color
-
+        if color:
+            self.color = color
         self._height = height
 
     def __str__(self):

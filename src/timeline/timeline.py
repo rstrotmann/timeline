@@ -2,9 +2,9 @@ import typer
 import pathlib2
 import sys
 
-from timeline.tlobjects import TlPoint, TlInterval, TlThread, TlHeader, TlSection, TlChart, TlSpacer
+from timeline.tlobjects import TlChart
 from timeline.graphics import viewport
-from timeline.tlutils import parse_date, first_of_month, first_of_next_month, tl_colors, convert_str_to_dict
+from timeline.tlutils import parse_date
 from timeline.svg_primitives import svg_symbol
 from datetime import date
 
