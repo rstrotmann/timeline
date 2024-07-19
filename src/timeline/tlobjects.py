@@ -284,11 +284,13 @@ class TlThread(object):
     def render_background(self, viewport: viewport) -> str:
         return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = tl_colors[self.color], line_color = "transparent"))
 
-    def render_caption(self, viewport: viewport, y = None) -> str:
-        if not y:
-            y = viewport._height/2
-        out = svg_text(viewport.x + viewport.padding[0], viewport.y + y, self.caption)
-        return(out)
+    # def render_caption(self, viewport: viewport, y = None) -> str:
+    #     if not y:
+    #         y = viewport._height/2
+    #     out = svg_text(viewport.x + viewport.padding[0], viewport.y + y, self.caption)
+    #     out = ""
+    #     # out += svg_rect(viewport.x, viewport.y, viewport.width, viewport.height, line_color = "red", lwd=1, fill_color="yellow")
+    #     return(out)
 
     def render_today(self, v: viewport) -> str:
         today_x = v.date_x(datetime.today())
@@ -310,10 +312,10 @@ class TlThread(object):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
 
-        # render highlight
-        if temp_highlight == "True":
-            out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
-            tl_strong_colors[self.color], fill_opacity = 0.7)
+        # # render highlight
+        # if temp_highlight == "True":
+        #     out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
+        #     tl_strong_colors[self.color], fill_opacity = 0.7)
 
         # render today
         if today:
@@ -507,13 +509,19 @@ class TlSection(object):
         out += svg_text(x = v.x + v.padding[0], y = v.y + v.line_height() * 1.5, text = self.caption, font_weight="bold")
 
         for i in self.threads:
-            if i.visible_items(v) >0:
+            if i.visible_items(v) > 0:
                 temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
                 out += temp.render_background(debug = debug)
 
                 out += i.render(temp, include_date = include_date, today = today, marker = marker, debug = debug, symbol_height = v.line_height() * 0.65)
 
                 vlayout = i._vertical_layout(temp, include_date = include_date)
+                
+                # render highlight
+                temp_highlight = i.parameter.get('highlight', 'False')
+                if temp_highlight == "True":
+                    out += svg_rect(v.x + v.padding[0], temp.y + v.padding[1], v.width - 2 * v.padding[0], vlayout[2] + vlayout[3] - 2 * v.padding[1], lwd = 0, fill_color = tl_strong_colors[self.color], fill_opacity = 0.7)
+
                 out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
 
         svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = tl_colors[self.color], lwd = 0)
