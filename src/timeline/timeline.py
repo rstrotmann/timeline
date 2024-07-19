@@ -15,8 +15,8 @@ from timeline.graphics import svg_max_x
 
 
 ### GLOBAL VARIABLES
-__version__ = "0.1.3.9001"
-__date__ = "17-July-2024"
+__version__ = "0.1.3.9002"
+__date__ = "19-July-2024"
 debug = False
 
 ### MAIN

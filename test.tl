@@ -1,6 +1,6 @@
 MARKER 15-Nov-2024 (color: green, width: 0.5)
 
-section Clinical (color: blue)
+section Clinical (color: red)
 #color red
 
 thread study 1

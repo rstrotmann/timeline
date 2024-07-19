@@ -9,7 +9,7 @@ import pprint
 import sys
 from timeline.tlutils import convert_str_to_dict
 import os.path
-from timeline.tlutils import intensify_color
+from timeline.tlutils import intensify_color, tl_contrast_colors, tl_strong_colors
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -282,7 +282,7 @@ class TlThread(object):
         return out
     
     def render_background(self, viewport: viewport) -> str:
-        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = self.color, line_color = "transparent"))
+        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = tl_colors[self.color], line_color = "transparent"))
 
     def render_caption(self, viewport: viewport, y = None) -> str:
         if not y:
@@ -306,15 +306,22 @@ class TlThread(object):
         # render monthgrid
         out = self.render_background(v)
 
-        # print(self.color, intensify_color(self.color))
-        if temp_highlight == "True":
-            # print("highlight")
-            out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = intensify_color(self.color))
+        # # print(self.color, intensify_color(self.color))
+        # if temp_highlight == "True":
+        #     # print(self.color)
+        #     out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
+        #     tl_contrast_colors[self.color])
 
         grid = v.monthgrid()
         for i, j in zip(grid, grid[1:]):
             if (i.month - 1) % 2 < 1:
                 out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
+
+        # print(self.color, intensify_color(self.color))
+        if temp_highlight == "True":
+            # print(self.color)
+            out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
+            tl_strong_colors[self.color], fill_opacity=0.6)
 
         # render today
         if today:
@@ -462,9 +469,12 @@ class TlSection(object):
             validate_parameters(self.parameter)
         except ValueError as message:
             sys.exit(f"ERROR: Wrong parameter in section '{caption}', " + str(message))
-        self.color = tl_colors[self.parameter.get("color", "grey")]
-        if color:
-            self.color = color
+
+        # self.color = tl_colors[self.parameter.get("color", "grey")]
+        self.color = self.parameter.get("color", "grey")
+        # if color:
+        #     self.color = color
+
         self._height = height
 
     def __str__(self):
@@ -517,7 +527,7 @@ class TlSection(object):
                 vlayout = i._vertical_layout(temp, include_date = include_date)
                 out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
 
-        svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = self.color, lwd = 0)
+        svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = tl_colors[self.color], lwd = 0)
         
         svg_out +=  out
         return(svg_out)

@@ -5,7 +5,9 @@ import matplotlib.colors as colors
 month_names = ["", "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
 tl_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#c4e2fa", "yellow": "#fff4d6", "violet": "#dad0ef", "green": "#edf5dc", "aqua": "#d4f3f6", "grey": "#f0f0f0"}
 
-tl_contrast_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#B4C7E7", "yellow": "#FFE699", "violet": "#dad0ef", "green": "#C5E0B4", "aqua": "#d4f3f6", "grey": "#f0f0f0"}
+tl_contrast_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#F8BBDA", "blue": "#A5D3F7", "yellow": "#FFE5A0", "violet": "#C8B9E7", "green": "#D8E9B3", "aqua": "#B2E9EF", "grey": "#DCDCDC"}
+
+tl_strong_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#F59BC9", "blue": "#7CBFF4", "yellow": "#FFD769", "violet": "#B39FDE", "green": "#C4DE8B", "aqua": "#82DCE5", "grey": "#C6C6C6"}
 
 tl_fill_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#ff0000", "blue": "#c4e2fa", "yellow": "#FFC833", "violet": "#503291", "green": "#0f7447", "aqua": "#2CBECD", "black":"#000000"}
 
