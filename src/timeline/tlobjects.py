@@ -262,7 +262,7 @@ class TlThread(object):
         bottom_height = has_bottom * v.line_height() * (include_date + 1)
         # mid_height = 20
         mid_height = v.line_height() * 1.3
-        y_layout = [ypadding, top_height, ypadding, mid_height, ypadding, bottom_height, ypadding * has_bottom]
+        y_layout = [ypadding, top_height, ypadding, mid_height, ypadding, bottom_height * has_bottom, ypadding * has_bottom]
         return(list(itertools.accumulate(y_layout)))
 
     def height(self, v: viewport, include_date = True):
@@ -281,16 +281,13 @@ class TlThread(object):
                 out.append(i)
         return out
     
-    def render_background(self, viewport: viewport) -> str:
-        return(svg_rect(viewport.x, viewport.y, viewport.width, viewport._height, fill_color = tl_colors[self.color], line_color = "transparent"))
-
-    # def render_caption(self, viewport: viewport, y = None) -> str:
-    #     if not y:
-    #         y = viewport._height/2
-    #     out = svg_text(viewport.x + viewport.padding[0], viewport.y + y, self.caption)
-    #     out = ""
-    #     # out += svg_rect(viewport.x, viewport.y, viewport.width, viewport.height, line_color = "red", lwd=1, fill_color="yellow")
-    #     return(out)
+    def render_background(self, v: viewport) -> str:
+        out = svg_rect(v.x, v.y, v.width, v._height, fill_color = tl_colors[self.color], line_color = "transparent")
+        grid = v.monthgrid()
+        for i, j in zip(grid, grid[1:]):
+            if (i.month - 1) % 2 < 1:
+                out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
+        return(out)
 
     def render_today(self, v: viewport) -> str:
         today_x = v.date_x(datetime.today())
@@ -302,20 +299,7 @@ class TlThread(object):
         y_mid = y_layout[2] + (y_layout[3] - y_layout[2]) / 2
         y_bottom = y_layout[4] + v.line_height() * 0.8
 
-        temp_highlight = self.parameter.get('highlight', 'False')
-
-        # render monthgrid
-        out = self.render_background(v)
-
-        grid = v.monthgrid()
-        for i, j in zip(grid, grid[1:]):
-            if (i.month - 1) % 2 < 1:
-                out += svg_rect(v.date_x(i), v.y, v.date_x(j) - v.date_x(i), v.height, fill_color = "white", fill_opacity = 0.5, lwd = 0)
-
-        # # render highlight
-        # if temp_highlight == "True":
-        #     out += svg_rect(v.x + v.padding[0], v.y + v.padding[1], v.width- 2 * v.padding[0], v.height - 2 * v.padding[1], lwd = 0, fill_color = 
-        #     tl_strong_colors[self.color], fill_opacity = 0.7)
+        out = ""
 
         # render today
         if today:
@@ -419,6 +403,9 @@ class TlMonthscale(TlThread):
     def visible_items(self, v):
         return(1)
     
+    def render_background(self, v: viewport) -> str:
+        return ""
+
     def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10, **kwargs):
         grid = v.monthgrid()
 
@@ -441,6 +428,9 @@ class TlYearscale(TlMonthscale):
     def visible_items(self, v):
         return(1)
 
+    def render_background(self, v: viewport) -> str:
+        return ""
+    
     def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10, **kwargs):
         grid =  list(set([first_of_year(i) for i in v.monthgrid()] + [v.min_date]))
         # print(grid)
@@ -513,15 +503,14 @@ class TlSection(object):
                 temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
                 out += temp.render_background(debug = debug)
 
-                out += i.render(temp, include_date = include_date, today = today, marker = marker, debug = debug, symbol_height = v.line_height() * 0.65)
-
                 vlayout = i._vertical_layout(temp, include_date = include_date)
+                out += i.render_background(temp)
                 
                 # render highlight
                 temp_highlight = i.parameter.get('highlight', 'False')
                 if temp_highlight == "True":
-                    out += svg_rect(v.x + v.padding[0], temp.y + v.padding[1], v.width - 2 * v.padding[0], vlayout[2] + vlayout[3] - 2 * v.padding[1], lwd = 0, fill_color = tl_strong_colors[self.color], fill_opacity = 0.7)
-
+                    out += svg_rect(v.x + v.padding[0], temp.y + v.padding[1], v.width - 2 * temp.padding[0], vlayout[6] - 2 * v.padding[1], lwd = 0, fill_color = tl_strong_colors[self.color], fill_opacity = 0.6)
+                out += i.render(temp, include_date = include_date, today = today, marker = marker, debug = debug, symbol_height = v.line_height() * 0.65)
                 out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
 
         svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = tl_colors[self.color], lwd = 0)

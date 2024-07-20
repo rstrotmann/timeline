@@ -21,7 +21,7 @@ conduct: 15-Aug-2024 - 30-Sep-25 (color: red)
 IDMC1: 30-Sep-24
 IDMC2: 1-Dec-24
 
-thread study 3
+thread study 3 (highlight: True)
 shell: 1-Aug - 7-Aug
 draft 1: 7-Aug - 14-Aug
 CRM: 14-Aug
@@ -41,7 +41,7 @@ BB review 1: 16-Jun-24 - 30-6-24
 BB draft 2:   1-Jul-24
 BB submission: 15.7.24 
 
-thread Submission
+thread Submission 
 Start: 1-Mar-2024
 Dossier final: 31-Aug-2024
 a very long label: 1-Sep-2025
