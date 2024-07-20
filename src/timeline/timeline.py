@@ -78,7 +78,7 @@ def version_callback(value: bool):
 def main(
 	file: str = typer.Argument(...),
     outfile: str = typer.Option("", "--output", "-o", help="Output file name"),
-	version: bool = typer.Option(False, "--version", help="Show version and exit", callback=version_callback),
+	version: bool = typer.Option(False, "--version", "-v", help="Show version and exit", callback=version_callback),
     # font: str = typer.Option("Arial", "--font", "-f", help="Font type"),
     fontsize: float = typer.Option(14, "--fontsize", "-s", help="Font size"),
     debug: bool = typer.Option(False, "--debug", "-d", help="Show debug output"),
