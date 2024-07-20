@@ -19,6 +19,7 @@ def p_expression_atomic(p):
     p[0] = p[1]
 
 
+
 ## SOURCE
 
 def p_source(p):
@@ -31,7 +32,7 @@ def p_import(p):
     '''
     import : IMPORT
     '''
-    p[0] = ('import', p[1][0], p[1][1])
+    p[0] = ('import', p[1][0].strip(), p[1][1].strip(), p[1][2])
 
 
 ## CHART
@@ -82,6 +83,7 @@ def p_marker1(p):
     p[0] = ('marker', p[2], p[3])
 
 
+
 # ## SECTION
 
 def p_section(p):
@@ -117,6 +119,7 @@ def p_section4(p):
     p[0] = ('section', p[1][0], p[1][1], p[1][2]) 
 
 
+
 # ## THREAD
 
 def p_thread(p):
@@ -146,6 +149,7 @@ def p_thread3(p):
     p[0] = ('thread', p[1][0], p[1][1], p[1][2]) 
 
 
+
 # ## POINT
 
 def p_point(p):
@@ -163,6 +167,7 @@ def p_point1(p):
     p[0] = ('point', p[1], p[3], p[4])  
 
 
+
 # ## INTERVAL
 
 def p_interval(p):
@@ -178,6 +183,8 @@ def p_interval1(p):
     '''
     symbol_table[p[1]] = p[3]
     p[0] = ('interval', p[1], p[3], p[5], p[6])  
+
+
 
 ## ERROR
 def p_error(p):

@@ -2,12 +2,10 @@
 <style>text {font-family: Arial; font-size: 14.0px ;}</style>
 <rect x="5" y="5" width="1200" height="40.56" style="stroke:black;  stroke-width:0; fill:#ffffff; fill-opacity:1" />
 <text x="10" y="28.4" font-weight="bold"></text>
-<rect x="137.0" y="5" width="1068.0" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <text x="706.4352331606218" y="20.44" font-weight="normal">2025</text>
 <line x1="701.4352331606218" y1="5" x2="701.4352331606218" y2="25.28" style="stroke:black; stroke-width:1.8; " />
 <text x="142.0" y="20.44" font-weight="normal">2024</text>
 <text x="24.0" y="30.64" font-weight="normal"></text>
-<rect x="137.0" y="25.28" width="1068.0" height="20.28" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="25.28" width="1068.0" height="20.28" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:1" />
 <rect x="137.0" y="25.28" width="57.18134715025906" height="20.28" style="stroke:black;  stroke-width:1.5; fill:#e0e0e0; fill-opacity:1" />
 <text x="159.59067357512953" y="40.72" font-weight="normal">M</text>
@@ -50,7 +48,6 @@
 <text x="24.0" y="50.92" font-weight="normal"></text>
 <rect x="5" y="60.56" width="1200" height="132.96" style="stroke:black;  stroke-width:0; fill:#c4e2fa; fill-opacity:1" />
 <text x="10" y="83.96000000000001" font-weight="bold">s2</text>
-<rect x="137.0" y="60.56" width="1068.0" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="60.56" width="1068.0" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#c4e2fa; fill-opacity:1" />
 <rect x="137.0" y="60.56" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="60.56" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -66,7 +63,6 @@
 <text x="298.69948186528495" y="78.04" font-weight="normal">01-Jun</text>
 <text x="298.69948186528495" y="93.64" font-weight="normal">point 5</text>
 <text x="24.0" y="117.4" font-weight="normal">t1</text>
-<rect x="137.0" y="127.04" width="1068.0" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="127.04" width="1068.0" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#c4e2fa; fill-opacity:1" />
 <rect x="137.0" y="127.04" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="127.04" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -84,7 +80,6 @@
 <text x="24.0" y="183.88" font-weight="normal">t2</text>
 <rect x="5" y="198.52" width="1200" height="507.4800000000001" style="stroke:black;  stroke-width:0; fill:#fff4d6; fill-opacity:1" />
 <text x="10" y="221.92000000000002" font-weight="bold">Project A</text>
-<rect x="137.0" y="198.52" width="1068.0" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="198.52" width="1068.0" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
 <rect x="137.0" y="198.52" width="57.18134715025906" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="198.52" width="57.18134715025906" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -105,7 +100,6 @@
 <text x="334.36787564766837" y="277.48" font-weight="normal">16-Jun - 30-Jun</text>
 <text x="334.36787564766837" y="293.08000000000004" font-weight="normal">BB review 1</text>
 <text x="24.0" y="255.36" font-weight="normal">FDA interaction</text>
-<rect x="137.0" y="301.20000000000005" width="1068.0" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="301.20000000000005" width="1068.0" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
 <rect x="137.0" y="301.20000000000005" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="301.20000000000005" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -127,7 +121,6 @@
 <text x="1141.6632124352332" y="318.68000000000006" font-weight="normal">01-Sep</text>
 <text x="1141.6632124352332" y="334.2800000000001" font-weight="normal">a very long label</text>
 <text x="24.0" y="358.0400000000001" font-weight="normal">Submission</text>
-<rect x="137.0" y="367.68000000000006" width="1068.0" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="367.68000000000006" width="1068.0" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
 <rect x="137.0" y="367.68000000000006" width="57.18134715025906" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="367.68000000000006" width="57.18134715025906" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -139,7 +132,6 @@
 <rect x="922.782383419689" y="367.68000000000006" width="57.18134715025917" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="1035.3005181347148" y="367.68000000000006" width="57.18134715025917" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="1149.6632124352332" y="367.68000000000006" width="55.33678756476684" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
-<rect x="10" y="372.68000000000006" width="1190" height="92.68" style="stroke:black;  stroke-width:0; fill:#FFD769; fill-opacity:0.4" />
 <path d="M362.0362694300518, 424.0900000000001 L362.0362694300518, 413.9500000000001 L409.0776165803109, 413.9500000000001 L409.0776165803109, 408.8800000000001 L419.2176165803109, 419.0200000000001 L409.0776165803109, 429.1600000000001 L409.0776165803109, 424.0900000000001 L362.0362694300518, 424.0900000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M419.2176165803109, 424.0900000000001 L419.2176165803109, 413.9500000000001 L466.2589637305699, 413.9500000000001 L466.2589637305699, 408.8800000000001 L476.3989637305699, 419.0200000000001 L466.2589637305699, 429.1600000000001 L466.2589637305699, 424.0900000000001 L419.2176165803109, 424.0900000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M476.3989637305699, 424.0900000000001 L476.3989637305699, 413.9500000000001 L492.0827979274612, 413.9500000000001 L492.0827979274612, 408.8800000000001 L502.22279792746116, 419.0200000000001 L492.0827979274612, 429.1600000000001 L492.0827979274612, 424.0900000000001 L476.3989637305699, 424.0900000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
@@ -185,7 +177,6 @@
 <text x="1027.3005181347148" y="446.6400000000001" font-weight="normal">01-Jul</text>
 <text x="1027.3005181347148" y="462.2400000000001" font-weight="normal">D</text>
 <text x="24.0" y="424.5200000000001" font-weight="normal">spacing test</text>
-<rect x="137.0" y="470.36" width="1068.0" height="102.68" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="470.36" width="1068.0" height="102.68" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
 <rect x="137.0" y="470.36" width="57.18134715025906" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="470.36" width="57.18134715025906" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -197,6 +188,7 @@
 <rect x="922.782383419689" y="470.36" width="57.18134715025917" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="1035.3005181347148" y="470.36" width="57.18134715025917" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="1149.6632124352332" y="470.36" width="55.33678756476684" height="102.68" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
+<rect x="10" y="475.36" width="1190" height="92.68" style="stroke:black;  stroke-width:0; fill:#FFD769; fill-opacity:0.4" />
 <path d="M137.0, 526.7700000000001 L137.0, 516.63 L184.04134715025907, 516.63 L184.04134715025907, 511.56000000000006 L194.18134715025906, 521.7 L184.04134715025907, 531.84 L184.04134715025907, 526.7700000000001 L137.0, 526.7700000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M216.10128134715026, 521.7 L220.00518134715026, 513.8922 L223.90908134715025, 521.7 L220.00518134715026, 529.5078000000001 L216.10128134715026, 521.7 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
 <path d="M231.07253886010363, 526.7700000000001 L231.07253886010363, 516.63 L276.2693264248705, 516.63 L276.2693264248705, 511.56000000000006 L286.40932642487047, 521.7 L276.2693264248705, 531.84 L276.2693264248705, 526.7700000000001 L231.07253886010363, 526.7700000000001 Z" style="stroke: black; fill: none; stroke-width:1.8; " />
@@ -217,7 +209,6 @@
 <text x="411.2176165803109" y="549.32" font-weight="normal">01-Aug</text>
 <text x="411.2176165803109" y="564.9200000000001" font-weight="normal">SMC 4</text>
 <text x="24.0" y="527.2" font-weight="normal">study 1</text>
-<rect x="137.0" y="573.0400000000001" width="1068.0" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="573.0400000000001" width="1068.0" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
 <rect x="137.0" y="573.0400000000001" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="573.0400000000001" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
@@ -233,7 +224,6 @@
 <text x="298.69948186528495" y="590.5200000000001" font-weight="normal">01-Jun</text>
 <text x="298.69948186528495" y="606.1200000000001" font-weight="normal">DULT meeting</text>
 <text x="24.0" y="629.8800000000001" font-weight="normal">Governance</text>
-<rect x="137.0" y="639.5200000000001" width="1068.0" height="66.48" style="stroke:black;  stroke-width:0; fill:#f0f0f0; fill-opacity:1" />
 <rect x="137.0" y="639.5200000000001" width="1068.0" height="66.48" style="stroke:transparent;  stroke-width:1; fill:#fff4d6; fill-opacity:1" />
 <rect x="137.0" y="639.5200000000001" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />
 <rect x="249.5181347150259" y="639.5200000000001" width="57.18134715025906" height="66.48" style="stroke:black;  stroke-width:0; fill:white; fill-opacity:0.5" />

@@ -1,10 +1,5 @@
 import re
-from timeline.tlutils import tl_colors
 import ply.lex as lex
-import ply.yacc as yacc
-from datetime import datetime
-import dateutil.parser
-import sys
 
 states = ()
 current_year = ""
@@ -12,10 +7,10 @@ current_year = ""
 reserved = {}
 
 tokens = [
-    'START_THREAD', 'EQUALS', 'ASSIGN', 'SYMBOL_NAME', 'DATE', 'COMMENT',
+    'START_THREAD', 'EQUALS', 'ASSIGN', 'DATE', 'COMMENT',
     'PARAMETER', 'INT', 'START_SECTION', 'SECTION', 'THREAD',
     'ADD', 'TIMEUNIT', 'RANGE', 'END', 'BEGIN', 'COLOR',
-    'SOURCE', 'IMPORT', 'ALIAS', 'MARKER'
+    'SOURCE', 'IMPORT', 'ALL', 'ALIAS', 'MARKER', 'SYMBOL_NAME'
 ] + list(reserved.values())
 
 next_state = ''
@@ -35,14 +30,14 @@ def t_SOURCE(t):
     t.value = temp.groups()[0]
     return t
 
-# def t_ALIAS(t):
-#     r'as|AS'
-#     return(t)
-
 def t_IMPORT(t):
-    r'IMPORT\s+(.*)\s+FROM\s+(.*)'
-    temp = re.match(r'IMPORT\s+(.*)\s+FROM\s+(.*)', t.value)
-    t.value = (temp.groups()[0], temp.groups()[1])
+    r'IMPORT\s+(.*)\s+FROM\s+(.*)(\(.*\))?'
+    temp = re.match(r'IMPORT\s+(.*)\s+FROM\s+([a-zA-Z_0-9\.\- ]+)\s*?(\(.*\))?', t.value)
+    t.value = (temp.groups()[0], temp.groups()[1], temp.groups()[2])
+    return(t)
+
+def t_ALL(t):
+    r'\*'
     return(t)
 
 
@@ -62,6 +57,7 @@ def t_MARKER(t):
     r'marker|MARKER'
     t.value = "MARKER"
     return t
+
 
 ## SECTIONS
 
@@ -83,7 +79,6 @@ def t_THREAD(t):
 
 def t_COLOR(t):
     r'color\s+(white|red|blue|yellow|violet|green|aqua)'
-    # print("|".join(list(tl_colors.keys())))
     temp = re.match(r'color\s+(white|red|blue|yellow|violet|green|aqua)', t.value)
     t.value = temp.groups()[0]
     return t
@@ -119,11 +114,10 @@ def t_PARAMETER(t):
     r'\(.*\)'
     temp = re.match(r'\((.*)\)', t.value)
     t.value = temp.groups()[0]
-    # print(f'PARAM {t}')
     return t
 
 def t_SYMBOL_NAME(t):
-    r'[a-zA-Z_\.\-][a-zA-Z_0-9\.\- ]*\n?'
+    r'[a-zA-Z_\.\-][a-zA-Z_0-9\.\- ]*'
     t.value = t.value.strip()
     return t
        
@@ -131,6 +125,7 @@ def t_error(t):
     if lexer.debug:
         print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
+
 
 ## LEXER
 

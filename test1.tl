@@ -13,7 +13,7 @@ THREAD t2
 
 SECTION Project A (color: yellow)
 IMPORT * FROM Regulatory
-IMPORT study 1 FROM Clinical
+IMPORT study 1 FROM Clinical (highlight: True)
 
 THREAD Governance
 DULT meeting: 1-Jun-24

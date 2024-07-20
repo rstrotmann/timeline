@@ -212,11 +212,15 @@ class TlThread(object):
         if text_input:
             self.parse(text_input)
         self.min_clearance = 7
-        self.parameter = convert_str_to_dict(parameter)
+        # self.parameter = convert_str_to_dict(parameter)
+        self.parse_parameters(parameter)
         try:
             validate_parameters(self.parameter)
         except ValueError as message:
             sys.exit(f"ERROR: Wrong parameter in thread '{caption}', " + str(message))
+
+    def parse_parameters(self, parameter_string):
+        self.parameter = convert_str_to_dict(parameter_string)
 
     def __str__(self):
         out = f"THREAD {self.caption}\n"
@@ -433,8 +437,8 @@ class TlYearscale(TlMonthscale):
     
     def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10, **kwargs):
         grid =  list(set([first_of_year(i) for i in v.monthgrid()] + [v.min_date]))
-        # print(grid)
-        out = self.render_background(v)
+        # out = self.render_background(v)
+        out = ""
         for i in grid:
             label_y = v.y + v.height/2 - v.padding[1] + v.line_height()/2 + v.padding[1] * 0.5
             if i >= v.min_date and i < v.max_date:
@@ -501,7 +505,6 @@ class TlSection(object):
         for i in self.threads:
             if i.visible_items(v) > 0:
                 temp = v.add_viewport(x_offset = x, height = i.height(v, include_date = include_date), padding = v.padding, spacing = v.spacing)
-                out += temp.render_background(debug = debug)
 
                 vlayout = i._vertical_layout(temp, include_date = include_date)
                 out += i.render_background(temp)
@@ -636,14 +639,21 @@ class TlChart(object):
             if(top_level_object[0] == 'section'):
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
                 for thread_item in top_level_object[2]:
+
                     if thread_item[0] == "import":
+                        temp_parameter_string = thread_item[3]
+                        # print(f'temp_parameter_string: {temp_parameter_string}')
                         if thread_item[1] == "*":
                             for t in sources.get_section(thread_item[2]).threads:
                                 t.color = temp_section.color
+                                t.parse_parameters(temp_parameter_string)
+                                # print(f'imported thread {t.caption} has parameters {t.parameter}')
                                 temp_section.add_thread(t)
                         else:
                             temp_thread = sources.get_section(thread_item[2]).get_thread(thread_item[1])
                             temp_thread.color = temp_section.color
+                            temp_thread.parse_parameters(temp_parameter_string)
+                            # print(f'imported thread {temp_thread.caption} has parameters {temp_thread.parameter}')
                             temp_section.add_thread(temp_thread)
 
                     if thread_item[0] == "thread":

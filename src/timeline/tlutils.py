@@ -34,7 +34,9 @@ def first_of_next_month(d: datetime) -> datetime:
 def first_of_year(d: datetime) -> datetime:
     return(datetime.strptime(f'{d.year}-01-01', '%Y-%m-%d'))
 
-def convert_str_to_dict(input: str) -> dict:
+def convert_str_to_dict(input) -> dict:
+    if not input:
+        return {}
     temp = re.findall(r'(\w*)\:\s*([\w\.]*)', input)
     out = {i[0]: i[1] for i in temp}
     return(out)
@@ -46,35 +48,3 @@ def validate_parameters(parameter: dict):
         if not temp_col in tl_colors.keys():
             raise ValueError(f"unknown color '{temp_col}'")
         
-
-def intensify_color(hex_string):
-    temp = colors.hex2color(hex_string)
-    # print(f'hex: {hex_string}, rgb: {temp}')
-    if temp[0] > max(temp[1:2]):
-        i_hi = 0
-        if temp[1] > temp[2]:
-            i_lo = 2
-        else:
-            i_lo = 1
-    elif temp[2] > max(temp[0:1]):
-        i_hi = 2
-        if temp[0] > temp[1]:
-            i_lo = 1
-        else:
-            i_lo = 0
-    else:
-        i_hi = 1
-        if temp[0] > temp[2]:
-            i_lo = 2
-        else:
-            i_lo = 0
-    out = list(temp)
-    out[i_lo] -= 0.2
-    # out[i_lo] *= 0.85
-    if out[i_lo] < 0:
-        out[i_lo] = 0
-    out[i_hi] += 0.2
-    # out[i_hi] /= 0.85
-    if out[i_hi] > 1:
-        out[i_hi] = 1
-    return colors.rgb2hex(out)

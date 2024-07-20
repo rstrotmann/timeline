@@ -4,6 +4,7 @@ Unused terminals:
 
     ADD
     ALIAS
+    ALL
     COLOR
     COMMENT
     EQUALS
@@ -53,6 +54,7 @@ Terminals, with rules where they appear
 
 ADD                  : 
 ALIAS                : 
+ALL                  : 
 ASSIGN               : 30 31 32 33
 BEGIN                : 11 12 13
 COLOR                : 
