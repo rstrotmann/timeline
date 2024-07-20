@@ -14,9 +14,11 @@ The imput is a simple text file. Its format follows a basic domain-specific lang
 * time intervals can be added following the syntax:
 `xxx: dd-mm-yy - dd-mm-yy` where 'xxx' is the interval's caption, and the dates to either side of the dash are the start and the end dates.
 
-The output is a svg file with the same name as the input file.
+The output is a svg file with the same name as the input file. See an example below.
 
 That's it. Have fun!
+
+![](bookproject.svg)
 
 ## Installation
 
