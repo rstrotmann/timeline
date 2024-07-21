@@ -1,6 +1,7 @@
 import re
 from datetime import date, datetime, timedelta
 import matplotlib.colors as colors
+import sys
 
 month_names = ["", "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
 tl_colors = {"transparent": "#ffffff", "white": "#ffffff", "red": "#fbd8ea", "blue": "#c4e2fa", "yellow": "#fff4d6", "violet": "#dad0ef", "green": "#edf5dc", "aqua": "#d4f3f6", "grey": "#f0f0f0"}
@@ -46,5 +47,6 @@ def validate_parameters(parameter: dict):
     for i in ["color", "fill"]:
         temp_col = parameter.get(i, "transparent")
         if not temp_col in tl_colors.keys():
-            raise ValueError(f"unknown color '{temp_col}'")
+            # raise ValueError(f"unknown color '{temp_col}'")
+            sys.exit(f"ERROR: Unknown color '{temp_col}'")
         

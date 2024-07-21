@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "timeline"
-version = "0.1.3.9004"
+version = "0.1.3.9005"
 description = "A package to create timeline visuals"
 authors = ["Rainer Strotmann"]
 license = "MIT"

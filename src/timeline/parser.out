@@ -35,45 +35,47 @@ Rule 16    temp_chart -> temp_chart marker
 Rule 17    chart -> temp_chart END
 Rule 18    marker -> MARKER DATE
 Rule 19    marker -> MARKER DATE PARAMETER
-Rule 20    temp_section -> SECTION SYMBOL_NAME
-Rule 21    temp_section -> SECTION SYMBOL_NAME PARAMETER
-Rule 22    temp_section -> temp_section thread
-Rule 23    temp_section -> temp_section import
-Rule 24    section -> temp_section
-Rule 25    temp_thread -> THREAD SYMBOL_NAME
-Rule 26    temp_thread -> THREAD SYMBOL_NAME PARAMETER
-Rule 27    temp_thread -> temp_thread point
-Rule 28    temp_thread -> temp_thread interval
-Rule 29    temp_thread -> temp_thread marker
-Rule 30    thread -> temp_thread
-Rule 31    point -> SYMBOL_NAME ASSIGN DATE
-Rule 32    point -> SYMBOL_NAME ASSIGN DATE PARAMETER
-Rule 33    interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE
-Rule 34    interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+Rule 20    marker -> MARKER DATE RANGE DATE
+Rule 21    marker -> MARKER DATE RANGE DATE PARAMETER
+Rule 22    temp_section -> SECTION SYMBOL_NAME
+Rule 23    temp_section -> SECTION SYMBOL_NAME PARAMETER
+Rule 24    temp_section -> temp_section thread
+Rule 25    temp_section -> temp_section import
+Rule 26    section -> temp_section
+Rule 27    temp_thread -> THREAD SYMBOL_NAME
+Rule 28    temp_thread -> THREAD SYMBOL_NAME PARAMETER
+Rule 29    temp_thread -> temp_thread point
+Rule 30    temp_thread -> temp_thread interval
+Rule 31    temp_thread -> temp_thread marker
+Rule 32    thread -> temp_thread
+Rule 33    point -> SYMBOL_NAME ASSIGN DATE
+Rule 34    point -> SYMBOL_NAME ASSIGN DATE PARAMETER
+Rule 35    interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE
+Rule 36    interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
 
 Terminals, with rules where they appear
 
 ADD                  : 
 ALIAS                : 
 ALL                  : 
-ASSIGN               : 31 32 33 34
+ASSIGN               : 33 34 35 36
 BEGIN                : 11 12 13
 COLOR                : 
 COMMENT              : 
-DATE                 : 18 19 31 32 33 33 34 34
+DATE                 : 18 19 20 20 21 21 33 34 35 35 36 36
 END                  : 17
 EQUALS               : 
 IMPORT               : 10
 INT                  : 
-MARKER               : 18 19
-PARAMETER            : 19 21 26 32 34
-RANGE                : 33 34
-SECTION              : 20 21
+MARKER               : 18 19 20 21
+PARAMETER            : 19 21 23 28 34 36
+RANGE                : 20 21 35 36
+SECTION              : 22 23
 SOURCE               : 9
 START_SECTION        : 
 START_THREAD         : 
-SYMBOL_NAME          : 20 21 25 26 31 32 33 34
-THREAD               : 25 26
+SYMBOL_NAME          : 22 23 27 28 33 34 35 36
+THREAD               : 27 28
 TIMEUNIT             : 
 error                : 
 
@@ -81,16 +83,16 @@ Nonterminals, with rules where they appear
 
 chart                : 5
 expression           : 0
-import               : 7 23
-interval             : 2 28
-marker               : 8 13 16 29
-point                : 1 27
+import               : 7 25
+interval             : 2 30
+marker               : 8 13 16 31
+point                : 1 29
 section              : 4 11 14
 source               : 6 12 15
 temp_chart           : 14 15 16 17
-temp_section         : 22 23 24
-temp_thread          : 27 28 29 30
-thread               : 3 22
+temp_section         : 24 25 26
+temp_thread          : 29 30 31 32
+thread               : 3 24
 
 Parsing method: LALR
 
@@ -105,26 +107,28 @@ state 0
     (6) expression -> . source
     (7) expression -> . import
     (8) expression -> . marker
-    (31) point -> . SYMBOL_NAME ASSIGN DATE
-    (32) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
-    (33) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
-    (34) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
-    (30) thread -> . temp_thread
-    (24) section -> . temp_section
+    (33) point -> . SYMBOL_NAME ASSIGN DATE
+    (34) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
+    (35) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
+    (36) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+    (32) thread -> . temp_thread
+    (26) section -> . temp_section
     (17) chart -> . temp_chart END
     (9) source -> . SOURCE
     (10) import -> . IMPORT
     (18) marker -> . MARKER DATE
     (19) marker -> . MARKER DATE PARAMETER
-    (25) temp_thread -> . THREAD SYMBOL_NAME
-    (26) temp_thread -> . THREAD SYMBOL_NAME PARAMETER
-    (27) temp_thread -> . temp_thread point
-    (28) temp_thread -> . temp_thread interval
-    (29) temp_thread -> . temp_thread marker
-    (20) temp_section -> . SECTION SYMBOL_NAME
-    (21) temp_section -> . SECTION SYMBOL_NAME PARAMETER
-    (22) temp_section -> . temp_section thread
-    (23) temp_section -> . temp_section import
+    (20) marker -> . MARKER DATE RANGE DATE
+    (21) marker -> . MARKER DATE RANGE DATE PARAMETER
+    (27) temp_thread -> . THREAD SYMBOL_NAME
+    (28) temp_thread -> . THREAD SYMBOL_NAME PARAMETER
+    (29) temp_thread -> . temp_thread point
+    (30) temp_thread -> . temp_thread interval
+    (31) temp_thread -> . temp_thread marker
+    (22) temp_section -> . SECTION SYMBOL_NAME
+    (23) temp_section -> . SECTION SYMBOL_NAME PARAMETER
+    (24) temp_section -> . temp_section thread
+    (25) temp_section -> . temp_section import
     (11) temp_chart -> . BEGIN section
     (12) temp_chart -> . BEGIN source
     (13) temp_chart -> . BEGIN marker
@@ -217,38 +221,40 @@ state 9
 
 state 10
 
-    (31) point -> SYMBOL_NAME . ASSIGN DATE
-    (32) point -> SYMBOL_NAME . ASSIGN DATE PARAMETER
-    (33) interval -> SYMBOL_NAME . ASSIGN DATE RANGE DATE
-    (34) interval -> SYMBOL_NAME . ASSIGN DATE RANGE DATE PARAMETER
+    (33) point -> SYMBOL_NAME . ASSIGN DATE
+    (34) point -> SYMBOL_NAME . ASSIGN DATE PARAMETER
+    (35) interval -> SYMBOL_NAME . ASSIGN DATE RANGE DATE
+    (36) interval -> SYMBOL_NAME . ASSIGN DATE RANGE DATE PARAMETER
 
     ASSIGN          shift and go to state 20
 
 
 state 11
 
-    (30) thread -> temp_thread .
-    (27) temp_thread -> temp_thread . point
-    (28) temp_thread -> temp_thread . interval
-    (29) temp_thread -> temp_thread . marker
-    (31) point -> . SYMBOL_NAME ASSIGN DATE
-    (32) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
-    (33) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
-    (34) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
+    (32) thread -> temp_thread .
+    (29) temp_thread -> temp_thread . point
+    (30) temp_thread -> temp_thread . interval
+    (31) temp_thread -> temp_thread . marker
+    (33) point -> . SYMBOL_NAME ASSIGN DATE
+    (34) point -> . SYMBOL_NAME ASSIGN DATE PARAMETER
+    (35) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE
+    (36) interval -> . SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER
     (18) marker -> . MARKER DATE
     (19) marker -> . MARKER DATE PARAMETER
+    (20) marker -> . MARKER DATE RANGE DATE
+    (21) marker -> . MARKER DATE RANGE DATE PARAMETER
 
   ! shift/reduce conflict for MARKER resolved as shift
-    $end            reduce using rule 30 (thread -> temp_thread .)
-    IMPORT          reduce using rule 30 (thread -> temp_thread .)
-    THREAD          reduce using rule 30 (thread -> temp_thread .)
-    END             reduce using rule 30 (thread -> temp_thread .)
-    SOURCE          reduce using rule 30 (thread -> temp_thread .)
-    SECTION         reduce using rule 30 (thread -> temp_thread .)
+    $end            reduce using rule 32 (thread -> temp_thread .)
+    IMPORT          reduce using rule 32 (thread -> temp_thread .)
+    THREAD          reduce using rule 32 (thread -> temp_thread .)
+    END             reduce using rule 32 (thread -> temp_thread .)
+    SOURCE          reduce using rule 32 (thread -> temp_thread .)
+    SECTION         reduce using rule 32 (thread -> temp_thread .)
     SYMBOL_NAME     shift and go to state 10
     MARKER          shift and go to state 16
 
-  ! MARKER          [ reduce using rule 30 (thread -> temp_thread .) ]
+  ! MARKER          [ reduce using rule 32 (thread -> temp_thread .) ]
 
     point                          shift and go to state 21
     interval                       shift and go to state 22
@@ -256,22 +262,22 @@ state 11
 
 state 12
 
-    (24) section -> temp_section .
-    (22) temp_section -> temp_section . thread
-    (23) temp_section -> temp_section . import
-    (30) thread -> . temp_thread
+    (26) section -> temp_section .
+    (24) temp_section -> temp_section . thread
+    (25) temp_section -> temp_section . import
+    (32) thread -> . temp_thread
     (10) import -> . IMPORT
-    (25) temp_thread -> . THREAD SYMBOL_NAME
-    (26) temp_thread -> . THREAD SYMBOL_NAME PARAMETER
-    (27) temp_thread -> . temp_thread point
-    (28) temp_thread -> . temp_thread interval
-    (29) temp_thread -> . temp_thread marker
+    (27) temp_thread -> . THREAD SYMBOL_NAME
+    (28) temp_thread -> . THREAD SYMBOL_NAME PARAMETER
+    (29) temp_thread -> . temp_thread point
+    (30) temp_thread -> . temp_thread interval
+    (31) temp_thread -> . temp_thread marker
 
-    $end            reduce using rule 24 (section -> temp_section .)
-    END             reduce using rule 24 (section -> temp_section .)
-    SOURCE          reduce using rule 24 (section -> temp_section .)
-    MARKER          reduce using rule 24 (section -> temp_section .)
-    SECTION         reduce using rule 24 (section -> temp_section .)
+    $end            reduce using rule 26 (section -> temp_section .)
+    END             reduce using rule 26 (section -> temp_section .)
+    SOURCE          reduce using rule 26 (section -> temp_section .)
+    MARKER          reduce using rule 26 (section -> temp_section .)
+    SECTION         reduce using rule 26 (section -> temp_section .)
     IMPORT          shift and go to state 15
     THREAD          shift and go to state 17
 
@@ -285,14 +291,16 @@ state 13
     (14) temp_chart -> temp_chart . section
     (15) temp_chart -> temp_chart . source
     (16) temp_chart -> temp_chart . marker
-    (24) section -> . temp_section
+    (26) section -> . temp_section
     (9) source -> . SOURCE
     (18) marker -> . MARKER DATE
     (19) marker -> . MARKER DATE PARAMETER
-    (20) temp_section -> . SECTION SYMBOL_NAME
-    (21) temp_section -> . SECTION SYMBOL_NAME PARAMETER
-    (22) temp_section -> . temp_section thread
-    (23) temp_section -> . temp_section import
+    (20) marker -> . MARKER DATE RANGE DATE
+    (21) marker -> . MARKER DATE RANGE DATE PARAMETER
+    (22) temp_section -> . SECTION SYMBOL_NAME
+    (23) temp_section -> . SECTION SYMBOL_NAME PARAMETER
+    (24) temp_section -> . temp_section thread
+    (25) temp_section -> . temp_section import
 
     END             shift and go to state 26
     SOURCE          shift and go to state 14
@@ -332,22 +340,24 @@ state 16
 
     (18) marker -> MARKER . DATE
     (19) marker -> MARKER . DATE PARAMETER
+    (20) marker -> MARKER . DATE RANGE DATE
+    (21) marker -> MARKER . DATE RANGE DATE PARAMETER
 
     DATE            shift and go to state 30
 
 
 state 17
 
-    (25) temp_thread -> THREAD . SYMBOL_NAME
-    (26) temp_thread -> THREAD . SYMBOL_NAME PARAMETER
+    (27) temp_thread -> THREAD . SYMBOL_NAME
+    (28) temp_thread -> THREAD . SYMBOL_NAME PARAMETER
 
     SYMBOL_NAME     shift and go to state 31
 
 
 state 18
 
-    (20) temp_section -> SECTION . SYMBOL_NAME
-    (21) temp_section -> SECTION . SYMBOL_NAME PARAMETER
+    (22) temp_section -> SECTION . SYMBOL_NAME
+    (23) temp_section -> SECTION . SYMBOL_NAME PARAMETER
 
     SYMBOL_NAME     shift and go to state 32
 
@@ -357,14 +367,16 @@ state 19
     (11) temp_chart -> BEGIN . section
     (12) temp_chart -> BEGIN . source
     (13) temp_chart -> BEGIN . marker
-    (24) section -> . temp_section
+    (26) section -> . temp_section
     (9) source -> . SOURCE
     (18) marker -> . MARKER DATE
     (19) marker -> . MARKER DATE PARAMETER
-    (20) temp_section -> . SECTION SYMBOL_NAME
-    (21) temp_section -> . SECTION SYMBOL_NAME PARAMETER
-    (22) temp_section -> . temp_section thread
-    (23) temp_section -> . temp_section import
+    (20) marker -> . MARKER DATE RANGE DATE
+    (21) marker -> . MARKER DATE RANGE DATE PARAMETER
+    (22) temp_section -> . SECTION SYMBOL_NAME
+    (23) temp_section -> . SECTION SYMBOL_NAME PARAMETER
+    (24) temp_section -> . temp_section thread
+    (25) temp_section -> . temp_section import
 
     SOURCE          shift and go to state 14
     MARKER          shift and go to state 16
@@ -377,80 +389,80 @@ state 19
 
 state 20
 
-    (31) point -> SYMBOL_NAME ASSIGN . DATE
-    (32) point -> SYMBOL_NAME ASSIGN . DATE PARAMETER
-    (33) interval -> SYMBOL_NAME ASSIGN . DATE RANGE DATE
-    (34) interval -> SYMBOL_NAME ASSIGN . DATE RANGE DATE PARAMETER
+    (33) point -> SYMBOL_NAME ASSIGN . DATE
+    (34) point -> SYMBOL_NAME ASSIGN . DATE PARAMETER
+    (35) interval -> SYMBOL_NAME ASSIGN . DATE RANGE DATE
+    (36) interval -> SYMBOL_NAME ASSIGN . DATE RANGE DATE PARAMETER
 
     DATE            shift and go to state 36
 
 
 state 21
 
-    (27) temp_thread -> temp_thread point .
+    (29) temp_thread -> temp_thread point .
 
-    SYMBOL_NAME     reduce using rule 27 (temp_thread -> temp_thread point .)
-    MARKER          reduce using rule 27 (temp_thread -> temp_thread point .)
-    $end            reduce using rule 27 (temp_thread -> temp_thread point .)
-    IMPORT          reduce using rule 27 (temp_thread -> temp_thread point .)
-    THREAD          reduce using rule 27 (temp_thread -> temp_thread point .)
-    END             reduce using rule 27 (temp_thread -> temp_thread point .)
-    SOURCE          reduce using rule 27 (temp_thread -> temp_thread point .)
-    SECTION         reduce using rule 27 (temp_thread -> temp_thread point .)
+    SYMBOL_NAME     reduce using rule 29 (temp_thread -> temp_thread point .)
+    MARKER          reduce using rule 29 (temp_thread -> temp_thread point .)
+    $end            reduce using rule 29 (temp_thread -> temp_thread point .)
+    IMPORT          reduce using rule 29 (temp_thread -> temp_thread point .)
+    THREAD          reduce using rule 29 (temp_thread -> temp_thread point .)
+    END             reduce using rule 29 (temp_thread -> temp_thread point .)
+    SOURCE          reduce using rule 29 (temp_thread -> temp_thread point .)
+    SECTION         reduce using rule 29 (temp_thread -> temp_thread point .)
 
 
 state 22
 
-    (28) temp_thread -> temp_thread interval .
+    (30) temp_thread -> temp_thread interval .
 
-    SYMBOL_NAME     reduce using rule 28 (temp_thread -> temp_thread interval .)
-    MARKER          reduce using rule 28 (temp_thread -> temp_thread interval .)
-    $end            reduce using rule 28 (temp_thread -> temp_thread interval .)
-    IMPORT          reduce using rule 28 (temp_thread -> temp_thread interval .)
-    THREAD          reduce using rule 28 (temp_thread -> temp_thread interval .)
-    END             reduce using rule 28 (temp_thread -> temp_thread interval .)
-    SOURCE          reduce using rule 28 (temp_thread -> temp_thread interval .)
-    SECTION         reduce using rule 28 (temp_thread -> temp_thread interval .)
+    SYMBOL_NAME     reduce using rule 30 (temp_thread -> temp_thread interval .)
+    MARKER          reduce using rule 30 (temp_thread -> temp_thread interval .)
+    $end            reduce using rule 30 (temp_thread -> temp_thread interval .)
+    IMPORT          reduce using rule 30 (temp_thread -> temp_thread interval .)
+    THREAD          reduce using rule 30 (temp_thread -> temp_thread interval .)
+    END             reduce using rule 30 (temp_thread -> temp_thread interval .)
+    SOURCE          reduce using rule 30 (temp_thread -> temp_thread interval .)
+    SECTION         reduce using rule 30 (temp_thread -> temp_thread interval .)
 
 
 state 23
 
-    (29) temp_thread -> temp_thread marker .
+    (31) temp_thread -> temp_thread marker .
 
-    SYMBOL_NAME     reduce using rule 29 (temp_thread -> temp_thread marker .)
-    MARKER          reduce using rule 29 (temp_thread -> temp_thread marker .)
-    $end            reduce using rule 29 (temp_thread -> temp_thread marker .)
-    IMPORT          reduce using rule 29 (temp_thread -> temp_thread marker .)
-    THREAD          reduce using rule 29 (temp_thread -> temp_thread marker .)
-    END             reduce using rule 29 (temp_thread -> temp_thread marker .)
-    SOURCE          reduce using rule 29 (temp_thread -> temp_thread marker .)
-    SECTION         reduce using rule 29 (temp_thread -> temp_thread marker .)
+    SYMBOL_NAME     reduce using rule 31 (temp_thread -> temp_thread marker .)
+    MARKER          reduce using rule 31 (temp_thread -> temp_thread marker .)
+    $end            reduce using rule 31 (temp_thread -> temp_thread marker .)
+    IMPORT          reduce using rule 31 (temp_thread -> temp_thread marker .)
+    THREAD          reduce using rule 31 (temp_thread -> temp_thread marker .)
+    END             reduce using rule 31 (temp_thread -> temp_thread marker .)
+    SOURCE          reduce using rule 31 (temp_thread -> temp_thread marker .)
+    SECTION         reduce using rule 31 (temp_thread -> temp_thread marker .)
 
 
 state 24
 
-    (22) temp_section -> temp_section thread .
+    (24) temp_section -> temp_section thread .
 
-    IMPORT          reduce using rule 22 (temp_section -> temp_section thread .)
-    THREAD          reduce using rule 22 (temp_section -> temp_section thread .)
-    $end            reduce using rule 22 (temp_section -> temp_section thread .)
-    END             reduce using rule 22 (temp_section -> temp_section thread .)
-    SOURCE          reduce using rule 22 (temp_section -> temp_section thread .)
-    MARKER          reduce using rule 22 (temp_section -> temp_section thread .)
-    SECTION         reduce using rule 22 (temp_section -> temp_section thread .)
+    IMPORT          reduce using rule 24 (temp_section -> temp_section thread .)
+    THREAD          reduce using rule 24 (temp_section -> temp_section thread .)
+    $end            reduce using rule 24 (temp_section -> temp_section thread .)
+    END             reduce using rule 24 (temp_section -> temp_section thread .)
+    SOURCE          reduce using rule 24 (temp_section -> temp_section thread .)
+    MARKER          reduce using rule 24 (temp_section -> temp_section thread .)
+    SECTION         reduce using rule 24 (temp_section -> temp_section thread .)
 
 
 state 25
 
-    (23) temp_section -> temp_section import .
+    (25) temp_section -> temp_section import .
 
-    IMPORT          reduce using rule 23 (temp_section -> temp_section import .)
-    THREAD          reduce using rule 23 (temp_section -> temp_section import .)
-    $end            reduce using rule 23 (temp_section -> temp_section import .)
-    END             reduce using rule 23 (temp_section -> temp_section import .)
-    SOURCE          reduce using rule 23 (temp_section -> temp_section import .)
-    MARKER          reduce using rule 23 (temp_section -> temp_section import .)
-    SECTION         reduce using rule 23 (temp_section -> temp_section import .)
+    IMPORT          reduce using rule 25 (temp_section -> temp_section import .)
+    THREAD          reduce using rule 25 (temp_section -> temp_section import .)
+    $end            reduce using rule 25 (temp_section -> temp_section import .)
+    END             reduce using rule 25 (temp_section -> temp_section import .)
+    SOURCE          reduce using rule 25 (temp_section -> temp_section import .)
+    MARKER          reduce using rule 25 (temp_section -> temp_section import .)
+    SECTION         reduce using rule 25 (temp_section -> temp_section import .)
 
 
 state 26
@@ -494,6 +506,8 @@ state 30
 
     (18) marker -> MARKER DATE .
     (19) marker -> MARKER DATE . PARAMETER
+    (20) marker -> MARKER DATE . RANGE DATE
+    (21) marker -> MARKER DATE . RANGE DATE PARAMETER
 
     $end            reduce using rule 18 (marker -> MARKER DATE .)
     SYMBOL_NAME     reduce using rule 18 (marker -> MARKER DATE .)
@@ -504,37 +518,38 @@ state 30
     SOURCE          reduce using rule 18 (marker -> MARKER DATE .)
     SECTION         reduce using rule 18 (marker -> MARKER DATE .)
     PARAMETER       shift and go to state 37
+    RANGE           shift and go to state 38
 
 
 state 31
 
-    (25) temp_thread -> THREAD SYMBOL_NAME .
-    (26) temp_thread -> THREAD SYMBOL_NAME . PARAMETER
+    (27) temp_thread -> THREAD SYMBOL_NAME .
+    (28) temp_thread -> THREAD SYMBOL_NAME . PARAMETER
 
-    SYMBOL_NAME     reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    MARKER          reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    $end            reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    IMPORT          reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    THREAD          reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    END             reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    SOURCE          reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    SECTION         reduce using rule 25 (temp_thread -> THREAD SYMBOL_NAME .)
-    PARAMETER       shift and go to state 38
+    SYMBOL_NAME     reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    MARKER          reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    $end            reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    IMPORT          reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    THREAD          reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    END             reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    SOURCE          reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    SECTION         reduce using rule 27 (temp_thread -> THREAD SYMBOL_NAME .)
+    PARAMETER       shift and go to state 39
 
 
 state 32
 
-    (20) temp_section -> SECTION SYMBOL_NAME .
-    (21) temp_section -> SECTION SYMBOL_NAME . PARAMETER
+    (22) temp_section -> SECTION SYMBOL_NAME .
+    (23) temp_section -> SECTION SYMBOL_NAME . PARAMETER
 
-    IMPORT          reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    THREAD          reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    $end            reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    END             reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    SOURCE          reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    MARKER          reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    SECTION         reduce using rule 20 (temp_section -> SECTION SYMBOL_NAME .)
-    PARAMETER       shift and go to state 39
+    IMPORT          reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    THREAD          reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    $end            reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    END             reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    SOURCE          reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    MARKER          reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    SECTION         reduce using rule 22 (temp_section -> SECTION SYMBOL_NAME .)
+    PARAMETER       shift and go to state 40
 
 
 state 33
@@ -569,21 +584,21 @@ state 35
 
 state 36
 
-    (31) point -> SYMBOL_NAME ASSIGN DATE .
-    (32) point -> SYMBOL_NAME ASSIGN DATE . PARAMETER
-    (33) interval -> SYMBOL_NAME ASSIGN DATE . RANGE DATE
-    (34) interval -> SYMBOL_NAME ASSIGN DATE . RANGE DATE PARAMETER
+    (33) point -> SYMBOL_NAME ASSIGN DATE .
+    (34) point -> SYMBOL_NAME ASSIGN DATE . PARAMETER
+    (35) interval -> SYMBOL_NAME ASSIGN DATE . RANGE DATE
+    (36) interval -> SYMBOL_NAME ASSIGN DATE . RANGE DATE PARAMETER
 
-    $end            reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    SYMBOL_NAME     reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    MARKER          reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    IMPORT          reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    THREAD          reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    END             reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    SOURCE          reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    SECTION         reduce using rule 31 (point -> SYMBOL_NAME ASSIGN DATE .)
-    PARAMETER       shift and go to state 40
-    RANGE           shift and go to state 41
+    $end            reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    SYMBOL_NAME     reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    MARKER          reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    IMPORT          reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    THREAD          reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    END             reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    SOURCE          reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    SECTION         reduce using rule 33 (point -> SYMBOL_NAME ASSIGN DATE .)
+    PARAMETER       shift and go to state 41
+    RANGE           shift and go to state 42
 
 
 state 37
@@ -602,81 +617,119 @@ state 37
 
 state 38
 
-    (26) temp_thread -> THREAD SYMBOL_NAME PARAMETER .
+    (20) marker -> MARKER DATE RANGE . DATE
+    (21) marker -> MARKER DATE RANGE . DATE PARAMETER
 
-    SYMBOL_NAME     reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    MARKER          reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    $end            reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    IMPORT          reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    THREAD          reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    END             reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    SOURCE          reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
-    SECTION         reduce using rule 26 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    DATE            shift and go to state 43
 
 
 state 39
 
-    (21) temp_section -> SECTION SYMBOL_NAME PARAMETER .
+    (28) temp_thread -> THREAD SYMBOL_NAME PARAMETER .
 
-    IMPORT          reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
-    THREAD          reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
-    $end            reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
-    END             reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
-    SOURCE          reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
-    MARKER          reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
-    SECTION         reduce using rule 21 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    SYMBOL_NAME     reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    MARKER          reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    $end            reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    IMPORT          reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    THREAD          reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    END             reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    SOURCE          reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
+    SECTION         reduce using rule 28 (temp_thread -> THREAD SYMBOL_NAME PARAMETER .)
 
 
 state 40
 
-    (32) point -> SYMBOL_NAME ASSIGN DATE PARAMETER .
+    (23) temp_section -> SECTION SYMBOL_NAME PARAMETER .
 
-    $end            reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    SYMBOL_NAME     reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    MARKER          reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    IMPORT          reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    THREAD          reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    END             reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    SOURCE          reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
-    SECTION         reduce using rule 32 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    IMPORT          reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    THREAD          reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    $end            reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    END             reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    SOURCE          reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    MARKER          reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
+    SECTION         reduce using rule 23 (temp_section -> SECTION SYMBOL_NAME PARAMETER .)
 
 
 state 41
 
-    (33) interval -> SYMBOL_NAME ASSIGN DATE RANGE . DATE
-    (34) interval -> SYMBOL_NAME ASSIGN DATE RANGE . DATE PARAMETER
+    (34) point -> SYMBOL_NAME ASSIGN DATE PARAMETER .
 
-    DATE            shift and go to state 42
+    $end            reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    SYMBOL_NAME     reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    MARKER          reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    IMPORT          reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    THREAD          reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    END             reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    SOURCE          reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
+    SECTION         reduce using rule 34 (point -> SYMBOL_NAME ASSIGN DATE PARAMETER .)
 
 
 state 42
 
-    (33) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .
-    (34) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE . PARAMETER
+    (35) interval -> SYMBOL_NAME ASSIGN DATE RANGE . DATE
+    (36) interval -> SYMBOL_NAME ASSIGN DATE RANGE . DATE PARAMETER
 
-    $end            reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    SYMBOL_NAME     reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    MARKER          reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    IMPORT          reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    THREAD          reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    END             reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    SOURCE          reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    SECTION         reduce using rule 33 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
-    PARAMETER       shift and go to state 43
+    DATE            shift and go to state 44
 
 
 state 43
 
-    (34) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .
+    (20) marker -> MARKER DATE RANGE DATE .
+    (21) marker -> MARKER DATE RANGE DATE . PARAMETER
 
-    $end            reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    SYMBOL_NAME     reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    MARKER          reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    IMPORT          reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    THREAD          reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    END             reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    SOURCE          reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
-    SECTION         reduce using rule 34 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    $end            reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    SYMBOL_NAME     reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    MARKER          reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    IMPORT          reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    THREAD          reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    END             reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    SOURCE          reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    SECTION         reduce using rule 20 (marker -> MARKER DATE RANGE DATE .)
+    PARAMETER       shift and go to state 45
+
+
+state 44
+
+    (35) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .
+    (36) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE . PARAMETER
+
+    $end            reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    SYMBOL_NAME     reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    MARKER          reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    IMPORT          reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    THREAD          reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    END             reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    SOURCE          reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    SECTION         reduce using rule 35 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE .)
+    PARAMETER       shift and go to state 46
+
+
+state 45
+
+    (21) marker -> MARKER DATE RANGE DATE PARAMETER .
+
+    $end            reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    SYMBOL_NAME     reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    MARKER          reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    IMPORT          reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    THREAD          reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    END             reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    SOURCE          reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+    SECTION         reduce using rule 21 (marker -> MARKER DATE RANGE DATE PARAMETER .)
+
+
+state 46
+
+    (36) interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .
+
+    $end            reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    SYMBOL_NAME     reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    MARKER          reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    IMPORT          reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    THREAD          reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    END             reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    SOURCE          reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
+    SECTION         reduce using rule 36 (interval -> SYMBOL_NAME ASSIGN DATE RANGE DATE PARAMETER .)
 
 WARNING: 
 WARNING: Conflicts:

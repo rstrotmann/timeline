@@ -10,6 +10,7 @@ import sys
 from timeline.tlutils import convert_str_to_dict
 import os.path
 from timeline.tlutils import tl_strong_colors
+from timeline.tlutils import validate_parameters
 
 global_min_date = datetime.strptime("1-Jan-9999", '%d-%b-%Y')
 global_max_date = datetime.strptime("1-Jan-2024", '%d-%b-%Y')
@@ -313,11 +314,15 @@ class TlThread(object):
         for i in marker:
             if i[0] != "":
                 temp_x = v.date_x(parse_date(i[0]))
-                parameter = convert_str_to_dict(i[1])
+                parameter = convert_str_to_dict(i[2])
+                validate_parameters(parameter)
                 temp_color = parameter.get("color", "blue")
                 temp_lwd = parameter.get("width", 1.5)
-
-                out += svg_line(temp_x, v.y, temp_x, v.y + v.height , outline_color = temp_color, lwd = temp_lwd)
+                temp_opacity = float(parameter.get("opacity", "0"))
+                if not i[1]:
+                    out += svg_line(temp_x, v.y, temp_x, v.y + v.height, outline_color = temp_color, lwd = temp_lwd)
+                else:
+                    out += svg_rect(temp_x, v.y, v.date_x(parse_date(i[1])) - temp_x, v.y + v.height, fill_color = tl_strong_colors[temp_color], lwd = 0, fill_opacity = temp_opacity)
 
         obj = sorted(self.objects_in_viewport(v), key = lambda x: x.start_date)
         pts = [i for i in obj if isinstance(i, TlPoint)]
@@ -513,7 +518,9 @@ class TlSection(object):
                 temp_highlight = i.parameter.get('highlight', 'False')
                 if temp_highlight == "True":
                     out += svg_rect(v.x + v.padding[0], temp.y + v.padding[1], v.width - 2 * temp.padding[0], vlayout[6] - 2 * v.padding[1], lwd = 0, fill_color = tl_strong_colors[self.color], fill_opacity = 0.6)
+
                 out += i.render(temp, include_date = include_date, today = today, marker = marker, debug = debug, symbol_height = v.line_height() * 0.65)
+
                 out += svg_text(v.x + v.padding[0] + v.text_width("xx"), temp.y + (vlayout[2] + vlayout[3])/2 + temp.line_middle(), i.caption)
 
         svg_out = svg_rect(v.x, v.y, v.width, v.height, fill_color = tl_colors[self.color], lwd = 0)
@@ -634,7 +641,7 @@ class TlChart(object):
                     sources.add_section(i)
                 
             if(top_level_object[0] == "marker"):
-                self.markers.append((top_level_object[1], top_level_object[2]))
+                self.markers.append((top_level_object[1], top_level_object[2], top_level_object[3]))
                 
             if(top_level_object[0] == 'section'):
                 temp_section = TlSection(caption = top_level_object[1], parameter = top_level_object[3])
@@ -664,7 +671,7 @@ class TlChart(object):
                                 temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
 
                             if(item[0] == 'marker'):
-                                self.markers.append((item[1], item[2]))
+                                self.markers.append((item[1], item[2], item[3]))
 
                         temp_section.add_thread(temp_thread)
                 self.add_section(temp_section)
