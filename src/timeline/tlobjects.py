@@ -642,27 +642,30 @@ class TlChart(object):
 
                     if thread_item[0] == "import":
                         temp_parameter_string = thread_item[3]
-                        # print(f'temp_parameter_string: {temp_parameter_string}')
                         if thread_item[1] == "*":
                             for t in sources.get_section(thread_item[2]).threads:
                                 t.color = temp_section.color
                                 t.parse_parameters(temp_parameter_string)
-                                # print(f'imported thread {t.caption} has parameters {t.parameter}')
                                 temp_section.add_thread(t)
                         else:
                             temp_thread = sources.get_section(thread_item[2]).get_thread(thread_item[1])
                             temp_thread.color = temp_section.color
                             temp_thread.parse_parameters(temp_parameter_string)
-                            # print(f'imported thread {temp_thread.caption} has parameters {temp_thread.parameter}')
                             temp_section.add_thread(temp_thread)
 
                     if thread_item[0] == "thread":
                         temp_thread = TlThread(caption = thread_item[1], color = temp_section.color, parameter = thread_item[3])
                         for item in thread_item[2]:
+
                             if(item[0] == 'point'):
                                 temp_thread.add_object(TlPoint(date = item[2], caption = item[1], parameter = item[3]))
+
                             if(item[0] == 'interval'):
                                 temp_thread.add_object(TlInterval(caption = item[1], start_date = item[2], end_date = item[3], parameter = item[4]))
+
+                            if(item[0] == 'marker'):
+                                self.markers.append((item[1], item[2]))
+
                         temp_section.add_thread(temp_thread)
                 self.add_section(temp_section)
         if debug:

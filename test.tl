@@ -21,7 +21,7 @@ conduct: 15-Aug-2024 - 30-Sep-25 (color: red)
 IDMC1: 30-Sep-24
 IDMC2: 1-Dec-24
 
-thread study 3 (highlight: True)
+thread study 3 (highlight: False)
 shell: 1-Aug - 7-Aug
 draft 1: 7-Aug - 14-Aug
 CRM: 14-Aug
@@ -71,9 +71,16 @@ N: 7-12
 O: 10-12
 P: 22-12
 
-SECTION Test (color: yellow)
+MARKER 1-Jan-25 
+
+SECTION Test (color: green)
 thread t1
+interval 1: 1-Dec-24 - 1-Jan-25
+interval 2: 1-Jan - 31-Mar
+MARKER 15-Feb-25
 point A: 1-Jan-25
+point B: 1-Feb
+
 
 thread t2 (highlight: True)
 point B: 1-Feb-2025

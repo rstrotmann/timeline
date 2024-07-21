@@ -138,6 +138,7 @@ def p_thread2(p):
     '''
     temp_thread : temp_thread point
                 | temp_thread interval
+                | temp_thread marker
     '''
     p[0] = p[1]
     p[0][1].append(p[2])
