@@ -71,7 +71,7 @@ N: 7-12
 O: 10-12
 P: 22-12
 
-MARKER 1-Jan-25 - 31-Mar
+MARKER 1-Jan-25 - 31-Mar (opacity: 0.5)
 
 SECTION Test (color: green)
 thread t1

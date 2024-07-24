@@ -276,6 +276,17 @@ class TlThread(object):
     def add_object(self, tl_object):
         self.objects.append(tl_object)
 
+    def get_object(self, caption: str, v: viewport):
+        if caption == "":
+            return(None)
+        if not caption in [i.caption for i in self.objects]:
+            sys.exit(f'ERROR: Object {caption} not found!')
+        temp = [i for i in self.objects if i.caption == caption]
+        if len(temp) > 1:
+            sys.exit(f'ERROR: Multiple objects named {caption} in thread {self.caption}')
+        temp = temp[0]
+        print(temp.caption)
+    
     def objects_in_viewport(self, viewport: viewport):
         out  = []
         for i in self.objects:

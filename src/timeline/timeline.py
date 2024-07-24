@@ -4,7 +4,7 @@ import sys
 
 from timeline.tlobjects import TlChart
 from timeline.graphics import viewport
-from timeline.tlutils import parse_date
+from timeline.tlutils import parse_date, split_qualified_name
 from timeline.svg_primitives import svg_symbol
 from datetime import date
 
@@ -29,6 +29,9 @@ def version_callback(value: bool):
 
 # @app.command()
 # def test():
+    # test = "asdsd"
+    # split_qualified_name(test)
+
 # #     tl_text = '''
 # # section s1
 # # thread t1
@@ -110,8 +113,6 @@ def main(
 
     with open(outfile, "w") as f:
         f.write(svg_out)
-
-
 
 if __name__ == "__main__":
 	app()

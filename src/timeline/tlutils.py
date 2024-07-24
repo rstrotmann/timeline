@@ -50,3 +50,8 @@ def validate_parameters(parameter: dict):
             # raise ValueError(f"unknown color '{temp_col}'")
             sys.exit(f"ERROR: Unknown color '{temp_col}'")
         
+def split_qualified_name(name):
+    m = re.match(r"(.*)/(.*)", name)
+    if m:
+        return(m.groups())
+    return None
