@@ -3,7 +3,7 @@ MARKER 15-Nov-2024
 section Clinical (color: red)
 #color red
 
-thread study 1
+thread study 1 (highlight: true)
 Cohort 1: 1-Mar-24 - 1-Apr
 SMC 1: 15-Apr
 Cohort 2: 21-Apr - 21-May
@@ -71,7 +71,7 @@ N: 7-12
 O: 10-12
 P: 22-12
 
-MARKER 1-Jan-25 - 31-Mar (opacity: 0.5)
+MARKER 11-2-25 - 19-2 (opacity: 0.5)
 
 SECTION Test (color: green)
 thread t1

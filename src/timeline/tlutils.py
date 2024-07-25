@@ -43,12 +43,20 @@ def convert_str_to_dict(input) -> dict:
     return(out)
 
 def validate_parameters(parameter: dict):
+    for key, value in parameter.items():
+        parameter[key] = str(value).lower()
+
     # validate colors
     for i in ["color", "fill"]:
         temp_col = parameter.get(i, "transparent")
         if not temp_col in tl_colors.keys():
-            # raise ValueError(f"unknown color '{temp_col}'")
-            sys.exit(f"ERROR: Unknown color '{temp_col}'")
+            raise ValueError(f"unknown color '{temp_col}'")
+        
+    # validate highight
+    if "highlight" in parameter.keys():
+        temp = parameter["highlight"]
+        if not temp in ["true", "false"]:
+            raise ValueError(f"unknown logical value '{temp}' for parameter 'highlight'")
         
 def split_qualified_name(name):
     m = re.match(r"(.*)/(.*)", name)

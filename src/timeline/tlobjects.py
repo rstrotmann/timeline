@@ -24,7 +24,7 @@ class TlObject(object):
         pass
 
     def __repr__(self) -> str:
-        pass
+        return str(self)
 
     def render(self, viewport: viewport, y = None):
         pass
@@ -58,9 +58,6 @@ class TlPoint(TlObject):
 
     def __str__(self):
         return(f'Point ({date_string(self.start_date)}): {self.caption} ({self.parameter})')
-    
-    def __repr__(self) -> str:
-        return str(self)
     
     def index_date(self):
         return(self.start_date)
@@ -105,9 +102,6 @@ class TlInterval(TlObject):
 
     def __str__(self):
         return(f'Interval ({self.date_label()}): {self.caption} ({self.parameter})')
-    
-    def __repr__(self) -> str:
-        return str(self)
     
     def index_date(self):
         return(self.start_date)
@@ -170,39 +164,7 @@ def break_interval(ivl, pts):
             temp.type = "mid"
         ivls.append(temp)
         start = p.end_date
-    # print(f"broken interval: {ivls}")
     return(ivls)
-
-class TlHeader(TlObject):
-    def __init__(self, height = 20):
-        self._height = height
-        self.color = "white"
-        self.caption = ""
-
-    def height(self, v: viewport, include_date = True):
-        return(v.line_height() * 1.5)
-
-    def x_offset(self, v):
-        return(0)
-    
-    def render(self, v: viewport, x, include_date = True, debug = True) -> str:
-        v1 = v.add_viewport(x_offset = x, height = self.height(v))
-        grid = [v1.min_date]
-        while first_of_next_month(grid[-1]) <= v1.max_date:
-            grid.append(first_of_next_month(grid[-1]))
-        grid.append(v1.max_date)
-        grid = list(set(grid))
-        grid.sort()
-        out = v1.render_background(debug = debug)
-        for i, j in zip(grid, grid[1:]):
-            current_color = "#e0e0e0" if (i.month - 1) % 6 < 3 else "transparent"
-            
-            out += svg_rect(v1.date_x(i), v1.y, v1.date_x(j) - v1.date_x(i), v1.height, fill_color = current_color, lwd = v.lwd * 5/6)
-
-            label_x = v1.date_x(i) + (v1.date_x(j) - v1.date_x(i))/2 - v1.text_width(month_names[i.month])/2
-            label_y = v1.y + v1.height/2 - v1.padding[1] + v1.line_height()/2 + v1.padding[1]*0.5
-            out += svg_text(label_x, label_y, month_names[i.month])
-        return(out)
 
 class TlThread(object):
     def __init__(self, text_input = None, caption = "", height = 100, color = "transparent", parameter = ""):
@@ -213,12 +175,11 @@ class TlThread(object):
         if text_input:
             self.parse(text_input)
         self.min_clearance = 7
-        # self.parameter = convert_str_to_dict(parameter)
         self.parse_parameters(parameter)
         try:
             validate_parameters(self.parameter)
         except ValueError as message:
-            sys.exit(f"ERROR: Wrong parameter in thread '{caption}', " + str(message))
+            sys.exit(f"ERROR: Wrong parameter in thread '{caption}' (" + str(message) + ")")
 
     def parse_parameters(self, parameter_string):
         self.parameter = convert_str_to_dict(parameter_string)
@@ -265,7 +226,6 @@ class TlThread(object):
 
         top_height = has_top * v.line_height() * (include_date + 1)
         bottom_height = has_bottom * v.line_height() * (include_date + 1)
-        # mid_height = 20
         mid_height = v.line_height() * 1.3
         y_layout = [ypadding, top_height, ypadding, mid_height, ypadding, bottom_height * has_bottom, ypadding * has_bottom]
         return(list(itertools.accumulate(y_layout)))
@@ -453,12 +413,11 @@ class TlYearscale(TlMonthscale):
     
     def render(self, v: viewport, include_date = True, today = False, debug = False, symbol_height = 10, **kwargs):
         grid =  list(set([first_of_year(i) for i in v.monthgrid()] + [v.min_date]))
-        # out = self.render_background(v)
         out = ""
         for i in grid:
             label_y = v.y + v.height/2 - v.padding[1] + v.line_height()/2 + v.padding[1] * 0.5
             if i >= v.min_date and i < v.max_date:
-                out += svg_text(v.date_x(i) + v.padding[0], label_y, i.year)
+                out += svg_text(v.date_x(i) + v.padding[0], label_y, i.year, font_weight = "bold")
                 if i.month == 1 and i.day == 1:
                     out += svg_line(v.date_x(i), v.y, v.date_x(i), v.y + v.height)
         return(out)
@@ -471,7 +430,7 @@ class TlSection(object):
         try:
             validate_parameters(self.parameter)
         except ValueError as message:
-            sys.exit(f"ERROR: Wrong parameter in section '{caption}', " + str(message))
+            sys.exit(f"ERROR: Wrong parameter in section '{caption}' (" + str(message) + ")")
 
         self.color = self.parameter.get("color", "grey")
         if color:
@@ -526,8 +485,8 @@ class TlSection(object):
                 out += i.render_background(temp)
                 
                 # render highlight
-                temp_highlight = i.parameter.get('highlight', 'False')
-                if temp_highlight == "True":
+                temp_highlight = i.parameter.get('highlight', 'false')
+                if temp_highlight == "true":
                     out += svg_rect(v.x + v.padding[0], temp.y + v.padding[1], v.width - 2 * temp.padding[0], vlayout[6] - 2 * v.padding[1], lwd = 0, fill_color = tl_strong_colors[self.color], fill_opacity = 0.6)
 
                 out += i.render(temp, include_date = include_date, today = today, marker = marker, debug = debug, symbol_height = v.line_height() * 0.65)
