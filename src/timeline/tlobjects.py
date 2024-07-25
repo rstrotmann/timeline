@@ -286,12 +286,16 @@ class TlThread(object):
             if i[0] != "":
                 temp_x = v.date_x(parse_date(i[0]))
                 parameter = convert_str_to_dict(i[2])
-                validate_parameters(parameter)
+                try:
+                    validate_parameters(parameter)
+                except ValueError as message:
+                    sys.exit(f"ERROR: Wrong parameter in marker '{i[0]}' (" + str(message) + ")")    
                 temp_color = parameter.get("color", "blue")
-                temp_lwd = parameter.get("width", 1.5)
+                temp_lwd = float(parameter.get("width", 1.5))
                 temp_opacity = float(parameter.get("opacity", "0"))
+                temp_dashed = parameter.get("dashed", "false") == "true"
                 if not i[1]:
-                    out += svg_line(temp_x, v.y, temp_x, v.y + v.height, outline_color = temp_color, lwd = temp_lwd)
+                    out += svg_line(temp_x, v.y, temp_x, v.y + v.height, outline_color = temp_color, lwd = temp_lwd, dashed = temp_dashed)
                 else:
                     out += svg_rect(temp_x, v.y, v.date_x(parse_date(i[1])) - temp_x, v.y + v.height, fill_color = tl_strong_colors[temp_color], lwd = 0, fill_opacity = temp_opacity)
 

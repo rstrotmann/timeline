@@ -52,11 +52,18 @@ def validate_parameters(parameter: dict):
         if not temp_col in tl_colors.keys():
             raise ValueError(f"unknown color '{temp_col}'")
         
-    # validate highight
-    if "highlight" in parameter.keys():
-        temp = parameter["highlight"]
-        if not temp in ["true", "false"]:
-            raise ValueError(f"unknown logical value '{temp}' for parameter 'highlight'")
+    # # validate highight
+    # if "highlight" in parameter.keys():
+    #     temp = parameter["highlight"]
+    #     if not temp in ["true", "false"]:
+    #         raise ValueError(f"unknown logical value '{temp}' for parameter 'highlight'")
+
+    # validate logicals   
+    for i in ["highlight", "dashed"]:
+        if i in parameter.keys():
+            temp = parameter[i]
+            if not temp in ["true", "false"]:
+                raise ValueError(f"unknown logical value '{temp}' for parameter '{i}'")
         
 def split_qualified_name(name):
     m = re.match(r"(.*)/(.*)", name)
