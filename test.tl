@@ -1,4 +1,4 @@
-MARKER 15-Nov-2024 (color: green, dashed: true)
+MARKER 15-Nov-2024 (dashed: true)
 
 section Clinical (color: red)
 #color red
